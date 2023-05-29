@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".activities.RegisterActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnBackRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium_4_n"
+            android:layout_marginTop="@dimen/margin_28dp"
+            app:srcCompat="@drawable/baseline_arrow_back_accent_30dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvHiLblRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnBackRegister"
+            android:layout_marginStart="@dimen/margin_38dp"
+            android:layout_marginTop="@dimen/margin_xxlarge"
+            android:fontFamily="@font/yorkie_demo_bold"
+            android:text="@string/lbl_hi"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_30sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCreateANewAccountRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvHiLblRegister"
+            android:layout_marginStart="@dimen/margin_38dp"
+            android:layout_marginTop="@dimen/margin_5dp"
+            android:fontFamily="@font/noto_sans_myanmar_regular"
+            android:text="@string/lbl_create_a_new_account"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_regular_2x" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNameLabelRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvCreateANewAccountRegister"
+            android:layout_marginStart="@dimen/margin_38dp"
+            android:layout_marginTop="@dimen/margin_50dp"
+            android:fontFamily="@font/noto_sans"
+            android:text="@string/lbl_name"
+            android:textColor="@color/colorPrimaryLight"
+            android:textSize="@dimen/text_small" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etNameRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvNameLabelRegister"
+            android:layout_marginStart="@dimen/margin_xlarge"
+            android:layout_marginEnd="@dimen/margin_xlarge"
+            android:fontFamily="@font/yorkie_demo_regular"
+            android:hint="@string/aung_thiha"
+            android:inputType="phone"
+            android:minHeight="48dp"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/text_regular_2x" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDateOfBirthRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/etNameRegister"
+            android:layout_marginStart="@dimen/margin_38dp"
+            android:layout_marginTop="@dimen/margin_xlarge"
+            android:fontFamily="@font/noto_sans"
+            android:text="@string/lbl_name"
+            android:textColor="@color/colorPrimaryLight"
+            android:textSize="@dimen/text_small" />
+
+        <LinearLayout
+            android:id="@+id/llSpinnersRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvDateOfBirthRegister"
+            android:layout_marginStart="@dimen/margin_xlarge"
+            android:layout_marginEnd="@dimen/margin_xlarge"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/margin_36dp"
+                android:elevation="@dimen/margin_medium"
+                android:entries="@array/spinner_day"
+                android:spinnerMode="dropdown"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/margin_36dp"
+                android:elevation="@dimen/margin_medium"
+                android:entries="@array/spinner_month"
+                android:spinnerMode="dropdown"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/yearSpinnerRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/margin_36dp"
+                android:elevation="@dimen/margin_medium"
+                android:spinnerMode="dropdown"
+                tools:ignore="TouchTargetSizeCheck" />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvGenderRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/llSpinnersRegister"
+            android:layout_marginStart="@dimen/margin_38dp"
+            android:layout_marginTop="@dimen/margin_xlarge"
+            android:fontFamily="@font/noto_sans"
+            android:text="@string/lbl_gender"
+            android:textColor="@color/colorPrimaryLight"
+            android:textSize="@dimen/text_small" />
+
+        <RadioGroup
+            android:id="@+id/rgGenderRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvGenderRegister"
+            android:layout_marginStart="@dimen/margin_xlarge"
+            android:layout_marginTop="@dimen/margin_10dp"
+            android:layout_marginEnd="@dimen/margin_xlarge"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_medium_3"
+                android:buttonTint="@color/colorAccent"
+                android:fontFamily="@font/yorkie_demo_medium"
+                android:text="@string/lbl_male"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="@dimen/text_regular" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_medium_3"
+                android:checked="false"
+                android:fontFamily="@font/yorkie_demo_medium"
+                android:text="@string/lbl_female"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="@dimen/text_regular" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:fontFamily="@font/yorkie_demo_medium"
+                android:text="@string/lbl_other"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="@dimen/text_regular" />
+
+        </RadioGroup>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etPasswordRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rgGenderRegister"
+            android:layout_marginStart="@dimen/margin_xlarge"
+            android:layout_marginTop="@dimen/margin_xlarge"
+            android:layout_marginEnd="@dimen/margin_xlarge"
+            android:fontFamily="@font/yorkie_demo_regular"
+            android:hint="@string/lbl_password"
+            android:inputType="phone"
+            android:minHeight="48dp"
+            android:paddingBottom="@dimen/margin_large"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/text_regular_2x" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/cbAgreeTermsRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/etPasswordRegister"
+            android:layout_marginStart="@dimen/margin_xlarge"
+            android:layout_marginTop="@dimen/margin_50dp"
+            android:fontFamily="@font/noto_sans_medium"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/margin_card_medium_2"
+            android:text="@string/lbl_agree_to_term_and_service"
+            android:textColor="@color/colorSecondaryText" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnSignUpRegister"
+            android:layout_width="@dimen/width_143dp"
+            android:layout_height="@dimen/height_47dp"
+            android:layout_below="@+id/cbAgreeTermsRegister"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_50dp"
+            android:layout_marginBottom="@dimen/margin_78dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/button_signup_accent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="@dimen/margin_medium_3"
+            android:layout_marginTop="@dimen/margin_medium_3"
+            android:layout_marginBottom="@dimen/height_48dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/icon_register_3"
+            tools:ignore="ImageContrastCheck" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cbAgreeTermsRegister"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="@dimen/margin_medium_2"
+            android:src="@drawable/icon_register_1"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/margin_medium_3"
+            android:paddingBottom="@dimen/margin_30dp"
+            android:src="@drawable/icon_register_path"/>
+
+    </RelativeLayout>
+
+</ScrollView>

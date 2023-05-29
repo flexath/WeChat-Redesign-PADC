@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".activities.SplashActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivLogoSplash"
+        android:layout_width="160dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="240dp"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/logo" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tvLabelOneSplash"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/margin_5dp"
+        android:fontFamily="@font/yorkie_demo_semibold"
+        android:text="@string/splash_lbl_2"
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="@dimen/text_regular_2x_n" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvLabelOneSplash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/llButtonSplash"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/margin_50dp"
+        android:text="@string/splash_lbl_1"
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="@dimen/text_small"
+        app:fontFamily="@font/noto_sans" />
+
+    <LinearLayout
+        android:id="@+id/llButtonSplash"
+        android:layout_width="@dimen/width_300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/margin_100dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnSignUpSplash"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/height_48dp"
+            android:layout_marginEnd="@dimen/margin_medium_2"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/button_signup" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnLoginSplash"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/height_48dp"
+            android:layout_gravity="start"
+            android:layout_marginStart="@dimen/margin_medium_2"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/button_login" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

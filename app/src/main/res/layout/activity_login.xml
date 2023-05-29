@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".activities.LoginActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnBackLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium_4_n"
+            android:layout_marginTop="@dimen/margin_28dp"
+            app:srcCompat="@drawable/baseline_arrow_back_accent_30dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvWelcomeLblLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnBackLogin"
+            android:layout_marginStart="@dimen/margin_38dp"
+            android:layout_marginTop="@dimen/margin_xxlarge"
+            android:fontFamily="@font/yorkie_demo_bold"
+            android:text="@string/welcome_lbl"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_30sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLoginToContinueLblLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvWelcomeLblLogin"
+            android:layout_marginStart="@dimen/margin_38dp"
+            android:layout_marginTop="@dimen/margin_5dp"
+            android:fontFamily="@font/noto_sans_myanmar_regular"
+            android:text="@string/lbl_login_to_continue"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_regular_2x" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/tvLoginIllustrationLogin"
+            android:layout_width="@dimen/width_270dp"
+            android:layout_height="@dimen/height_200dp"
+            android:layout_below="@+id/tvLoginToContinueLblLogin"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_50dp"
+            app:srcCompat="@drawable/login_illustration" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPhoneNoLabelLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvLoginIllustrationLogin"
+            android:layout_marginStart="@dimen/margin_38dp"
+            android:layout_marginTop="@dimen/margin_50dp"
+            android:fontFamily="@font/noto_sans"
+            android:text="@string/lbl_enter_your_phone_number"
+            android:textColor="@color/colorPrimaryLight"
+            android:textSize="@dimen/text_small" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etPhoneNumberLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvPhoneNoLabelLogin"
+            android:layout_marginStart="@dimen/margin_xlarge"
+            android:layout_marginEnd="@dimen/margin_xlarge"
+            android:fontFamily="@font/yorkie_demo_regular"
+            android:hint="@string/hint_09"
+            android:inputType="phone"
+            android:minHeight="48dp"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/text_regular_2x" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPasswordLabelLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/etPhoneNumberLogin"
+            android:layout_marginStart="@dimen/margin_38dp"
+            android:layout_marginTop="@dimen/margin_40dp"
+            android:fontFamily="@font/noto_sans"
+            android:text="@string/hint_enter_your_password"
+            android:textColor="@color/colorPrimaryLight"
+            android:textSize="@dimen/text_small" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etPasswordLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvPasswordLabelLogin"
+            android:layout_marginStart="@dimen/margin_xlarge"
+            android:layout_marginEnd="@dimen/margin_xlarge"
+            android:fontFamily="@font/yorkie_demo_regular"
+            android:hint="@string/hint_123456"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/text_regular_2x" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvForgotPasswordLabelLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/etPasswordLogin"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/margin_medium_3"
+            android:layout_marginEnd="@dimen/margin_38dp"
+            android:fontFamily="@font/noto_sans_medium"
+            android:text="@string/lbl_forgot_password"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/text_regular" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnLogin"
+            android:layout_width="130dp"
+            android:layout_height="@dimen/height_48dp"
+            android:layout_below="@+id/tvForgotPasswordLabelLogin"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_50dp"
+            android:layout_marginBottom="@dimen/margin_50dp"
+            app:srcCompat="@drawable/button_login" />
+
+    </RelativeLayout>
+
+</ScrollView>

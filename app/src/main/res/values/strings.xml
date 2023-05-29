@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">Moments</string>
+    <string name="splash_lbl_1">End-to-end secured messaging app with Social Elements</string>
+    <string name="splash_lbl_2">Text your friends and share moments</string>
+    <string name="welcome_lbl">Welcome !</string>
+    <string name="lbl_login_to_continue">Login to continue</string>
+    <string name="lbl_enter_your_phone_number">Enter Your Phone Number</string>
+    <string name="hint_09">09</string>
+    <string name="hint_enter_your_password">Enter Your Password</string>
+    <string name="hint_123456">123456</string>
+    <string name="lbl_forgot_password">Forgot Password?</string>
+    <string name="lbl_hi">Hi !</string>
+    <string name="lbl_create_a_new_account">Create a new account</string>
+    <string name="lbl_get_otp">Get OTP</string>
+    <string name="lbl_don_t_receive_the_otp">Don\'t receive the OTP?</string>
+    <string name="margin_resend_code">Resend Code</string>
+    <string name="aung_thiha">Aung Thiha</string>
+    <string name="lbl_name">Name</string>
+    <string name="lbl_gender">Gender</string>
+    <string name="lbl_other">Other</string>
+    <string name="lbl_female">Female</string>
+    <string name="lbl_male">Male</string>
+    <string name="lbl_password">Password</string>
+    <string name="lbl_agree_to_term_and_service">Agree To Term And Service</string>
+    <string name="lbl_moment">Moment</string>
+    <string name="lbl_chat">Chat</string>
+    <string name="lbl_contacts">Contacts</string>
+    <string name="lbl_me">Me</string>
+    <string name="lbl_setting">Setting</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

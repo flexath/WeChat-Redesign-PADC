@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/nvgMoment"
+        android:title="@string/lbl_moment"
+        app:showAsAction="always"
+        android:icon="@drawable/nvg_button_moments"/>
+
+    <item
+        android:id="@+id/nvgChat"
+        android:title="@string/lbl_chat"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/nvg_button_chat"/>
+
+    <item
+        android:id="@+id/nvgContacts"
+        android:title="@string/lbl_contacts"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/baseline_perm_contact_calendar_24dp"/>
+
+    <item
+        android:id="@+id/nvgMe"
+        android:title="@string/lbl_me"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/nvg_button_me"/>
+
+    <item
+        android:id="@+id/nvgSetting"
+        android:title="@string/lbl_setting"
+        app:showAsAction="always"
+        android:icon="@drawable/nvg_button_setting"/>
+</menu>

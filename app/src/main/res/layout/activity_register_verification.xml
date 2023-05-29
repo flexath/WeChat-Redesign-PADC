@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".activities.RegisterVerificationActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnBackRegisterVerification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium_4_n"
+            android:layout_marginTop="@dimen/margin_28dp"
+            app:srcCompat="@drawable/baseline_arrow_back_accent_30dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvHiLblRegisterVerification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnBackRegisterVerification"
+            android:layout_marginStart="@dimen/margin_38dp"
+            android:layout_marginTop="@dimen/margin_xxlarge"
+            android:fontFamily="@font/yorkie_demo_bold"
+            android:text="@string/lbl_hi"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_30sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCreateANewAccountRegisterVerification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvHiLblRegisterVerification"
+            android:layout_marginStart="@dimen/margin_38dp"
+            android:layout_marginTop="@dimen/margin_5dp"
+            android:fontFamily="@font/noto_sans_myanmar_regular"
+            android:text="@string/lbl_create_a_new_account"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_regular_2x" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/tvLoginIllustrationRegisterVerification"
+            android:layout_width="@dimen/width_206dp"
+            android:layout_height="@dimen/height_195dp"
+            android:layout_below="@+id/tvCreateANewAccountRegisterVerification"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_xxlarge"
+            app:srcCompat="@drawable/register_illustration" />
+
+        <LinearLayout
+            android:id="@+id/llGetOtpRegisterVerification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvLoginIllustrationRegisterVerification"
+            android:layout_marginStart="@dimen/margin_38dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="@dimen/margin_38dp"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etPhoneNumberRegisterVerification"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:fontFamily="@font/yorkie_demo_regular"
+                android:hint="@string/lbl_enter_your_phone_number"
+                android:inputType="phone"
+                android:minHeight="48dp"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="@dimen/text_regular_2x" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnGetOtpRegisterVerification"
+                android:layout_width="37dp"
+                android:layout_height="@dimen/height_48dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/margin_medium_2"
+                android:layout_weight="1"
+                android:backgroundTint="@color/colorAccent"
+                android:fontFamily="@font/yorkie_demo_bold"
+                android:padding="10dp"
+                android:text="@string/lbl_get_otp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_small" />
+
+        </LinearLayout>
+
+        <com.chaos.view.PinView
+            android:id="@+id/otpPinRegisterVerification"
+            style="@style/PinWidget.PinView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/llGetOtpRegisterVerification"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_38dp"
+            android:cursorVisible="true"
+            android:elevation="@dimen/margin_xxlarge"
+            android:focusable="true"
+            android:fontFamily="@font/inter_semibold"
+            android:inputType="number"
+            android:itemBackground="#FCFCFC"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_small_2x"
+            app:cursorColor="#4A4A4B"
+            app:cursorWidth="2dp"
+            app:hideLineWhenFilled="false"
+            app:itemCount="4"
+            app:itemHeight="@dimen/margin_50dp"
+            app:itemRadius="@dimen/margin_small"
+            app:itemSpacing="@dimen/margin_large"
+            app:itemWidth="@dimen/margin_50dp"
+            app:lineColor="@color/colorPrimaryLight"
+            app:lineWidth="0.15dp"
+            app:viewType="rectangle" />
+
+        <LinearLayout
+            android:id="@+id/llResendCodeRegisterVerification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/otpPinRegisterVerification"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_30dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_bold"
+                android:text="@string/lbl_don_t_receive_the_otp"
+                android:textColor="#999999"
+                android:textSize="@dimen/text_regular" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_bold"
+                android:text="@string/margin_resend_code"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/text_regular" />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnVerifyRegisterVerification"
+            android:layout_width="@dimen/width_132dp"
+            android:layout_height="@dimen/height_48dp"
+            android:layout_below="@+id/llResendCodeRegisterVerification"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_38dp"
+            android:layout_marginBottom="@dimen/margin_90dp"
+            app:srcCompat="@drawable/button_verify" />
+
+    </RelativeLayout>
+
+</ScrollView>
