@@ -1,13 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
     tools:context=".fragments.ChatFragment">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Chat Fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <FrameLayout
+            android:id="@+id/llActionBarChat"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:elevation="@dimen/margin_medium_2"
+            android:background="@color/colorPrimary"
+            android:translationZ="@dimen/margin_medium"
+            android:fadingEdgeLength="@dimen/margin_small">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|start"
+                android:layout_marginStart="@dimen/margin_medium_2"
+                android:fontFamily="@font/yorkie_demo_semibold"
+                android:text="@string/lbl_chats"
+                android:textSize="@dimen/text_34sp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/btnSearchChat"
+                android:layout_width="@dimen/width_36dp"
+                android:layout_height="@dimen/height_36dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="@dimen/margin_medium_2"
+                app:srcCompat="@drawable/button_search" />
+
+        </FrameLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvActiveNowLblChat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_medium"
+            android:textSize="@dimen/text_regular"
+            android:textColor="@color/colorPrimaryLight_2"
+            android:layout_below="@+id/llActionBarChat"
+            android:layout_marginStart="@dimen/margin_medium_2"
+            android:layout_marginTop="@dimen/margin_card_medium_2"
+            android:text="@string/lbl_active_now"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvActiveChats"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/margin_card_medium_2"
+            android:layout_below="@+id/tvActiveNowLblChat"
+            android:layout_margin="@dimen/margin_medium"
+            tools:listitem="@layout/view_holder_active_chat_list"
+            tools:itemCount="1"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvChats"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/rvActiveChats"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_medium"
+            tools:itemCount="5"
+            tools:listitem="@layout/view_holder_chat_list"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:paddingBottom="@dimen/margin_medium_2"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvPostProfilePic"
+        android:layout_width="@dimen/margin_40dp"
+        android:layout_height="@dimen/margin_40dp"
+        android:layout_marginStart="@dimen/margin_medium_2"
+        android:layout_marginTop="@dimen/margin_large"
+        app:cardCornerRadius="@dimen/margin_medium_3">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ath_profile" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPostProfileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_large"
+        android:layout_toEndOf="@id/mcvPostProfilePic"
+        android:fontFamily="@font/noto_sans_bold"
+        android:text="@string/aung_thiha"
+        android:textSize="@dimen/text_15sp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPostLastOnline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvPostProfileName"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_toEndOf="@id/mcvPostProfilePic"
+        android:fontFamily="@font/noto_sans_medium"
+        android:text="5 hours ago"
+        android:textColor="@color/colorPrimaryLight_2"
+        android:textSize="@dimen/text_small" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btnPostOption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/margin_large"
+        android:layout_marginEnd="@dimen/margin_medium_2"
+        app:srcCompat="@drawable/baseline_more_horiz_accent_24dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPostCaption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mcvPostProfilePic"
+        android:layout_marginStart="@dimen/margin_medium_2"
+        android:layout_marginTop="@dimen/margin_card_medium_2"
+        android:layout_marginEnd="@dimen/margin_medium_2"
+        android:textSize="@dimen/text_regular_2x"
+        android:fontFamily="@font/noto_sans_medium"
+        android:maxLines="5"
+        android:textColor="@color/colorPrimaryText"
+        android:text="A machine resembling a human being and able to replicate certain human movements and functions automatically." />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvPostPicture"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_341dp"
+        android:layout_marginStart="@dimen/margin_medium_2"
+        app:cardCornerRadius="@dimen/margin_medium"
+        android:layout_below="@+id/tvPostCaption"
+        android:layout_marginTop="@dimen/margin_card_medium_2"
+        android:layout_marginEnd="@dimen/margin_medium_2">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivPostPicture"
+            android:layout_width="match_parent"
+            app:srcCompat="@drawable/ath_post_picture"
+            android:scaleType="centerCrop"
+            android:layout_height="wrap_content"/>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btnPostFavourite"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/mcvPostPicture"
+        android:layout_marginStart="@dimen/margin_medium_2"
+        android:layout_marginTop="@dimen/margin_medium_2"
+        android:layout_alignParentStart="true"
+        app:srcCompat="@drawable/baseline_favorite_border_accent_24dp"
+        android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3"
+        android:layout_marginTop="@dimen/margin_medium_2"
+        android:layout_below="@+id/mcvPostPicture"
+        android:layout_toEndOf="@+id/btnPostFavourite"
+        android:layout_marginStart="@dimen/margin_small"
+        android:textSize="@dimen/text_15sp"
+        android:textColor="@color/colorPrimaryText"
+        android:fontFamily="@font/inter_medium" />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btnPostBookmark"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/mcvPostPicture"
+        android:layout_marginEnd="@dimen/margin_medium_2"
+        android:layout_marginTop="@dimen/margin_medium_2"
+        android:layout_alignParentEnd="true"
+        app:srcCompat="@drawable/baseline_bookmark_red_24dp"
+        android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPostNumberOfComments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3"
+        android:layout_toStartOf="@+id/btnPostBookmark"
+        android:layout_marginTop="@dimen/margin_medium_2"
+        android:layout_below="@+id/mcvPostPicture"
+        android:layout_marginEnd="@dimen/margin_card_medium_2"
+        android:textSize="@dimen/text_15sp"
+        android:textColor="@color/colorPrimaryText"
+        android:fontFamily="@font/inter_medium" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivPostComment"
+        android:layout_width="30dp"
+        android:layout_below="@+id/mcvPostPicture"
+        android:layout_marginTop="@dimen/margin_card_medium_2"
+        android:layout_toStartOf="@+id/tvPostNumberOfComments"
+        android:layout_marginEnd="@dimen/margin_small"
+        app:srcCompat="@drawable/icon_post_comment"
+        android:scaleType="centerCrop"
+        android:layout_height="30dp"/>
+
+
+</RelativeLayout>

@@ -1,13 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.MomentFragment">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Moment Fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <FrameLayout
+            android:id="@+id/llActionBarChat"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:elevation="@dimen/margin_medium"
+            android:translationZ="@dimen/margin_medium"
+            android:fadingEdgeLength="@dimen/margin_small">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|start"
+                android:layout_marginStart="@dimen/margin_medium_2"
+                android:fontFamily="@font/yorkie_demo_semibold"
+                android:text="@string/lbl_moments"
+                android:textSize="@dimen/text_34sp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/btnAddMomentChat"
+                android:layout_width="@dimen/width_36dp"
+                android:layout_height="@dimen/height_36dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="@dimen/margin_medium_2"
+                app:srcCompat="@drawable/button_add_post" />
+
+        </FrameLayout>
+
+        <include
+            android:id="@+id/vpPostChat"
+            layout="@layout/view_pod_post"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/llActionBarChat" />
+
+    </RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>

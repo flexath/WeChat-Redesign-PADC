@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".activities.ChatDetailActivity">
+
+    <RelativeLayout
+        android:id="@+id/rlActionBarChatDetail"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="@dimen/margin_medium"
+        android:fadingEdgeLength="@dimen/margin_small"
+        android:translationZ="@dimen/margin_medium">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnBackChatDetail"
+            android:layout_width="@dimen/width_30dp"
+            android:layout_height="@dimen/height_30dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/margin_medium_2"
+            app:srcCompat="@drawable/baseline_arrow_back_accent_30dp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnAddMomentChat"
+            android:layout_width="@dimen/width_24dp"
+            android:layout_height="@dimen/height_24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/margin_medium_2"
+            app:srcCompat="@drawable/button_chat_option" />
+
+        <com.flexath.moments.views.components.RoundedProfileImage
+            android:id="@+id/ivProfileImageChatDetail"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_toEndOf="@+id/btnBackChatDetail"
+            android:elevation="@dimen/margin_medium"
+            android:scaleType="centerCrop"
+            app:cornerRadius="25dp"
+            app:isActive="true"
+            app:srcCompat="@drawable/ath_profile" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/margin_10dp"
+            android:layout_toEndOf="@+id/ivProfileImageChatDetail"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNameChatDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_bold"
+                android:text="@string/aung_thiha"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/text_regular_2x" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_medium"
+                android:text="Online"
+                android:textColor="@color/colorPrimaryLight_2"
+                android:textSize="@dimen/text_small" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rlMessageSectionChatDetail"
+        android:layout_below="@+id/rlActionBarChatDetail" />
+
+    <RelativeLayout
+        android:id="@+id/rlMessageSectionChatDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <RelativeLayout
+            android:id="@+id/rlSendMessageSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etSendMessageChatDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/btnSendMessageChatDetail"
+                android:background="@color/colorPrimary"
+                android:fontFamily="@font/noto_sans"
+                android:hint="@string/lbl_type_a_message"
+                android:padding="@dimen/margin_medium_2"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/text_regular_2x" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnSendMessageChatDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/margin_medium_2"
+                app:cardBackgroundColor="@color/colorAccent"
+                app:cardCornerRadius="20dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/margin_10dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/baseline_send_white_24dp" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rlSendMessageSection"
+            android:paddingBottom="@dimen/margin_14dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/margin_28dp"
+            android:paddingTop="@dimen/margin_14dp"
+            android:paddingEnd="@dimen/margin_28dp">
+
+            <FrameLayout
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/background_buttons_chat_detail">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/margin_10dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/button_gallery" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/margin_36dp"
+                android:background="@drawable/background_buttons_chat_detail">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/margin_10dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/baseline_camera_alt_white_24dp" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/margin_36dp"
+                android:background="@drawable/background_buttons_chat_detail">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/margin_10dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/button_document" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/margin_36dp"
+                android:background="@drawable/background_buttons_chat_detail">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/margin_10dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/button_location_accent" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/margin_36dp"
+                android:background="@drawable/background_buttons_chat_detail">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/margin_10dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/button_record_voice" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

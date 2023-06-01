@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="RoundedProfileImage">
+        <attr name="cornerRadius" format="dimension"/>
+        <attr name="isActive" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="CustomProgressBar">
+        <attr name="customProgress" format="integer"/>
+        <attr name="customProgressMax" format="integer"/>
+        <attr name="customTrackColor" format="color"/>
+        <attr name="customIndicatorColor" format="color"/>
+    </declare-styleable>
+
+</resources>

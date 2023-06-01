@@ -6,7 +6,9 @@
     <color name="colorPrimary">#F9F9F9</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorPrimaryLight">#888888</color>
+    <color name="colorPrimaryLight_2">#999999</color>
     <color name="colorAccent">#113A5D</color>
     <color name="colorPrimaryText">#113A5D</color>
     <color name="colorSecondaryText">#062743</color>
+    <color name="colorActiveNow">#00DC5D</color>
 </resources>

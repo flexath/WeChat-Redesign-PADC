@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.NewMomentActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:id="@+id/actionBarNewMoment"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/width_30dp"
+                    android:layout_height="@dimen/height_30dp"
+                    android:layout_gravity="start|center_vertical"
+                    android:layout_marginStart="@dimen/margin_medium_2"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/baseline_close_accent_24dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/yorkie_demo_semibold"
+                    android:text="@string/lbl_new_moment"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="@dimen/text_heading_1x" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="60dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="@dimen/margin_medium_2"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/button_create" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/llProfilePicNewMoment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/actionBarNewMoment"
+                android:layout_marginStart="@dimen/margin_medium_3"
+                android:layout_marginEnd="@dimen/margin_medium_3"
+                android:layout_marginTop="@dimen/margin_large"
+                android:orientation="horizontal">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvProfilePicNewMoment"
+                    android:layout_width="@dimen/margin_50dp"
+                    android:layout_height="@dimen/margin_50dp"
+                    app:cardCornerRadius="@dimen/margin_25dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/ath_profile" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/margin_card_medium_2"
+                    android:fontFamily="@font/noto_sans_bold"
+                    android:text="@string/aung_thiha"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="@dimen/text_regular_2x_n" />
+
+            </LinearLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilPostNewMoment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/llProfilePicNewMoment"
+                android:layout_marginStart="@dimen/margin_card_medium"
+                android:layout_marginTop="@dimen/margin_medium_2"
+                android:layout_marginEnd="@dimen/margin_medium_3"
+                app:boxBackgroundColor="@color/colorPrimary"
+                app:boxBackgroundMode="none"
+                app:hintEnabled="false"
+                app:hintTextColor="@android:color/transparent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPostNewMoment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:autoLink="web|phone|email"
+                    android:fontFamily="@font/noto_sans"
+                    android:gravity="top|start"
+                    android:textAlignment="viewStart"
+                    android:hint="@string/lbl_what_s_on_your_mind"
+                    android:linksClickable="true"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textColorHint="@color/colorSecondaryText"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/text_regular_2x_n" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/margin_medium_3"
+        android:layout_marginBottom="@dimen/margin_medium_3"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:clipToPadding="false"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:itemCount="3"
+        tools:listitem="@layout/view_holder_new_moment_background_list" />
+
+</RelativeLayout>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingEnd="@dimen/margin_medium">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        app:cardCornerRadius="@dimen/margin_medium_3"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="108dp"
+            android:layout_height="108dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/background_new_moment" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+</FrameLayout>

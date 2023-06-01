@@ -58,5 +58,21 @@
     <dimen name="margin_78dp">78dp</dimen>
     <dimen name="width_143dp">143dp</dimen>
     <dimen name="height_47dp">47dp</dimen>
+    <dimen name="text_34sp">34sp</dimen>
+    <dimen name="width_36dp">36dp</dimen>
+    <dimen name="height_36dp">36dp</dimen>
+    <dimen name="height_20dp">20dp</dimen>
+    <dimen name="width_20dp">20dp</dimen>
+    <dimen name="width_48dp">48dp</dimen>
+    <dimen name="height_24dp">24dp</dimen>
+    <dimen name="width_24dp">24dp</dimen>
+    <dimen name="margin_14dp">14dp</dimen>
+    <dimen name="text_15sp">15sp</dimen>
+    <dimen name="height_341dp">341dp</dimen>
+    <dimen name="height_42dp">42dp</dimen>
+    <dimen name="margin_25dp">25dp</dimen>
+    <dimen name="width_30dp">30dp</dimen>
+    <dimen name="height_30dp">30dp</dimen>
+    <dimen name="margin_2dp">2dp</dimen>
 
 </resources>

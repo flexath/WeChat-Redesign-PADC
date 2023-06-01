@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_medium"
+    android:background="@color/colorPrimary"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/background_chat_list"
+        android:layout_height="wrap_content">
+
+        <com.flexath.moments.views.components.RoundedProfileImage
+            android:id="@+id/ivProfileImageChat"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:elevation="@dimen/margin_medium"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:layout_marginStart="@dimen/margin_medium"
+            app:cornerRadius="30dp"
+            app:isActive="true"
+            app:srcCompat="@drawable/ath_profile" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNameChat"
+            android:layout_width="wrap_content"
+            android:text="@string/aung_thiha"
+            android:layout_toEndOf="@+id/ivProfileImageChat"
+            android:layout_marginStart="@dimen/margin_10dp"
+            android:layout_marginTop="@dimen/margin_14dp"
+            android:fontFamily="@font/noto_sans"
+            android:textSize="@dimen/text_regular_2x"
+            android:textColor="@color/colorPrimaryText"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:text="You sent a Video"
+            android:layout_toEndOf="@+id/ivProfileImageChat"
+            android:layout_marginStart="@dimen/margin_10dp"
+            android:layout_marginTop="@dimen/margin_small"
+            android:fontFamily="@font/noto_sans"
+            android:layout_below="@+id/tvNameChat"
+            android:textSize="@dimen/text_regular"
+            android:textColor="@color/colorPrimaryLight_2"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLastOnlineChat"
+            android:layout_width="wrap_content"
+            android:text="5 mins"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_14dp"
+            android:fontFamily="@font/noto_sans_semibold"
+            android:textSize="@dimen/text_small"
+            android:textColor="@color/colorPrimaryText"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/width_20dp"
+            android:layout_height="@dimen/height_20dp"
+            app:srcCompat="@drawable/icon_seen"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_below="@+id/tvLastOnlineChat"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:scaleType="centerCrop"/>
+
+    </RelativeLayout>
+
+</FrameLayout>

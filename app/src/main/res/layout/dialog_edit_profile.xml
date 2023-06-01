@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingBottom="@dimen/margin_xlarge"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNameLabelEditProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_30dp"
+        android:layout_marginTop="@dimen/margin_large"
+        android:fontFamily="@font/noto_sans"
+        android:text="@string/lbl_name"
+        android:textColor="@color/colorPrimaryLight"
+        android:textSize="@dimen/text_small" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etNameEditProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvNameLabelEditProfile"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginEnd="@dimen/margin_large"
+        android:fontFamily="@font/yorkie_demo_regular"
+        android:hint="@string/aung_thiha"
+        android:inputType="phone"
+        android:minHeight="48dp"
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="@dimen/text_regular_2x" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPhoneNoLabelEditProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etNameEditProfile"
+        android:layout_marginStart="@dimen/margin_30dp"
+        android:layout_marginTop="@dimen/margin_50dp"
+        android:fontFamily="@font/noto_sans"
+        android:text="@string/lbl_enter_your_phone_number"
+        android:textColor="@color/colorPrimaryLight"
+        android:textSize="@dimen/text_small" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etPhoneNumberEditProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvPhoneNoLabelEditProfile"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginEnd="@dimen/margin_large"
+        android:fontFamily="@font/yorkie_demo_regular"
+        android:hint="@string/hint_09"
+        android:inputType="phone"
+        android:minHeight="48dp"
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="@dimen/text_regular_2x" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDateOfBirthEditProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etPhoneNumberEditProfile"
+        android:layout_marginStart="@dimen/margin_30dp"
+        android:layout_marginTop="@dimen/margin_xlarge"
+        android:fontFamily="@font/noto_sans"
+        android:text="@string/lbl_name"
+        android:textColor="@color/colorPrimaryLight"
+        android:textSize="@dimen/text_small" />
+
+    <LinearLayout
+        android:id="@+id/llSpinnersEditProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvDateOfBirthEditProfile"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginEnd="@dimen/margin_large"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/margin_36dp"
+            android:elevation="@dimen/margin_medium"
+            android:entries="@array/spinner_day"
+            android:spinnerMode="dropdown"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:layout_width="120dp"
+            android:layout_height="@dimen/margin_36dp"
+            android:entries="@array/spinner_month"
+            android:spinnerMode="dropdown"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/yearSpinnerEditProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/margin_36dp"
+            android:spinnerMode="dropdown"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvGenderEditProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/llSpinnersEditProfile"
+        android:layout_marginStart="@dimen/margin_30dp"
+        android:layout_marginTop="@dimen/margin_xlarge"
+        android:fontFamily="@font/noto_sans"
+        android:text="@string/lbl_gender"
+        android:textColor="@color/colorPrimaryLight"
+        android:textSize="@dimen/text_small" />
+
+    <RadioGroup
+        android:id="@+id/rgGenderEditProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvGenderEditProfile"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginTop="@dimen/margin_10dp"
+        android:layout_marginEnd="@dimen/margin_large"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_medium_3"
+            android:buttonTint="@color/colorAccent"
+            android:fontFamily="@font/yorkie_demo_medium"
+            android:text="@string/lbl_male"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/text_regular" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_medium_3"
+            android:checked="false"
+            android:fontFamily="@font/yorkie_demo_medium"
+            android:text="@string/lbl_female"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/text_regular" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:fontFamily="@font/yorkie_demo_medium"
+            android:text="@string/lbl_other"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/text_regular" />
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/llButtonSplash"
+        android:layout_width="@dimen/width_300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rgGenderEditProfile"
+        android:layout_marginTop="@dimen/margin_xlarge"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnSignUpSplash"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/height_42dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/button_cancel" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnLoginSplash"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/height_42dp"
+            android:layout_gravity="start"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/button_save" />
+
+    </LinearLayout>
+
+</RelativeLayout>

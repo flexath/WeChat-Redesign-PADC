@@ -1,14 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".fragments.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <FrameLayout
+            android:id="@+id/llActionBarProfile"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:elevation="@dimen/margin_medium_2"
+            android:background="@color/colorPrimary"
+            android:translationZ="@dimen/margin_medium"
+            android:fadingEdgeLength="@dimen/margin_small">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|start"
+                android:layout_marginStart="@dimen/margin_medium_2"
+                android:fontFamily="@font/yorkie_demo_semibold"
+                android:text="@string/lbl_me"
+                android:textSize="@dimen/text_34sp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/btnEditProfile"
+                android:layout_width="@dimen/width_36dp"
+                android:layout_height="@dimen/height_36dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="@dimen/margin_medium_2"
+                app:srcCompat="@drawable/button_edit_profile" />
+
+        </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlProfileSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/llActionBarProfile"
+            android:layout_marginStart="@dimen/margin_medium_2"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:layout_marginEnd="@dimen/margin_medium_2"
+            android:background="@drawable/background_profile_section"
+            android:paddingBottom="@dimen/margin_medium_2">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvProfilePicProfile"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/margin_card_medium_2"
+                app:cardCornerRadius="60dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/ath_profile" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivUpdatePictureProfile"
+                android:layout_width="@dimen/width_20dp"
+                android:layout_height="@dimen/height_20dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="@dimen/margin_medium_2"
+                android:layout_marginBottom="@dimen/margin_medium_2"
+                android:elevation="@dimen/margin_medium_2"
+                android:foreground="@drawable/icon_update_new_profile" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/width_48dp"
+                android:layout_height="@dimen/height_48dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="@dimen/margin_50dp"
+                android:layout_marginBottom="@dimen/margin_medium_2"
+                android:layout_toEndOf="@+id/ivUpdatePictureProfile"
+                app:srcCompat="@drawable/icon_qr_profile" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNameProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_card_medium_2"
+                android:layout_toEndOf="@+id/mcvProfilePicProfile"
+                android:fontFamily="@font/yorkie_demo_regular"
+                android:text="@string/aung_thiha"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_regular_3x" />
+
+            <LinearLayout
+                android:id="@+id/llPhoneNumberProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvNameProfile"
+                android:layout_marginStart="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_toEndOf="@+id/mcvProfilePicProfile"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivPhoneNumberProfile"
+                    android:layout_width="@dimen/width_24dp"
+                    android:layout_height="@dimen/height_24dp"
+                    app:srcCompat="@drawable/icon_phone_profile" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPhoneNumberProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_myanmar_regular"
+                    android:layout_marginStart="@dimen/margin_14dp"
+                    android:gravity="center"
+                    android:text="09795448753"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_regular" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llDateProfile"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/llPhoneNumberProfile"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginStart="@dimen/margin_large"
+                android:layout_toEndOf="@+id/mcvProfilePicProfile"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivDateProfile"
+                    android:layout_width="@dimen/width_24dp"
+                    android:layout_height="@dimen/height_24dp"
+                    app:srcCompat="@drawable/icon_date_profile" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDateProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_myanmar_regular"
+                    android:layout_marginStart="@dimen/margin_14dp"
+                    android:gravity="center"
+                    android:text="1998-10-04"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_regular" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/llDateProfile"
+                android:layout_marginStart="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_toEndOf="@+id/mcvProfilePicProfile"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivGenderProfile"
+                    android:layout_width="@dimen/width_24dp"
+                    android:layout_height="@dimen/height_24dp"
+                    app:srcCompat="@drawable/icon_gender_profile" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvGenderProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_myanmar_regular"
+                    android:layout_marginStart="@dimen/margin_14dp"
+                    android:gravity="center"
+                    android:text="Male"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_regular" />
+
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/ivPostTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rlProfileSection"
+            android:layout_marginStart="@dimen/margin_medium_2"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:fontFamily="@font/yorkie_demo_regular"
+            android:text="@string/lbl_bookmarked_moments"
+            android:textSize="@dimen/text_regular_3x" />
+
+        <include
+            android:id="@+id/vpPostProfile"
+            layout="@layout/view_pod_post"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ivPostTitle" />
+
+    </RelativeLayout>
+
+
+</androidx.core.widget.NestedScrollView>
