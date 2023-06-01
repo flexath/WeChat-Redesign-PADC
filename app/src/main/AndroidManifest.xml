@@ -6,12 +6,21 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Moments"
         tools:targetApi="31">
+        <activity
+            android:name=".activities.NewGroupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.NewContactActivity"
+            android:exported="false"
+            android:screenOrientation="fullSensor"
+            tools:replace="screenOrientation" />
         <activity
             android:name=".activities.ChatDetailActivity"
             android:exported="false" />

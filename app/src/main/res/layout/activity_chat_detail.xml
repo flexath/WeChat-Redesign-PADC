@@ -146,6 +146,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
+                android:elevation="@dimen/margin_small"
                 android:background="@drawable/background_buttons_chat_detail">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -163,6 +164,7 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/margin_36dp"
+                android:elevation="@dimen/margin_small"
                 android:background="@drawable/background_buttons_chat_detail">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -180,6 +182,7 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/margin_36dp"
+                android:elevation="@dimen/margin_small"
                 android:background="@drawable/background_buttons_chat_detail">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -197,6 +200,7 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/margin_36dp"
+                android:elevation="@dimen/margin_small"
                 android:background="@drawable/background_buttons_chat_detail">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -214,6 +218,7 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/margin_36dp"
+                android:elevation="@dimen/margin_small"
                 android:background="@drawable/background_buttons_chat_detail">
 
                 <androidx.appcompat.widget.AppCompatImageView

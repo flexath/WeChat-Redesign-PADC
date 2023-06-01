@@ -35,4 +35,9 @@
     <string name="lbl_chats">Chats</string>
     <string name="lbl_active_now">Active Now</string>
     <string name="lbl_type_a_message">Type a message...</string>
+    <string name="lbl_groups">Groups (</string>
+    <string name="lbl_search">Search</string>
+    <string name="lbl_close_bracket">)</string>
+    <string name="lbl_add_new">Add New</string>
+    <string name="lbl_new_group">New Group</string>
 </resources>

@@ -45,7 +45,7 @@ class ChatFragment : Fragment(),ChatItemActionDelegate {
         binding.rvChats.layoutManager = LinearLayoutManager(requireActivity())
     }
 
-    override fun onTapChat() {
+    override fun onTapChatItem() {
         startActivity(ChatDetailActivity.newIntent(requireActivity()))
     }
 

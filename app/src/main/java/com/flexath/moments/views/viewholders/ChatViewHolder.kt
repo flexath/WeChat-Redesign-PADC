@@ -2,7 +2,6 @@ package com.flexath.moments.views.viewholders
 
 import android.view.View
 import com.flexath.moments.data.vos.VO
-import com.flexath.moments.databinding.ViewHolderActiveChatListBinding
 import com.flexath.moments.databinding.ViewHolderChatListBinding
 import com.flexath.moments.delegates.ChatItemActionDelegate
 
@@ -18,7 +17,7 @@ class ChatViewHolder(itemView: View,private val delegate: ChatItemActionDelegate
 
     private fun setUpListeners() {
         itemView.setOnClickListener {
-            delegate.onTapChat()
+            delegate.onTapChatItem()
         }
     }
 
