@@ -43,6 +43,13 @@ class ProfileFragment : Fragment() {
             val adapter = ArrayAdapter(requireActivity(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, getYearsForYearSpinner())
             dialogBinding.yearSpinnerEditProfile.adapter = adapter
 
+            dialogBinding.btnSaveDialog.setOnClickListener {
+                dialog.dismiss()
+            }
+
+            dialogBinding.btnCancelDialog.setOnClickListener {
+                dialog.dismiss()
+            }
             dialog.show()
         }
     }

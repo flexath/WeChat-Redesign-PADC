@@ -166,14 +166,14 @@
         android:weightSum="2">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/btnSignUpSplash"
+            android:id="@+id/btnCancelDialog"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/height_42dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/button_cancel" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/btnLoginSplash"
+            android:id="@+id/btnSaveDialog"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/height_42dp"
             android:layout_gravity="start"

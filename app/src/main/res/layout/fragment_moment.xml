@@ -30,7 +30,7 @@
                 android:textSize="@dimen/text_34sp" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/btnAddMomentChat"
+                android:id="@+id/btnAddMoment"
                 android:layout_width="@dimen/width_36dp"
                 android:layout_height="@dimen/height_36dp"
                 android:layout_gravity="center_vertical|end"

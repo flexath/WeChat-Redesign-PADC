@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/margin_10dp"
+    android:paddingBottom="@dimen/margin_10dp">
+
+    <FrameLayout
+        android:layout_width="100dp"
+        android:layout_height="120dp"
+        tools:ignore="UselessParent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivRemoveMember"
+            android:layout_width="@dimen/width_20dp"
+            android:layout_height="@dimen/width_20dp"
+            android:layout_gravity="end"
+            android:elevation="@dimen/margin_medium_2"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/button_remove_from_group" />
+
+        <RelativeLayout
+            android:id="@+id/llGroupItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/background_group_list_white"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_medium_2">
+
+            <com.flexath.moments.views.components.RoundedProfileImage
+                android:id="@+id/ivProfileImageNewMemberGroup"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin_10dp"
+                android:scaleType="centerCrop"
+                app:cornerRadius="25dp"
+                app:hasBorderCircle="false"
+                app:isActive="true"
+                app:srcCompat="@drawable/ath_profile" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvGroupName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivProfileImageNewMemberGroup"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin_5dp"
+                android:fontFamily="@font/noto_sans"
+                android:paddingBottom="@dimen/margin_5dp"
+                android:text="Aung Thiha"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_smaller" />
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+
+</RelativeLayout>

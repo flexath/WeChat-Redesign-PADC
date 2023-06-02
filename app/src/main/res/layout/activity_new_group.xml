@@ -42,7 +42,40 @@
 
         </FrameLayout>
 
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etGroupNameNewGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/actionBarNewGroup"
+            android:layout_marginStart="@dimen/margin_medium_3"
+            android:layout_marginEnd="@dimen/margin_medium_3"
+            android:hint="@string/lbl_group_name"
+            android:padding="@dimen/margin_medium_3" />
 
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/etSearchContactsNewGroup"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_48dp"
+            android:layout_below="@+id/etGroupNameNewGroup"
+            android:layout_marginStart="@dimen/margin_medium_3"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:layout_marginEnd="@dimen/margin_medium_3"
+            android:background="@drawable/background_search_contacts"
+            android:visibility="visible"
+            app:closeIcon="@drawable/baseline_close_accent_24dp"
+            app:iconifiedByDefault="false"
+            app:queryBackground="@android:color/transparent"
+            app:queryHint="@string/lbl_search"
+            app:searchIcon="@drawable/baseline_search_accent_24dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMemberNewGroup"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/etSearchContactsNewGroup"
+            android:layout_margin="@dimen/margin_10dp"
+            tools:listitem="@layout/view_holder_new_member_list"
+            android:layout_height="wrap_content"
+            tools:itemCount="3" />
 
     </RelativeLayout>
 

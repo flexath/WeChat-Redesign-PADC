@@ -4,6 +4,7 @@
     <declare-styleable name="RoundedProfileImage">
         <attr name="cornerRadius" format="dimension"/>
         <attr name="isActive" format="boolean"/>
+        <attr name="hasBorderCircle" format="boolean"/>
     </declare-styleable>
 
     <declare-styleable name="CustomProgressBar">

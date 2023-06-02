@@ -20,6 +20,7 @@
                 android:layout_height="?attr/actionBarSize">
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btnBackNewMoment"
                     android:layout_width="@dimen/width_30dp"
                     android:layout_height="@dimen/height_30dp"
                     android:layout_gravity="start|center_vertical"
@@ -37,6 +38,7 @@
                     android:textSize="@dimen/text_heading_1x" />
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btnCreateNewMoment"
                     android:layout_width="60dp"
                     android:layout_height="32dp"
                     android:layout_gravity="end|center_vertical"
@@ -82,11 +84,10 @@
 
             </LinearLayout>
 
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilPostNewMoment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/llProfilePicNewMoment"
                 android:layout_marginStart="@dimen/margin_card_medium"
                 android:layout_marginTop="@dimen/margin_medium_2"
@@ -99,7 +100,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPostNewMoment"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:autoLink="web|phone|email"
                     android:fontFamily="@font/noto_sans"
                     android:gravity="top|start"

@@ -21,6 +21,7 @@ class RoundedProfileImage @JvmOverloads constructor(
 
     private var cornerRadius = 0f
     private var isActive = false
+    private var hasBorderCircle = true
     private val path = Path()
 
     private val DEFAULT_ACTIVE_CIRCLE_COLOR =
@@ -41,6 +42,7 @@ class RoundedProfileImage @JvmOverloads constructor(
         context.withStyledAttributes(attrs, R.styleable.RoundedProfileImage) {
             cornerRadius = getDimension(R.styleable.RoundedProfileImage_cornerRadius, 0f)
             isActive = getBoolean(R.styleable.RoundedProfileImage_isActive, false)
+            hasBorderCircle = getBoolean(R.styleable.RoundedProfileImage_hasBorderCircle,true)
         }
 
         translationZ = 8f
@@ -53,7 +55,9 @@ class RoundedProfileImage @JvmOverloads constructor(
         canvas?.clipPath(path)
         super.onDraw(canvas)
 
-        onDrawBorderCircle(canvas)
+        if(hasBorderCircle) {
+            onDrawBorderCircle(canvas)
+        }
 
         if (isActive) {
             onDrawActiveCircle(canvas)
@@ -75,7 +79,7 @@ class RoundedProfileImage @JvmOverloads constructor(
         val paintForActiveCircle = Paint(Paint.ANTI_ALIAS_FLAG).apply {
             style = Paint.Style.FILL
             color = DEFAULT_ACTIVE_CIRCLE_COLOR
-            translationZ = 20f
+            translationZ = 8f
             elevation = 8f
             bringToFront()
         }
