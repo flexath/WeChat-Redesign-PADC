@@ -7,25 +7,31 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.flexath.moments.R
 import com.flexath.moments.activities.NewContactActivity
 import com.flexath.moments.activities.NewGroupActivity
+import com.flexath.moments.adapters.AlphabetAdapter
+import com.flexath.moments.adapters.ContactsAlphabetGroupAdapter
 import com.flexath.moments.adapters.GroupAdapter
 import com.flexath.moments.databinding.FragmentContactsBinding
-import com.flexath.moments.delegates.GroupItemActionDelegate
 import com.flexath.moments.mvp.impls.ContactsPresenterImpl
 import com.flexath.moments.mvp.interfaces.ContactsPresenter
 import com.flexath.moments.mvp.views.ContactsView
+import com.flexath.moments.utils.GeneralListData
 
 class ContactsFragment : Fragment(),ContactsView {
 
     private lateinit var binding:FragmentContactsBinding
 
     // Adapters
-    private lateinit var mAdapter:GroupAdapter
+    private lateinit var mGroupAdapter:GroupAdapter
+    private lateinit var mAlphabetAdapter: AlphabetAdapter
+    private lateinit var mContactsAlphabetGroupAdapter: ContactsAlphabetGroupAdapter
 
     // Presenters
     private lateinit var mPresenter:ContactsPresenter
+
+    // Dummy
+    private val nameList:List<String> = listOf("Aung Thiha","Aung Phyo San","Zin Bo Khine","Zin Bo Bo Htun" , "Win Lwin")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +45,9 @@ class ContactsFragment : Fragment(),ContactsView {
         super.onViewCreated(view, savedInstanceState)
         setUpPresenter()
 
-        setUpRecyclerView()
+        setUpGroupRecyclerView()
+        setUpAlphabetAdapter()
+        setUpContactsAlphabetGroupAdapter()
         setUpListeners()
     }
 
@@ -48,16 +56,39 @@ class ContactsFragment : Fragment(),ContactsView {
         mPresenter.initPresenter(this)
     }
 
-    private fun setUpRecyclerView () {
-        mAdapter = GroupAdapter(mPresenter)
-        binding.rvGroupContacts.adapter = mAdapter
+    private fun setUpGroupRecyclerView () {
+        mGroupAdapter = GroupAdapter(mPresenter)
+        binding.rvGroupContacts.adapter = mGroupAdapter
         binding.rvGroupContacts.layoutManager = LinearLayoutManager(requireActivity(),LinearLayoutManager.HORIZONTAL,false)
+    }
+
+    private fun setUpAlphabetAdapter() {
+        mAlphabetAdapter = AlphabetAdapter(GeneralListData.getAlphabetList())
+        binding.rvAlphabet.adapter = mAlphabetAdapter
+        binding.rvAlphabet.layoutManager = LinearLayoutManager(requireActivity())
+    }
+
+    private fun setUpContactsAlphabetGroupAdapter() {
+        mContactsAlphabetGroupAdapter = ContactsAlphabetGroupAdapter()
+        binding.rvContactsAlphabetGroup.adapter = mContactsAlphabetGroupAdapter
+        binding.rvContactsAlphabetGroup.layoutManager = LinearLayoutManager(requireActivity())
+
+        mContactsAlphabetGroupAdapter.setNewData(getAlphabetList(nameList),nameList)
     }
 
     private fun setUpListeners() {
         binding.btnAddNewContact.setOnClickListener {
             mPresenter.onTapAddNewContactButton()
         }
+    }
+
+    private fun getAlphabetList(nameList:List<String>) : List<Char> {
+        val nameMapList = nameList.groupBy { it[0] }
+        val alphabetList = arrayListOf<Char>()
+        for(key in nameMapList.keys) {
+            alphabetList.add(key)
+        }
+        return alphabetList
     }
 
     override fun navigateToNewGroupScreen() {

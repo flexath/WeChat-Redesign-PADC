@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
+    android:paddingStart="@dimen/margin_10dp"
+    android:paddingEnd="@dimen/margin_10dp"
+    android:paddingTop="@dimen/margin_10dp"
+    android:paddingBottom="@dimen/margin_medium_2"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/margin_medium"
+        android:background="@drawable/background_contacts_alphabet_group"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAlphabetContacts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_10dp"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:layout_marginEnd="@dimen/margin_10dp"
+            android:fontFamily="@font/nunito_sans_bold"
+            android:text="A"
+            android:textSize="@dimen/text_regular_2x" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvContacts"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/margin_medium_3"
+            android:layout_marginStart="@dimen/margin_10dp"
+            android:layout_below="@+id/tvAlphabetContacts"
+            tools:listitem="@layout/view_holder_contacts_list"
+            tools:itemCount="3"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+</FrameLayout>

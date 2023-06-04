@@ -67,8 +67,9 @@ class RegisterActivity : AppCompatActivity(),RegisterView {
         finish()
     }
 
-    override fun navigateToRegisterVerificationScreen() {
-        startActivity(RegisterVerificationActivity.newIntent(this))
+    override fun navigateToLoginScreen() {
+        startActivity(LoginActivity.newIntent(this))
+        finish()
     }
 
     override fun showError(error: String) {

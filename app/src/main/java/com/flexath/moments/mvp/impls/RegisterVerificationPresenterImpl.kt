@@ -21,4 +21,8 @@ class RegisterVerificationPresenterImpl : RegisterVerificationPresenter , ViewMo
     override fun onTapBackButton() {
         mView?.navigateToPreviousScreen()
     }
+
+    override fun onTapVerifyButton() {
+        mView?.navigateToRegisterScreen()
+    }
 }

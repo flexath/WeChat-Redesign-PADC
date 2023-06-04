@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/margin_medium"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal">
+
+    <com.flexath.moments.views.components.RoundedProfileImage
+        android:id="@+id/ivProfileImageContacts"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:elevation="@dimen/margin_medium"
+        android:clipToOutline="false"
+        android:scaleType="centerCrop"
+        app:cornerRadius="30dp"
+        app:isActive="false"
+        app:hasBorderCircle="false"
+        app:srcCompat="@drawable/ath_profile" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNameContacts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/ivProfileImageContacts"
+        android:layout_marginStart="@dimen/margin_medium_2"
+        android:fontFamily="@font/noto_sans"
+        android:text="@string/aung_thiha"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="@dimen/text_regular_2x" />
+
+
+</RelativeLayout>

@@ -103,59 +103,41 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvGroupContacts"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/tvGroupsLabel"
+                android:layout_marginStart="@dimen/margin_10dp"
+                android:layout_marginTop="@dimen/margin_10dp"
+                tools:itemCount="1"
+                tools:listitem="@layout/view_holder_group_list" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvAlphabet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rvGroupContacts"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/margin_50dp"
+                android:background="@color/white"
+                android:elevation="@dimen/margin_small"
+                android:paddingStart="@dimen/margin_small"
+                android:paddingEnd="@dimen/margin_small"
+                tools:itemCount="26"
+                tools:listitem="@layout/view_holder_alphabet_list" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvContactsAlphabetGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvGroupsLabel"
-                android:orientation="horizontal">
-
-                <!--            <LinearLayout-->
-                <!--                android:layout_width="90dp"-->
-                <!--                android:layout_height="wrap_content"-->
-                <!--                android:background="@drawable/background_group_list_accent"-->
-                <!--                android:elevation="@dimen/margin_small"-->
-                <!--                android:fadingEdge="horizontal"-->
-                <!--                android:layout_marginEnd="@dimen/margin_10dp"-->
-                <!--                android:layout_gravity="center"-->
-                <!--                android:orientation="vertical">-->
-
-                <!--                <androidx.appcompat.widget.AppCompatImageView-->
-                <!--                    android:layout_width="@dimen/margin_50dp"-->
-                <!--                    android:layout_height="@dimen/margin_50dp"-->
-                <!--                    android:layout_gravity="center_horizontal"-->
-                <!--                    android:layout_marginTop="@dimen/margin_10dp"-->
-                <!--                    android:layout_marginStart="@dimen/margin_10dp"-->
-                <!--                    android:layout_marginEnd="@dimen/margin_10dp"-->
-                <!--                    app:srcCompat="@drawable/dummy_group_example_photo" />-->
-
-                <!--                <androidx.appcompat.widget.AppCompatTextView-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_gravity="center_horizontal"-->
-                <!--                    android:layout_marginTop="@dimen/margin_5dp"-->
-                <!--                    android:layout_marginBottom="@dimen/margin_5dp"-->
-                <!--                    android:fontFamily="@font/nunito_sans_semibold"-->
-                <!--                    android:text="@string/lbl_add_new"-->
-                <!--                    android:textColor="@color/white"-->
-                <!--                    android:textSize="@dimen/text_regular" />-->
-
-                <!--            </LinearLayout>-->
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvGroupContacts"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/margin_10dp"
-                    android:layout_marginTop="@dimen/margin_10dp"
-                    tools:itemCount="1"
-                    tools:listitem="@layout/view_holder_group_list" />
-
-            </LinearLayout>
-
+                android:layout_below="@+id/rvGroupContacts"
+                android:layout_alignParentStart="true"
+                tools:listitem="@layout/view_holder_alphabet_group_contacts_list"
+                android:layout_toStartOf="@+id/rvAlphabet" />
 
         </RelativeLayout>
 
     </androidx.core.widget.NestedScrollView>
-
 
 </RelativeLayout>

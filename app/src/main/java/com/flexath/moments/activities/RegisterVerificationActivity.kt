@@ -41,8 +41,7 @@ class RegisterVerificationActivity : AppCompatActivity(), RegisterVerificationVi
 
     private fun setUpListeners() {
         binding.btnVerifyRegisterVerification.setOnClickListener {
-            startActivity(LoginActivity.newIntent(this))
-            finish()
+            mPresenter.onTapVerifyButton()
         }
 
         binding.btnBackRegisterVerification.setOnClickListener {
@@ -51,6 +50,11 @@ class RegisterVerificationActivity : AppCompatActivity(), RegisterVerificationVi
     }
 
     override fun navigateToPreviousScreen() {
+        finish()
+    }
+
+    override fun navigateToRegisterScreen() {
+        startActivity(RegisterActivity.newIntent(this))
         finish()
     }
 

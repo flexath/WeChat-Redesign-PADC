@@ -23,6 +23,6 @@ class RegisterPresenterImpl : RegisterPresenter , ViewModel() {
     }
 
     override fun onTapSignUpButton() {
-        mView?.navigateToRegisterVerificationScreen()
+        mView?.navigateToLoginScreen()
     }
 }

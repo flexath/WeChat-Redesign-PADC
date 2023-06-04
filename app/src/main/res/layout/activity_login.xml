@@ -79,12 +79,38 @@
             android:textSize="@dimen/text_regular_2x" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvPasswordLabelLogin"
+            android:id="@+id/tvEmailLabelLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/etPhoneNumberLogin"
             android:layout_marginStart="@dimen/margin_38dp"
-            android:layout_marginTop="@dimen/margin_40dp"
+            android:layout_marginTop="@dimen/margin_medium_3"
+            android:fontFamily="@font/noto_sans"
+            android:text="Email"
+            android:textColor="@color/colorPrimaryLight"
+            android:textSize="@dimen/text_small" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etEmailLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvEmailLabelLogin"
+            android:layout_marginStart="@dimen/margin_xlarge"
+            android:layout_marginEnd="@dimen/margin_xlarge"
+            android:fontFamily="@font/yorkie_demo_regular"
+            android:hint="something@gmail.com"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/text_regular_2x" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPasswordLabelLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/etEmailLogin"
+            android:layout_marginStart="@dimen/margin_38dp"
+            android:layout_marginTop="@dimen/margin_medium_3"
             android:fontFamily="@font/noto_sans"
             android:text="@string/hint_enter_your_password"
             android:textColor="@color/colorPrimaryLight"
