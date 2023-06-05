@@ -54,7 +54,9 @@ class RegisterVerificationActivity : AppCompatActivity(), RegisterVerificationVi
     }
 
     override fun navigateToRegisterScreen() {
-        startActivity(RegisterActivity.newIntent(this))
+        val phoneNumber = binding.etPhoneNumberRegisterVerification.text.toString()
+        val email = binding.etEmailRegisterVerification.text.toString()
+        startActivity(RegisterActivity.newIntent(this,phoneNumber,email))
         finish()
     }
 

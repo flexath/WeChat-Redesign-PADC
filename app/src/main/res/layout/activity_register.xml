@@ -43,13 +43,34 @@
             android:textColor="@color/colorPrimaryText"
             android:textSize="@dimen/text_regular_2x" />
 
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcvProfileImageRegister"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/tvCreateANewAccountRegister"
+            android:layout_marginTop="@dimen/margin_30dp"
+            app:cardCornerRadius="@dimen/margin_10dp"
+            android:layout_centerHorizontal="true"
+            app:rippleColor="@color/colorAccent"
+            app:strokeWidth="0dp"
+            app:strokeColor="@color/colorPrimary"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivProfileImageRegister"
+                android:layout_width="@dimen/margin_100dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/profile_image_holder"
+                android:layout_height="90dp"/>
+
+        </com.google.android.material.card.MaterialCardView>
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvNameLabelRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvCreateANewAccountRegister"
+            android:layout_below="@id/mcvProfileImageRegister"
             android:layout_marginStart="@dimen/margin_38dp"
-            android:layout_marginTop="@dimen/margin_50dp"
+            android:layout_marginTop="@dimen/margin_medium_3"
             android:fontFamily="@font/noto_sans"
             android:text="@string/lbl_name"
             android:textColor="@color/colorPrimaryLight"
@@ -64,7 +85,7 @@
             android:layout_marginEnd="@dimen/margin_xlarge"
             android:fontFamily="@font/yorkie_demo_regular"
             android:hint="@string/aung_thiha"
-            android:inputType="phone"
+            android:inputType="textPersonName"
             android:minHeight="48dp"
             android:textColor="@color/colorSecondaryText"
             android:textSize="@dimen/text_regular_2x" />
@@ -90,7 +111,8 @@
             android:layout_marginEnd="@dimen/margin_xlarge"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatSpinner
+            <Spinner
+                android:id="@+id/daySpinnerRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/margin_36dp"
                 android:elevation="@dimen/margin_medium"
@@ -98,7 +120,8 @@
                 android:spinnerMode="dropdown"
                 tools:ignore="TouchTargetSizeCheck" />
 
-            <androidx.appcompat.widget.AppCompatSpinner
+            <Spinner
+                android:id="@+id/monthSpinnerRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/margin_36dp"
                 android:elevation="@dimen/margin_medium"
@@ -106,7 +129,7 @@
                 android:spinnerMode="dropdown"
                 tools:ignore="TouchTargetSizeCheck" />
 
-            <androidx.appcompat.widget.AppCompatSpinner
+            <Spinner
                 android:id="@+id/yearSpinnerRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/margin_36dp"
@@ -139,6 +162,7 @@
             android:orientation="horizontal">
 
             <RadioButton
+                android:id="@+id/rbMale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_medium_3"
@@ -149,6 +173,7 @@
                 android:textSize="@dimen/text_regular" />
 
             <RadioButton
+                android:id="@+id/rbFemale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_medium_3"
@@ -159,6 +184,7 @@
                 android:textSize="@dimen/text_regular" />
 
             <RadioButton
+                android:id="@+id/rbOther"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
@@ -179,7 +205,7 @@
             android:layout_marginEnd="@dimen/margin_xlarge"
             android:fontFamily="@font/yorkie_demo_regular"
             android:hint="@string/lbl_password"
-            android:inputType="phone"
+            android:inputType="textPassword"
             android:minHeight="48dp"
             android:paddingBottom="@dimen/margin_large"
             android:textColor="@color/colorSecondaryText"
@@ -191,7 +217,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/etPasswordRegister"
             android:layout_marginStart="@dimen/margin_xlarge"
-            android:layout_marginTop="@dimen/margin_50dp"
+            android:layout_marginTop="@dimen/margin_30dp"
             android:fontFamily="@font/noto_sans_medium"
             android:gravity="center_vertical"
             android:paddingStart="@dimen/margin_card_medium_2"
@@ -227,7 +253,7 @@
             android:layout_below="@+id/cbAgreeTermsRegister"
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="@dimen/margin_medium_2"
-            android:src="@drawable/icon_register_1"/>
+            android:src="@drawable/icon_register_1" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
@@ -235,7 +261,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="@dimen/margin_medium_3"
             android:paddingBottom="@dimen/margin_30dp"
-            android:src="@drawable/icon_register_path"/>
+            android:src="@drawable/icon_register_path" />
 
     </RelativeLayout>
 
