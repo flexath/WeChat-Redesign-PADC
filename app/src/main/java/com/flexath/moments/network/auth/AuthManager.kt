@@ -13,6 +13,7 @@ interface AuthManager {
         password: String,
         birthDate:String,
         gender:String,
+        imageUrl:String,
         onSuccess: (user: UserVO) -> Unit,
         onFailure: (String) -> Unit
     )

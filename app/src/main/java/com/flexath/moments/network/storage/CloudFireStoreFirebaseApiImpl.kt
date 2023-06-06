@@ -18,6 +18,9 @@ object CloudFireStoreFirebaseApiImpl : FirebaseApi {
     private var database: FirebaseFirestore = Firebase.firestore
     private val storageRef = FirebaseStorage.getInstance().reference
 
+    // General
+    private var mUser:UserVO? = null
+
     override fun addUser(user: UserVO) {
 
         val userMap = hashMapOf(
@@ -42,25 +45,27 @@ object CloudFireStoreFirebaseApiImpl : FirebaseApi {
             }
     }
 
-    override fun uploadImageAndEditGrocery(bitmap: Bitmap, user: UserVO) {
+    override fun uploadProfileImage(bitmap: Bitmap, user: UserVO) {
+
+        Log.i("BitmapImage",bitmap.toString())
+
         val baos = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos)
         val data = baos.toByteArray()
 
         val imageRef = storageRef.child("images/${UUID.randomUUID()}")
-        Log.i("FileUpload",storageRef.child("images/${UUID.randomUUID()}").toString())
         val uploadTask = imageRef.putBytes(data)
         uploadTask.addOnFailureListener {
             Log.i("FileUpload","File uploaded failed")
         }.addOnSuccessListener {
             Log.i("FileUpload","File uploaded successful")
-
         }
 
         val urlTask = uploadTask.continueWithTask {
             return@continueWithTask imageRef.downloadUrl
         }.addOnCompleteListener {
             val imageUrl = it.result?.toString()
+            Log.i("ImageUrlFile",imageUrl.toString())
             addUser(UserVO(
                 userId = user.userId,
                 userName = user.userName,
@@ -74,5 +79,4 @@ object CloudFireStoreFirebaseApiImpl : FirebaseApi {
             ))
         }
     }
-
 }

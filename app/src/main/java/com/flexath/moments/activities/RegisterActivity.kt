@@ -3,10 +3,12 @@ package com.flexath.moments.activities
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
@@ -31,6 +33,7 @@ class RegisterActivity : AppCompatActivity(), RegisterView {
     private lateinit var mPresenter: RegisterPresenter
 
     // General
+    private var bitmap:Bitmap? = null
     private val REQUEST_CODE_GALLERY = 100
     private var day = ""
     private var month = ""
@@ -68,7 +71,9 @@ class RegisterActivity : AppCompatActivity(), RegisterView {
         setUpYearSpinner()
 
         binding.btnSignUpRegister.setOnClickListener {
-            mPresenter.onTapSignUpButton(getNewUserInformation())
+            bitmap?.let { bitmapImage ->
+                mPresenter.onTapSignUpButton(getNewUserInformation(), bitmapImage)
+            }
         }
 
         binding.btnBackRegister.setOnClickListener {
@@ -76,7 +81,7 @@ class RegisterActivity : AppCompatActivity(), RegisterView {
         }
 
         binding.ivProfileImageRegister.setOnClickListener {
-            mPresenter.onTapProfileImage(getNewUserInformation())
+            mPresenter.onTapProfileImage()
         }
     }
 
@@ -112,25 +117,21 @@ class RegisterActivity : AppCompatActivity(), RegisterView {
     }
 
     private fun setUpGenderRadioGroup() {
-
         binding.rbMale.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 gender = "Male"
-                Toast.makeText(this,gender,Toast.LENGTH_SHORT).show()
             }
         }
 
         binding.rbFemale.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 gender = "Female"
-                Toast.makeText(this,gender,Toast.LENGTH_SHORT).show()
             }
         }
 
         binding.rbOther.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 gender = "Other"
-                Toast.makeText(this,gender,Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -200,7 +201,7 @@ class RegisterActivity : AppCompatActivity(), RegisterView {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
+        if (requestCode == REQUEST_CODE_GALLERY && resultCode == Activity.RESULT_OK) {
             if (data == null || data.data == null) {
                 return
             }
@@ -211,14 +212,14 @@ class RegisterActivity : AppCompatActivity(), RegisterView {
                 filePath?.let { fileUrl ->
                     if (Build.VERSION.SDK_INT >= 29) {
                         val source = ImageDecoder.createSource(this.contentResolver, fileUrl)
-                        val bitmap = ImageDecoder.decodeBitmap(source)
-                        mPresenter.onPhotoTaken(bitmap)
+                        val bitmapImage = ImageDecoder.decodeBitmap(source)
+                        bitmap = bitmapImage
                         binding.ivProfileImageRegister.setImageBitmap(bitmap)
                     } else {
-                        val bitmap = MediaStore.Images.Media.getBitmap(
+                        val bitmapImage = MediaStore.Images.Media.getBitmap(
                             applicationContext.contentResolver, fileUrl
                         )
-                        mPresenter.onPhotoTaken(bitmap)
+                        bitmap = bitmapImage
                         binding.ivProfileImageRegister.setImageBitmap(bitmap)
                     }
                 }

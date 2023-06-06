@@ -9,5 +9,5 @@ interface UserModel {
 
     fun addUser(user: UserVO)
 
-    fun uploadImageAndEditGrocery(bitmap: Bitmap, user: UserVO)
+    fun uploadProfileImage(bitmap: Bitmap, user: UserVO)
 }

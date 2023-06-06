@@ -39,7 +39,11 @@ class LoginActivity : AppCompatActivity() , LoginView {
 
     private fun setUpListeners() {
         binding.btnLogin.setOnClickListener {
-            mPresenter.onTapLoginButton()
+            mPresenter.onTapLoginButton(
+                binding.etPhoneNumberLogin.text.toString(),
+                binding.etEmailLogin.text.toString(),
+                binding.etPasswordLogin.text.toString()
+            )
         }
 
         binding.btnBackLogin.setOnClickListener {

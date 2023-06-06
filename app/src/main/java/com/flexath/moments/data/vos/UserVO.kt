@@ -9,5 +9,5 @@ data class UserVO(
     val birthDate:String = "",
     val gender:String = "",
     val qrCode:String = "",
-    val imageUrl:String = ""
+    var imageUrl:String = ""
 )

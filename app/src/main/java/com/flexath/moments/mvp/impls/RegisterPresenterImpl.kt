@@ -2,6 +2,7 @@ package com.flexath.moments.mvp.impls
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import com.flexath.moments.data.models.AuthenticationModel
@@ -32,7 +33,7 @@ class RegisterPresenterImpl : RegisterPresenter , ViewModel() {
         mView?.navigateToPreviousScreen()
     }
 
-    override fun onTapSignUpButton(user:UserVO) {
+    override fun onTapSignUpButton(user:UserVO,bitmap: Bitmap) {
         mAuthModel.register(
             userName = user.userName,
             phoneNumber = user.phoneNumber,
@@ -40,8 +41,10 @@ class RegisterPresenterImpl : RegisterPresenter , ViewModel() {
             password = user.password,
             birthDate = user.birthDate,
             gender = user.gender,
+            imageUrl = user.imageUrl,
             onSuccess = {
                 mUserModel.addUser(it)
+                mUserModel.uploadProfileImage(bitmap, it)
                 mView?.navigateToLoginScreen()
             },
             onFailure = {
@@ -50,14 +53,11 @@ class RegisterPresenterImpl : RegisterPresenter , ViewModel() {
         )
     }
 
-    override fun onTapProfileImage(user:UserVO) {
-        mUserForProfileImageFromGallery = user
+    override fun onTapProfileImage() {
         mView?.showGallery()
     }
 
     override fun onPhotoTaken(bitmap: Bitmap) {
-        mUserForProfileImageFromGallery?.let { user ->
-            mUserModel.uploadImageAndEditGrocery(bitmap, user)
-        }
+
     }
 }

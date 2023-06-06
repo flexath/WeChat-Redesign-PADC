@@ -16,7 +16,7 @@ object FirebaseAuthManager : AuthManager {
         onFailure: (String) -> Unit
     ) {
         mFirebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
-            if (it.isSuccessful && it.isComplete && mFirebaseAuth.currentUser?.phoneNumber == phoneNumber) {
+            if (it.isSuccessful && it.isComplete) {
                 onSuccess()
             } else {
                 onFailure(it.exception?.message ?: "Check Internet Connection")
@@ -31,6 +31,7 @@ object FirebaseAuthManager : AuthManager {
         password: String,
         birthDate: String,
         gender: String,
+        imageUrl:String,
         onSuccess: (user:UserVO) -> Unit,
         onFailure: (String) -> Unit
     ) {
@@ -39,7 +40,7 @@ object FirebaseAuthManager : AuthManager {
                 mFirebaseAuth.currentUser?.updateProfile(
                     UserProfileChangeRequest.Builder().setDisplayName(userName).build()
                 )
-                onSuccess(UserVO(getUserId(),userName,phoneNumber,email, password, birthDate, gender, getUserId()))
+                onSuccess(UserVO(getUserId(),userName,phoneNumber,email, password, birthDate, gender, getUserId(),imageUrl))
             } else {
                 onFailure(it.exception?.message ?: "Check Internet Connection")
             }

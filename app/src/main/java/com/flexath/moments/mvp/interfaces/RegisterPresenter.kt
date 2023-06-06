@@ -7,9 +7,9 @@ import com.flexath.moments.mvp.views.RegisterView
 interface RegisterPresenter : BasePresenter<RegisterView> {
 
     fun onTapBackButton()
-    fun onTapSignUpButton(user: UserVO)
+    fun onTapSignUpButton(user: UserVO,bitmap: Bitmap)
 
-    fun onTapProfileImage(user:UserVO)
+    fun onTapProfileImage()
 
     fun onPhotoTaken(bitmap: Bitmap)
 }
