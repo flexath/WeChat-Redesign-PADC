@@ -14,7 +14,11 @@ object UserModelImpl : UserModel {
         mFirebaseApi.addUser(user)
     }
 
-    override fun uploadProfileImage(bitmap: Bitmap, user: UserVO) {
-        mFirebaseApi.uploadProfileImage(bitmap,user)
+    override fun updateAndUploadProfileImage(bitmap: Bitmap, user: UserVO) {
+        mFirebaseApi.updateAndUploadProfileImage(bitmap,user)
+    }
+
+    override fun getUsers(onSuccess: (users: List<UserVO>) -> Unit, onFailure: (String) -> Unit) {
+        mFirebaseApi.getUsers(onSuccess = onSuccess , onFailure = onFailure)
     }
 }

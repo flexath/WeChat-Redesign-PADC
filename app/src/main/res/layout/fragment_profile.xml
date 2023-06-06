@@ -15,10 +15,10 @@
             android:id="@+id/llActionBarProfile"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:elevation="@dimen/margin_medium_2"
             android:background="@color/colorPrimary"
-            android:translationZ="@dimen/margin_medium"
-            android:fadingEdgeLength="@dimen/margin_small">
+            android:elevation="@dimen/margin_medium_2"
+            android:fadingEdgeLength="@dimen/margin_small"
+            android:translationZ="@dimen/margin_medium">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
@@ -59,10 +59,11 @@
                 app:cardCornerRadius="60dp">
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivProfileImageProfile"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ath_profile" />
+                    tools:srcCompat="@drawable/ath_profile" />
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -78,13 +79,14 @@
                 android:foreground="@drawable/icon_update_new_profile" />
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivQrCodeProfile"
                 android:layout_width="@dimen/width_48dp"
                 android:layout_height="@dimen/height_48dp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="@dimen/margin_50dp"
                 android:layout_marginBottom="@dimen/margin_medium_2"
                 android:layout_toEndOf="@+id/ivUpdatePictureProfile"
-                app:srcCompat="@drawable/icon_qr_profile" />
+                tools:srcCompat="@drawable/icon_qr_profile" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvNameProfile"
@@ -118,8 +120,8 @@
                     android:id="@+id/tvPhoneNumberProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/noto_sans_myanmar_regular"
                     android:layout_marginStart="@dimen/margin_14dp"
+                    android:fontFamily="@font/noto_sans_myanmar_regular"
                     android:gravity="center"
                     android:text="09795448753"
                     android:textColor="@color/white"
@@ -130,12 +132,12 @@
             <LinearLayout
                 android:id="@+id/llDateProfile"
                 android:layout_width="wrap_content"
-                android:orientation="horizontal"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/llPhoneNumberProfile"
-                android:layout_marginTop="@dimen/margin_medium"
                 android:layout_marginStart="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_medium"
                 android:layout_toEndOf="@+id/mcvProfilePicProfile"
-                android:layout_height="wrap_content">
+                android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivDateProfile"
@@ -147,8 +149,8 @@
                     android:id="@+id/tvDateProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/noto_sans_myanmar_regular"
                     android:layout_marginStart="@dimen/margin_14dp"
+                    android:fontFamily="@font/noto_sans_myanmar_regular"
                     android:gravity="center"
                     android:text="1998-10-04"
                     android:textColor="@color/white"
@@ -175,15 +177,14 @@
                     android:id="@+id/tvGenderProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/noto_sans_myanmar_regular"
                     android:layout_marginStart="@dimen/margin_14dp"
+                    android:fontFamily="@font/noto_sans_myanmar_regular"
                     android:gravity="center"
                     android:text="Male"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_regular" />
 
             </LinearLayout>
-
 
 
         </RelativeLayout>

@@ -19,8 +19,6 @@ class RegisterPresenterImpl : RegisterPresenter , ViewModel() {
     private val mUserModel:UserModel = UserModelImpl
     private val mAuthModel:AuthenticationModel = AuthenticationModelImpl
 
-    private var mUserForProfileImageFromGallery:UserVO? = null
-
     override fun initPresenter(view: RegisterView) {
         mView = view
     }
@@ -44,7 +42,7 @@ class RegisterPresenterImpl : RegisterPresenter , ViewModel() {
             imageUrl = user.imageUrl,
             onSuccess = {
                 mUserModel.addUser(it)
-                mUserModel.uploadProfileImage(bitmap, it)
+                mUserModel.updateAndUploadProfileImage(bitmap, it)
                 mView?.navigateToLoginScreen()
             },
             onFailure = {

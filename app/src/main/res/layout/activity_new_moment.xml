@@ -65,6 +65,7 @@
                     app:cardCornerRadius="@dimen/margin_25dp">
 
                     <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivProfileImageNewMoment"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
@@ -73,6 +74,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvUserNameNewMoment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"

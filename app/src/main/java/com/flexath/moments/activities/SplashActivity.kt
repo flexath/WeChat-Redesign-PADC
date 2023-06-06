@@ -3,6 +3,7 @@ package com.flexath.moments.activities
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.ViewGroup
 import android.widget.Button
 import com.flexath.moments.databinding.ActivitySplashBinding

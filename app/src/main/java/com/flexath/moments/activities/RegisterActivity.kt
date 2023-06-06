@@ -111,7 +111,7 @@ class RegisterActivity : AppCompatActivity(), RegisterView {
             phoneNumber = phoneNumber,
             email = email,
             password = password,
-            birthDate = "$day-$month-$year",
+            birthDate = "$year-$month-$day",
             gender = gender
         )
     }

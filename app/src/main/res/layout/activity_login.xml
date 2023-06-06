@@ -45,8 +45,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/tvLoginIllustrationLogin"
-            android:layout_width="@dimen/width_270dp"
-            android:layout_height="@dimen/height_200dp"
+            android:layout_width="250dp"
+            android:layout_height="180dp"
             android:layout_below="@+id/tvLoginToContinueLblLogin"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/margin_50dp"
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tvLoginIllustrationLogin"
             android:layout_marginStart="@dimen/margin_38dp"
-            android:layout_marginTop="@dimen/margin_50dp"
+            android:layout_marginTop="@dimen/margin_40dp"
             android:fontFamily="@font/noto_sans"
             android:text="@string/lbl_enter_your_phone_number"
             android:textColor="@color/colorPrimaryLight"

@@ -11,6 +11,7 @@
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivImageNewMoment"
             android:layout_width="108dp"
             android:layout_height="108dp"
             android:scaleType="centerCrop"

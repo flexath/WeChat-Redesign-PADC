@@ -79,6 +79,7 @@
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/daySpinnerEditProfile"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/margin_36dp"
             android:elevation="@dimen/margin_medium"
@@ -87,6 +88,7 @@
             tools:ignore="TouchTargetSizeCheck" />
 
         <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/monthSpinnerEditProfile"
             android:layout_width="120dp"
             android:layout_height="@dimen/margin_36dp"
             android:entries="@array/spinner_month"
@@ -125,6 +127,7 @@
         android:orientation="horizontal">
 
         <RadioButton
+            android:id="@+id/rbMaleEditProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_medium_3"
@@ -135,6 +138,7 @@
             android:textSize="@dimen/text_regular" />
 
         <RadioButton
+            android:id="@+id/rbFemaleEditProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_medium_3"
@@ -145,6 +149,7 @@
             android:textSize="@dimen/text_regular" />
 
         <RadioButton
+            android:id="@+id/rbOtherEditProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="false"
