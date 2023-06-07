@@ -54,12 +54,14 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvActiveChats"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/margin_card_medium_2"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/tvActiveNowLblChat"
-            android:layout_margin="@dimen/margin_medium"
-            tools:listitem="@layout/view_holder_active_chat_list"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:layout_marginBottom="@dimen/margin_medium"
             tools:itemCount="1"
-            android:layout_height="wrap_content"/>
+            tools:listitem="@layout/view_holder_active_chat_list" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvChats"

@@ -6,11 +6,11 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -23,19 +23,23 @@ import com.flexath.moments.mvp.interfaces.NewMomentPresenter
 import com.flexath.moments.mvp.views.NewMomentView
 import java.io.IOException
 
-class NewMomentActivity : AppCompatActivity() , NewMomentView {
+class NewMomentActivity : AppCompatActivity(), NewMomentView {
 
-    private lateinit var binding:ActivityNewMomentBinding
+    private lateinit var binding: ActivityNewMomentBinding
 
     // Adapter
-    private lateinit var mAdapter:NewMomentImageAdapter
+    private lateinit var mAdapter: NewMomentImageAdapter
 
     // Presenter
-    private lateinit var mPresenter:NewMomentPresenter
+    private lateinit var mPresenter: NewMomentPresenter
 
     // General
     private val REQUEST_CODE_GALLERY = 300
     private var bitmap: Bitmap? = null
+    private var mMoment: MomentVO? = null
+    private var momentImages: String = ""
+    private var userName: String = ""
+    private var userProfileImage: String = ""
 
     companion object {
         fun newIntent(context: Context): Intent {
@@ -52,7 +56,7 @@ class NewMomentActivity : AppCompatActivity() , NewMomentView {
         setUpListeners()
         setUpRecyclerView()
 
-        mPresenter.onUIReady(this,this)
+        mPresenter.onUIReady(this, this)
     }
 
     private fun setUpPresenter() {
@@ -66,33 +70,27 @@ class NewMomentActivity : AppCompatActivity() , NewMomentView {
         }
 
         binding.btnCreateNewMoment.setOnClickListener {
-            mPresenter.onTapCreateButton()
+            mPresenter.onTapCreateButton(getMomentPost())
+            finish()
         }
+    }
+
+    private fun getMomentPost(): MomentVO {
+        val caption = binding.etPostNewMoment.text.toString()
+        return MomentVO(
+            System.currentTimeMillis().toString(),
+            userName,
+            userProfileImage,
+            caption,
+            mPresenter.getMomentImages().dropLast(1)
+        )
     }
 
     private fun setUpRecyclerView() {
         mAdapter = NewMomentImageAdapter(mPresenter)
         binding.rvBackground.adapter = mAdapter
-        binding.rvBackground.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
-
-//        binding.rvBackground.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                if (dy > 0 && binding.etPostNewMoment.isFocused) {
-//                    binding.etPostNewMoment.clearFocus()
-//                    hideKeyboard()
-//                }
-//            }
-//        })
-
-    }
-    private fun hideKeyboard() {
-        val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(binding.etPostNewMoment.windowToken, 0)
-    }
-
-    override fun createNewMoment() {
-
-        finish()
+        binding.rvBackground.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
     }
 
     override fun navigateToPreviousScreen() {
@@ -109,7 +107,6 @@ class NewMomentActivity : AppCompatActivity() , NewMomentView {
             }
 
             val filePath = data.data
-
             mAdapter.setNewData(filePath.toString())
 
             try {
@@ -117,16 +114,12 @@ class NewMomentActivity : AppCompatActivity() , NewMomentView {
                     if (Build.VERSION.SDK_INT >= 29) {
                         val source = ImageDecoder.createSource(this.contentResolver, fileUrl)
                         val bitmapImage = ImageDecoder.decodeBitmap(source)
-                        bitmap = bitmapImage
-
-
+                        mPresenter.createMomentImages(bitmapImage)
                     } else {
                         val bitmapImage = MediaStore.Images.Media.getBitmap(
                             applicationContext.contentResolver, fileUrl
                         )
-                        bitmap = bitmapImage
-
-
+                        mPresenter.createMomentImages(bitmapImage)
                     }
                 }
             } catch (e: IOException) {
@@ -139,12 +132,18 @@ class NewMomentActivity : AppCompatActivity() , NewMomentView {
         val intent = Intent()
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(Intent.createChooser(intent, "Select Upload Image"), REQUEST_CODE_GALLERY)
+        startActivityForResult(
+            Intent.createChooser(intent, "Select Upload Image"),
+            REQUEST_CODE_GALLERY
+        )
     }
 
     override fun showUserInformation(userList: List<UserVO>) {
-        for(user in userList) {
-            if(mPresenter.getUserId() == user.userId) {
+        for (user in userList) {
+            if (mPresenter.getUserId() == user.userId) {
+
+                userName = user.userName
+                userProfileImage = user.imageUrl
 
                 binding.tvUserNameNewMoment.text = user.userName
 
@@ -156,7 +155,7 @@ class NewMomentActivity : AppCompatActivity() , NewMomentView {
     }
 
     override fun showError(error: String) {
-        Toast.makeText(this,error,Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
     }
 
 }

@@ -15,7 +15,7 @@ abstract class BaseRecyclerAdapter<T : BaseViewHolder<W>, W> : RecyclerView.Adap
     }
 
     override fun getItemCount(): Int {
-        return 7
+        return mData.size
     }
 
     @SuppressLint("NotifyDataSetChanged")

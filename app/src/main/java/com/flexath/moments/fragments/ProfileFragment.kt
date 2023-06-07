@@ -18,6 +18,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.flexath.moments.data.vos.MomentVO
 import com.flexath.moments.data.vos.UserVO
 import com.flexath.moments.databinding.DialogEditProfileBinding
 import com.flexath.moments.databinding.DialogQrCodeBinding
@@ -27,6 +28,7 @@ import com.flexath.moments.dialogs.QrCodeDialog
 import com.flexath.moments.mvp.impls.ProfilePresenterImpl
 import com.flexath.moments.mvp.interfaces.ProfilePresenter
 import com.flexath.moments.mvp.views.ProfileView
+import com.flexath.moments.views.viewpods.MomentViewPod
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
@@ -42,6 +44,9 @@ class ProfileFragment : Fragment() , ProfileView {
     // Presenters
     private lateinit var mPresenter: ProfilePresenter
 
+    // ViewPods
+    private lateinit var mViewpod:MomentViewPod
+
     // General
     private var gender:String = ""
     private var email:String = ""
@@ -55,6 +60,7 @@ class ProfileFragment : Fragment() , ProfileView {
     private val REQUEST_CODE_GALLERY = 200
     private var bitmap:Bitmap? = null
     private var mUser:UserVO? = null
+    private var mMomentList:ArrayList<MomentVO> = arrayListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,6 +73,7 @@ class ProfileFragment : Fragment() , ProfileView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpPresenter()
+        setUpViewPods()
         setUpListeners()
 
         mPresenter.onUIReady(requireActivity(),this)
@@ -75,6 +82,11 @@ class ProfileFragment : Fragment() , ProfileView {
     private fun setUpPresenter() {
         mPresenter = ViewModelProvider(this)[ProfilePresenterImpl::class.java]
         mPresenter.initPresenter(this)
+    }
+
+    private fun setUpViewPods() {
+        mViewpod = binding.vpPostProfile.root
+        mViewpod.setDelegate(mPresenter)
     }
 
     private fun setUpListeners() {
@@ -248,6 +260,32 @@ class ProfileFragment : Fragment() , ProfileView {
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(Intent.createChooser(intent, "Select Upload Image"), REQUEST_CODE_GALLERY)
+    }
+
+    override fun showMoments(momentList: List<MomentVO>) {
+        for (moment in momentList) {
+            if(moment.isBookmarked) {
+                mMomentList.add(moment)
+            }
+        }
+        mViewpod.setNewData(mMomentList)
+    }
+
+    override fun getMomentIsBookmarked(id: String, bookmarked:Boolean) {
+        for(moment in mMomentList) {
+            if(id == moment.id) {
+                if(!bookmarked) {
+                    moment.isBookmarked = false
+                    mPresenter.createMoment(moment)
+                    break
+                }
+            }
+        }
+        mViewpod.setNewData(mMomentList)
+    }
+
+    override fun showOptionDialogBox() {
+
     }
 
     private fun setUpDateOfBirthSpinners(dialogBinding:DialogEditProfileBinding) {

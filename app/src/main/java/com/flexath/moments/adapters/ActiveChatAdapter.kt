@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import com.flexath.moments.R
 import com.flexath.moments.data.vos.VO
 import com.flexath.moments.views.viewholders.ActiveChatViewHolder
-import com.flexath.moments.views.viewholders.PostViewHolder
 
 class ActiveChatAdapter : BaseRecyclerAdapter<ActiveChatViewHolder, VO>() {
 

@@ -1,6 +1,7 @@
 package com.flexath.moments.mvp.impls
 
 import android.content.Context
+import android.graphics.Bitmap
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import com.flexath.moments.data.models.AuthenticationModel
@@ -9,6 +10,7 @@ import com.flexath.moments.data.models.MomentModel
 import com.flexath.moments.data.models.MomentModelImpl
 import com.flexath.moments.data.models.UserModel
 import com.flexath.moments.data.models.UserModelImpl
+import com.flexath.moments.data.vos.MomentVO
 import com.flexath.moments.mvp.interfaces.NewMomentPresenter
 import com.flexath.moments.mvp.views.NewMomentView
 
@@ -43,9 +45,16 @@ class NewMomentPresenterImpl: NewMomentPresenter , ViewModel() {
         mView?.navigateToPreviousScreen()
     }
 
-    override fun onTapCreateButton() {
+    override fun onTapCreateButton(moment:MomentVO) {
+        mMomentModel.createMoment(moment)
+    }
 
-        mView?.createNewMoment()
+    override fun createMomentImages(bitmap: Bitmap) {
+        mMomentModel.updateAndUploadMomentImage(bitmap)
+    }
+
+    override fun getMomentImages() :String {
+        return mMomentModel.getMomentImages()
     }
 
     override fun getUserId(): String {

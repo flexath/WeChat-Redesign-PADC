@@ -9,7 +9,9 @@ interface MomentModel {
 
     fun createMoment(moment: MomentVO)
 
-    fun updateAndUploadMomentImage(bitmap: Bitmap, moment: MomentVO)
+    fun updateAndUploadMomentImage(bitmap: Bitmap)
+
+    fun getMomentImages(): String
 
     fun getMoments(
         onSuccess: (moments: List<MomentVO>) -> Unit, onFailure: (String) -> Unit

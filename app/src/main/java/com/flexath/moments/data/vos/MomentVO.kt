@@ -5,5 +5,6 @@ data class MomentVO(
     var userName:String = "",
     var userProfileImage:String = "",
     var caption:String = "",
-    var imageUrl:String = ""
+    var imageUrl:String = "",
+    var isBookmarked:Boolean = false
 )

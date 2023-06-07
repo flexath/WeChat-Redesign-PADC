@@ -14,6 +14,7 @@
         app:cardCornerRadius="@dimen/margin_medium_3">
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivMomentProfilePic"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
@@ -22,7 +23,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvPostProfileName"
+        android:id="@+id/tvMomentProfileName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_medium"
@@ -33,10 +34,10 @@
         android:textSize="@dimen/text_15sp" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvPostLastOnline"
+        android:id="@+id/tvMomentLastOnline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvPostProfileName"
+        android:layout_below="@+id/tvMomentProfileName"
         android:layout_marginStart="@dimen/margin_medium"
         android:layout_toEndOf="@id/mcvPostProfilePic"
         android:fontFamily="@font/noto_sans_medium"
@@ -45,7 +46,7 @@
         android:textSize="@dimen/text_small" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/btnPostOption"
+        android:id="@+id/btnMomentOption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -54,7 +55,7 @@
         app:srcCompat="@drawable/baseline_more_horiz_accent_24dp" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvPostCaption"
+        android:id="@+id/tvMomentCaption"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/mcvPostProfilePic"
@@ -67,29 +68,18 @@
         android:textColor="@color/colorPrimaryText"
         android:text="A machine resembling a human being and able to replicate certain human movements and functions automatically." />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mcvPostPicture"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerMomentImages"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_341dp"
-        android:layout_marginStart="@dimen/margin_medium_2"
-        app:cardCornerRadius="@dimen/margin_medium"
-        android:layout_below="@+id/tvPostCaption"
+        android:layout_margin="@dimen/margin_10dp"
+        android:layout_below="@+id/tvMomentCaption"
         android:layout_marginTop="@dimen/margin_card_medium_2"
-        android:layout_marginEnd="@dimen/margin_medium_2">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivPostPicture"
-            android:layout_width="match_parent"
-            app:srcCompat="@drawable/ath_post_picture"
-            android:scaleType="centerCrop"
-            android:layout_height="wrap_content"/>
-
-    </com.google.android.material.card.MaterialCardView>
+        android:layout_height="wrap_content"/>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/btnPostFavourite"
         android:layout_width="wrap_content"
-        android:layout_below="@+id/mcvPostPicture"
+        android:layout_below="@+id/viewPagerMomentImages"
         android:layout_marginStart="@dimen/margin_medium_2"
         android:layout_marginTop="@dimen/margin_medium_2"
         android:layout_alignParentStart="true"
@@ -101,7 +91,7 @@
         android:layout_height="wrap_content"
         android:text="3"
         android:layout_marginTop="@dimen/margin_medium_2"
-        android:layout_below="@+id/mcvPostPicture"
+        android:layout_below="@+id/viewPagerMomentImages"
         android:layout_toEndOf="@+id/btnPostFavourite"
         android:layout_marginStart="@dimen/margin_small"
         android:textSize="@dimen/text_15sp"
@@ -110,9 +100,9 @@
 
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/btnPostBookmark"
+        android:id="@+id/btnMomentBookmark"
         android:layout_width="wrap_content"
-        android:layout_below="@+id/mcvPostPicture"
+        android:layout_below="@+id/viewPagerMomentImages"
         android:layout_marginEnd="@dimen/margin_medium_2"
         android:layout_marginTop="@dimen/margin_medium_2"
         android:layout_alignParentEnd="true"
@@ -124,9 +114,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="3"
-        android:layout_toStartOf="@+id/btnPostBookmark"
+        android:layout_toStartOf="@+id/btnMomentBookmark"
         android:layout_marginTop="@dimen/margin_medium_2"
-        android:layout_below="@+id/mcvPostPicture"
+        android:layout_below="@+id/viewPagerMomentImages"
         android:layout_marginEnd="@dimen/margin_card_medium_2"
         android:textSize="@dimen/text_15sp"
         android:textColor="@color/colorPrimaryText"
@@ -135,7 +125,7 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivPostComment"
         android:layout_width="30dp"
-        android:layout_below="@+id/mcvPostPicture"
+        android:layout_below="@+id/viewPagerMomentImages"
         android:layout_marginTop="@dimen/margin_card_medium_2"
         android:layout_toStartOf="@+id/tvPostNumberOfComments"
         android:layout_marginEnd="@dimen/margin_small"

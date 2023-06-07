@@ -13,8 +13,12 @@ object MomentModelImpl : MomentModel {
         mFirebaseApi.createMoment(moment)
     }
 
-    override fun updateAndUploadMomentImage(bitmap: Bitmap, moment: MomentVO) {
-        mFirebaseApi.updateAndUploadMomentImage(bitmap,moment)
+    override fun updateAndUploadMomentImage(bitmap: Bitmap) {
+        mFirebaseApi.updateAndUploadMomentImage(bitmap)
+    }
+
+    override fun getMomentImages(): String {
+        return mFirebaseApi.getMomentImages()
     }
 
     override fun getMoments(

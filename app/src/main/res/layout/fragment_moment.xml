@@ -40,7 +40,7 @@
         </FrameLayout>
 
         <include
-            android:id="@+id/vpPostChat"
+            android:id="@+id/vpMoment"
             layout="@layout/view_pod_post"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

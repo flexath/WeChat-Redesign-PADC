@@ -2,9 +2,11 @@ package com.flexath.moments.network.storage
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
+import android.net.Uri
 import android.util.Log
 import com.flexath.moments.data.vos.MomentVO
 import com.flexath.moments.data.vos.UserVO
+import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -17,6 +19,9 @@ object CloudFireStoreFirebaseApiImpl : FirebaseApi {
 
     private var database: FirebaseFirestore = Firebase.firestore
     private val storageRef = FirebaseStorage.getInstance().reference
+
+    // General
+    private var mMomentImages: String = ""
 
     override fun addUser(user: UserVO) {
 
@@ -42,34 +47,48 @@ object CloudFireStoreFirebaseApiImpl : FirebaseApi {
             }
     }
 
-    override fun updateAndUploadProfileImage(bitmap: Bitmap, user: UserVO) {
+    private fun changeBitmapToUrlString(bitmap: Bitmap): Task<Uri> {
         val baos = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
         val data = baos.toByteArray()
 
         val imageRef = storageRef.child("images/${UUID.randomUUID()}")
         val uploadTask = imageRef.putBytes(data)
+
+        Log.i("ImageURL", uploadTask.toString())
+
         uploadTask.addOnFailureListener {
-            Log.i("FileUpload","File uploaded failed")
+            Log.i("FileUpload", "File uploaded failed")
         }.addOnSuccessListener {
-            Log.i("FileUpload","File uploaded successful")
+            Log.i("FileUpload", "File uploaded successful")
         }
 
         val urlTask = uploadTask.continueWithTask {
             return@continueWithTask imageRef.downloadUrl
-        }.addOnCompleteListener {
+        }
+        return urlTask
+    }
+
+    override fun updateAndUploadProfileImage(bitmap: Bitmap, user: UserVO) {
+
+        val urlTask = changeBitmapToUrlString(bitmap)
+
+        urlTask.addOnCompleteListener {
             val imageUrl = it.result?.toString()
-            addUser(UserVO(
-                userId = user.userId,
-                userName = user.userName,
-                phoneNumber = user.phoneNumber,
-                email = user.email,
-                password = user.password,
-                birthDate = user.birthDate,
-                gender = user.gender,
-                qrCode = user.userId,
-                imageUrl = imageUrl ?: ""
-            ))
+            Log.i("ImageURL", imageUrl.toString())
+            addUser(
+                UserVO(
+                    userId = user.userId,
+                    userName = user.userName,
+                    phoneNumber = user.phoneNumber,
+                    email = user.email,
+                    password = user.password,
+                    birthDate = user.birthDate,
+                    gender = user.gender,
+                    qrCode = user.userId,
+                    imageUrl = imageUrl ?: ""
+                )
+            )
         }
     }
 
@@ -92,7 +111,17 @@ object CloudFireStoreFirebaseApiImpl : FirebaseApi {
                         val gender = data["gender"] as String
                         val qrCode = data["qr_code"] as String
                         val imageUrl = data["image_url"] as String
-                        val user = UserVO(id,name,phoneNumber,email, password, birthDate, gender, qrCode, imageUrl)
+                        val user = UserVO(
+                            id,
+                            name,
+                            phoneNumber,
+                            email,
+                            password,
+                            birthDate,
+                            gender,
+                            qrCode,
+                            imageUrl
+                        )
                         userList.add(user)
                     }
                     onSuccess(userList)
@@ -107,6 +136,7 @@ object CloudFireStoreFirebaseApiImpl : FirebaseApi {
             "user_profile_image" to moment.userProfileImage,
             "caption" to moment.caption,
             "image_url" to moment.imageUrl,
+            "is_bookmarked" to moment.isBookmarked
         )
 
         database.collection("moments")
@@ -119,31 +149,18 @@ object CloudFireStoreFirebaseApiImpl : FirebaseApi {
             }
     }
 
-    override fun updateAndUploadMomentImage(bitmap: Bitmap, moment: MomentVO) {
-        val baos = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos)
-        val data = baos.toByteArray()
+    override fun updateAndUploadMomentImage(bitmap: Bitmap) {
+        val urlTask = changeBitmapToUrlString(bitmap)
 
-        val imageRef = storageRef.child("images/${UUID.randomUUID()}")
-        val uploadTask = imageRef.putBytes(data)
-        uploadTask.addOnFailureListener {
-            Log.i("FileUpload","File uploaded failed")
-        }.addOnSuccessListener {
-            Log.i("FileUpload","File uploaded successful")
-        }
-
-        val urlTask = uploadTask.continueWithTask {
-            return@continueWithTask imageRef.downloadUrl
-        }.addOnCompleteListener {
+        urlTask.addOnCompleteListener {
             val imageUrl = it.result?.toString()
-            createMoment(MomentVO(
-                id = moment.id,
-                userName = moment.userName,
-                userProfileImage = moment.userProfileImage,
-                caption = moment.caption,
-                imageUrl = imageUrl ?: ""
-            ))
+            mMomentImages += "$imageUrl,"
+            Log.i("Ath", mMomentImages)
         }
+    }
+
+    override fun getMomentImages(): String {
+        return mMomentImages
     }
 
     override fun getMoments(
@@ -164,7 +181,8 @@ object CloudFireStoreFirebaseApiImpl : FirebaseApi {
                         val userProfileImage = data["user_profile_image"] as String
                         val caption = data["caption"] as String
                         val imageUrl = data["image_url"] as String
-                        val moment = MomentVO(id, userName, userProfileImage, caption, imageUrl)
+                        val isBookmarked = data["is_bookmarked"] as? Boolean ?: false
+                        val moment = MomentVO(id, userName, userProfileImage, caption, imageUrl,isBookmarked)
                         momentList.add(moment)
                     }
                     onSuccess(momentList)
