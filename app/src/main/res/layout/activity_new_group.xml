@@ -75,7 +75,14 @@
             android:layout_margin="@dimen/margin_10dp"
             tools:listitem="@layout/view_holder_new_member_list"
             android:layout_height="wrap_content"
-            tools:itemCount="3" />
+            tools:itemCount="1" />
+
+        <include
+            android:id="@+id/vpGroup"
+            android:layout_below="@+id/rvMemberNewGroup"
+            layout="@layout/view_pod_contacts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </RelativeLayout>
 

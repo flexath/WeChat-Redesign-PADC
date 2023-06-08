@@ -6,8 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.flexath.moments.adapters.ContactsAdapter
 import com.flexath.moments.data.vos.UserVO
 import com.flexath.moments.databinding.ViewHolderAlphabetGroupContactsListBinding
+import com.flexath.moments.delegates.ChatItemActionDelegate
 
-class ContactsAlphabetGroupViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class ContactsAlphabetGroupViewHolder(itemView: View,private val delegate: ChatItemActionDelegate) : RecyclerView.ViewHolder(itemView) {
 
     private var binding:ViewHolderAlphabetGroupContactsListBinding
 
@@ -20,12 +21,12 @@ class ContactsAlphabetGroupViewHolder(itemView: View) : RecyclerView.ViewHolder(
     }
 
     private fun setUpContactsAlphabetGroupAdapter() {
-        mContactsAdapter = ContactsAdapter()
+        mContactsAdapter = ContactsAdapter(delegate)
         binding.rvContacts.adapter = mContactsAdapter
         binding.rvContacts.layoutManager = LinearLayoutManager(itemView.context)
     }
 
-    fun bindData(firstAlphabet: Char, contactList: List<UserVO>) {
+    fun bindData(firstAlphabet: Char, contactList: List<UserVO>, isGroup: Boolean) {
         binding.tvAlphabetContacts.text =  firstAlphabet.toString()
 
         val userList = arrayListOf<UserVO>()
@@ -36,6 +37,6 @@ class ContactsAlphabetGroupViewHolder(itemView: View) : RecyclerView.ViewHolder(
             }
         }
 
-        mContactsAdapter.setNewData(userList)
+        mContactsAdapter.setNewData(userList,isGroup)
     }
 }

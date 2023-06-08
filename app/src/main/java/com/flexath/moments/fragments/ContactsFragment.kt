@@ -1,16 +1,16 @@
 package com.flexath.moments.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.flexath.moments.activities.ChatDetailActivity
 import com.flexath.moments.activities.NewContactActivity
 import com.flexath.moments.activities.NewGroupActivity
-import com.flexath.moments.adapters.AlphabetAdapter
-import com.flexath.moments.adapters.ContactsAlphabetGroupAdapter
 import com.flexath.moments.adapters.GroupAdapter
 import com.flexath.moments.data.vos.UserVO
 import com.flexath.moments.databinding.FragmentContactsBinding
@@ -18,6 +18,7 @@ import com.flexath.moments.mvp.impls.ContactsPresenterImpl
 import com.flexath.moments.mvp.interfaces.ContactsPresenter
 import com.flexath.moments.mvp.views.ContactsView
 import com.flexath.moments.utils.GeneralListData
+import com.flexath.moments.views.viewpods.ContactsViewPod
 
 class ContactsFragment : Fragment(),ContactsView {
 
@@ -25,11 +26,12 @@ class ContactsFragment : Fragment(),ContactsView {
 
     // Adapters
     private lateinit var mGroupAdapter:GroupAdapter
-    private lateinit var mAlphabetAdapter: AlphabetAdapter
-    private lateinit var mContactsAlphabetGroupAdapter: ContactsAlphabetGroupAdapter
 
     // Presenters
     private lateinit var mPresenter:ContactsPresenter
+
+    // ViewPods
+    private lateinit var mViewPod:ContactsViewPod
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,10 +44,8 @@ class ContactsFragment : Fragment(),ContactsView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpPresenter()
-
+        setUpViewPods()
         setUpGroupRecyclerView()
-        setUpAlphabetAdapter()
-        setUpContactsAlphabetGroupAdapter()
         setUpListeners()
     }
 
@@ -54,24 +54,17 @@ class ContactsFragment : Fragment(),ContactsView {
         mPresenter.initPresenter(this)
     }
 
+    private fun setUpViewPods() {
+        mViewPod = binding.vpContacts.root
+        mViewPod.setDelegate(mPresenter,mPresenter)
+
+        mPresenter.getContacts(mPresenter.getUserId())
+    }
+
     private fun setUpGroupRecyclerView () {
         mGroupAdapter = GroupAdapter(mPresenter)
         binding.rvGroupContacts.adapter = mGroupAdapter
         binding.rvGroupContacts.layoutManager = LinearLayoutManager(requireActivity(),LinearLayoutManager.HORIZONTAL,false)
-    }
-
-    private fun setUpAlphabetAdapter() {
-        mAlphabetAdapter = AlphabetAdapter(GeneralListData.getAlphabetList())
-        binding.rvAlphabet.adapter = mAlphabetAdapter
-        binding.rvAlphabet.layoutManager = LinearLayoutManager(requireActivity())
-    }
-
-    private fun setUpContactsAlphabetGroupAdapter() {
-        mContactsAlphabetGroupAdapter = ContactsAlphabetGroupAdapter()
-        binding.rvContactsAlphabetGroup.adapter = mContactsAlphabetGroupAdapter
-        binding.rvContactsAlphabetGroup.layoutManager = LinearLayoutManager(requireActivity())
-
-        mPresenter.getContacts(mPresenter.getUserId())
     }
 
     private fun setUpListeners() {
@@ -86,7 +79,7 @@ class ContactsFragment : Fragment(),ContactsView {
         for(key in nameMapList.keys) {
             alphabetList.add(key)
         }
-        return alphabetList
+        return alphabetList.sorted()
     }
 
     override fun navigateToNewGroupScreen() {
@@ -102,11 +95,16 @@ class ContactsFragment : Fragment(),ContactsView {
         for(contact in contactList) {
             nameList.add(0,contact.userName)
         }
-
-        mContactsAlphabetGroupAdapter.setNewData(getAlphabetList(nameList),contactList)
+        mViewPod.setNewData(getAlphabetList(nameList),contactList,false)
     }
 
-    override fun showError(error: String) {
+    override fun navigateToChatDetailScreen(userId: String) {
+        startActivity(ChatDetailActivity.newIntent(requireActivity(),userId))
+    }
 
+    override fun addUserToGroup(userId: String) {}
+
+    override fun showError(error: String) {
+        Toast.makeText(requireActivity(),error,Toast.LENGTH_SHORT).show()
     }
 }

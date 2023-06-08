@@ -113,28 +113,12 @@
                 tools:itemCount="1"
                 tools:listitem="@layout/view_holder_group_list" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvAlphabet"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rvGroupContacts"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="@dimen/margin_50dp"
-                android:background="@color/white"
-                android:elevation="@dimen/margin_small"
-                android:paddingStart="@dimen/margin_small"
-                android:paddingEnd="@dimen/margin_small"
-                tools:itemCount="26"
-                tools:listitem="@layout/view_holder_alphabet_list" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvContactsAlphabetGroup"
+            <include
+                android:id="@+id/vpContacts"
+                layout="@layout/view_pod_contacts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/rvGroupContacts"
-                android:layout_alignParentStart="true"
-                tools:listitem="@layout/view_holder_alphabet_group_contacts_list"
-                android:layout_toStartOf="@+id/rvAlphabet" />
+                android:layout_below="@+id/rvGroupContacts" />
 
         </RelativeLayout>
 

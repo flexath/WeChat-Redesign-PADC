@@ -11,8 +11,11 @@ class ChatDetailActivity : AppCompatActivity() {
     private lateinit var binding:ActivityChatDetailBinding
 
     companion object {
-        fun newIntent(context: Context): Intent {
-            return Intent(context, ChatDetailActivity::class.java)
+        private const val EXTRA_USER_ID = "UserId"
+        fun newIntent(context: Context,userId:String): Intent {
+            val intent = Intent(context, ChatDetailActivity::class.java)
+            intent.putExtra(EXTRA_USER_ID,userId)
+            return intent
         }
     }
 

@@ -16,9 +16,7 @@ class ChatViewHolder(itemView: View,private val delegate: ChatItemActionDelegate
     }
 
     private fun setUpListeners() {
-        itemView.setOnClickListener {
-            delegate.onTapChatItem()
-        }
+
     }
 
     override fun bindData(data: VO) {

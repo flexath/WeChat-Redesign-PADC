@@ -5,13 +5,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.flexath.moments.R
+import com.flexath.moments.delegates.AlphabetActionItemDelegate
 import com.flexath.moments.views.viewholders.AlphabetViewHolder
 
-class AlphabetAdapter(private val alphabetList: List<Char>) : RecyclerView.Adapter<AlphabetViewHolder>() {
+class AlphabetAdapter(private val alphabetList: List<Char>,private val delegate:AlphabetActionItemDelegate) : RecyclerView.Adapter<AlphabetViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlphabetViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.view_holder_alphabet_list,parent,false)
-        return AlphabetViewHolder(view)
+        return AlphabetViewHolder(view,delegate)
     }
 
     override fun onBindViewHolder(holder: AlphabetViewHolder, position: Int) {
@@ -24,7 +25,6 @@ class AlphabetAdapter(private val alphabetList: List<Char>) : RecyclerView.Adapt
 
     @SuppressLint("NotifyDataSetChanged")
     fun setNewData(alphabetList: List<Char>) {
-
         notifyDataSetChanged()
     }
 

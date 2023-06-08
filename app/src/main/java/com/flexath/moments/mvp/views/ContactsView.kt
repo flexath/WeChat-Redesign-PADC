@@ -6,4 +6,6 @@ interface ContactsView  : BaseView {
     fun navigateToNewGroupScreen()
     fun navigateToNewContactScreen()
     fun showContacts(contactList: List<UserVO>)
+    fun navigateToChatDetailScreen(userId: String)
+    fun addUserToGroup(userId: String)
 }

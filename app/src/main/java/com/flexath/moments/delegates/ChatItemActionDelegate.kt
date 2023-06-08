@@ -1,5 +1,6 @@
 package com.flexath.moments.delegates
 
 interface ChatItemActionDelegate {
-    fun onTapChatItem()
+    fun onTapChatItem(userId:String)
+    fun onTapCheckbox(userId: String)
 }
