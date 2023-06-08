@@ -193,7 +193,8 @@ class RegisterActivity : AppCompatActivity(), RegisterView {
     }
 
     override fun navigateToLoginScreen() {
-        startActivity(LoginActivity.newIntent(this))
+        val intent = LoginActivity.newIntent(this)
+        startActivity(intent)
         finish()
     }
 

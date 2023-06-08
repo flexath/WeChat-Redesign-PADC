@@ -5,11 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.flexath.moments.R
+import com.flexath.moments.data.vos.UserVO
 import com.flexath.moments.views.viewholders.ContactsViewHolder
 
 class ContactsAdapter : RecyclerView.Adapter<ContactsViewHolder>() {
 
-     private var mNameList:List<String> = listOf()
+     private var mNameList:ArrayList<UserVO> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.view_holder_contacts_list,parent,false)
@@ -25,7 +26,7 @@ class ContactsAdapter : RecyclerView.Adapter<ContactsViewHolder>() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setNewData(nameList: List<String>) {
+    fun setNewData(nameList: ArrayList<UserVO>) {
         mNameList = nameList
         notifyDataSetChanged()
     }

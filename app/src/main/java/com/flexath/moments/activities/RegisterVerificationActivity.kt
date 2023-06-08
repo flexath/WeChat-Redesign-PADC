@@ -57,7 +57,6 @@ class RegisterVerificationActivity : AppCompatActivity(), RegisterVerificationVi
         val phoneNumber = binding.etPhoneNumberRegisterVerification.text.toString()
         val email = binding.etEmailRegisterVerification.text.toString()
         startActivity(RegisterActivity.newIntent(this,phoneNumber,email))
-        finish()
     }
 
     override fun showError(error: String) {

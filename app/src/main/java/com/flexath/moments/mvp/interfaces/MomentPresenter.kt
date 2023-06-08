@@ -8,4 +8,6 @@ interface MomentPresenter  : BasePresenter<MomentView> , MomentItemActionDelegat
     fun onTapAddMomentButton()
 
     fun createMoment(moment:MomentVO)
+
+    fun getUserId(): String
 }

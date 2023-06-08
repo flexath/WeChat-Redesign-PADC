@@ -15,18 +15,18 @@ import com.flexath.moments.mvp.interfaces.MomentPresenter
 import com.flexath.moments.mvp.views.MomentView
 import com.flexath.moments.views.viewpods.MomentViewPod
 
-class MomentFragment : Fragment() , MomentView {
+class MomentFragment : Fragment(), MomentView {
 
-    private lateinit var binding:FragmentMomentBinding
+    private lateinit var binding: FragmentMomentBinding
 
     // Presenter
-    private lateinit var mPresenter:MomentPresenter
+    private lateinit var mPresenter: MomentPresenter
 
     // ViewPods
-    private lateinit var mViewpod:MomentViewPod
+    private lateinit var mViewpod: MomentViewPod
 
     // Generals
-    private var mMomentList:List<MomentVO> = listOf()
+    private var mMomentList: List<MomentVO> = listOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +43,7 @@ class MomentFragment : Fragment() , MomentView {
 
         setUpListeners()
 
-        mPresenter.onUIReady(requireActivity(),this)
+        mPresenter.onUIReady(requireActivity(), this)
     }
 
     private fun setUpPresenter() {
@@ -71,10 +71,10 @@ class MomentFragment : Fragment() , MomentView {
         mViewpod.setNewData(momentList)
     }
 
-    override fun getMomentIsBookmarked(id: String,isBookmarked:Boolean) {
-        for(moment in mMomentList) {
-            if(id == moment.id) {
-                if(isBookmarked) {
+    override fun getMomentIsBookmarked(id: String, isBookmarked: Boolean) {
+        for (moment in mMomentList) {
+            if (id == moment.id) {
+                if (isBookmarked) {
                     moment.isBookmarked = true
                     mPresenter.createMoment(moment)
                     break
@@ -93,7 +93,7 @@ class MomentFragment : Fragment() , MomentView {
     }
 
     override fun showError(error: String) {
-        Toast.makeText(requireActivity(),error,Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireActivity(), error, Toast.LENGTH_SHORT).show()
     }
 
 }

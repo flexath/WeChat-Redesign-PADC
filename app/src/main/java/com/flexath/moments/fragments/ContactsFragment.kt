@@ -12,6 +12,7 @@ import com.flexath.moments.activities.NewGroupActivity
 import com.flexath.moments.adapters.AlphabetAdapter
 import com.flexath.moments.adapters.ContactsAlphabetGroupAdapter
 import com.flexath.moments.adapters.GroupAdapter
+import com.flexath.moments.data.vos.UserVO
 import com.flexath.moments.databinding.FragmentContactsBinding
 import com.flexath.moments.mvp.impls.ContactsPresenterImpl
 import com.flexath.moments.mvp.interfaces.ContactsPresenter
@@ -29,9 +30,6 @@ class ContactsFragment : Fragment(),ContactsView {
 
     // Presenters
     private lateinit var mPresenter:ContactsPresenter
-
-    // Dummy
-    private val nameList:List<String> = listOf("Aung Thiha","Aung Phyo San","Zin Bo Khine","Zin Bo Bo Htun" , "Win Lwin")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,7 +71,7 @@ class ContactsFragment : Fragment(),ContactsView {
         binding.rvContactsAlphabetGroup.adapter = mContactsAlphabetGroupAdapter
         binding.rvContactsAlphabetGroup.layoutManager = LinearLayoutManager(requireActivity())
 
-        mContactsAlphabetGroupAdapter.setNewData(getAlphabetList(nameList),nameList)
+        mPresenter.getContacts(mPresenter.getUserId())
     }
 
     private fun setUpListeners() {
@@ -97,6 +95,15 @@ class ContactsFragment : Fragment(),ContactsView {
 
     override fun navigateToNewContactScreen() {
         startActivity(NewContactActivity.newIntent(requireActivity()))
+    }
+
+    override fun showContacts(contactList: List<UserVO>) {
+        val nameList = arrayListOf<String>()
+        for(contact in contactList) {
+            nameList.add(0,contact.userName)
+        }
+
+        mContactsAlphabetGroupAdapter.setNewData(getAlphabetList(nameList),contactList)
     }
 
     override fun showError(error: String) {

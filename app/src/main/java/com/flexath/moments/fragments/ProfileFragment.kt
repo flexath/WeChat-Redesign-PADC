@@ -9,6 +9,7 @@ import android.graphics.ImageDecoder
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -159,9 +160,8 @@ class ProfileFragment : Fragment() , ProfileView {
                     .load(user.imageUrl)
                     .into(binding.ivProfileImageProfile)
 
-                binding.ivQrCodeProfile.setImageBitmap(textToImageEncode(qrCode))
-
-
+                binding.ivQrCodeProfile.setImageBitmap(textToImageEncode(user.qrCode))
+                Log.i("ScannerId",user.qrCode.toString())
             }
         }
     }

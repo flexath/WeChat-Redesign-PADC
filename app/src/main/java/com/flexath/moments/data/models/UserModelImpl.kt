@@ -21,4 +21,16 @@ object UserModelImpl : UserModel {
     override fun getUsers(onSuccess: (users: List<UserVO>) -> Unit, onFailure: (String) -> Unit) {
         mFirebaseApi.getUsers(onSuccess = onSuccess , onFailure = onFailure)
     }
+
+    override fun createContact(scannerId:String,qrExporterId:String,contact: UserVO) {
+        mFirebaseApi.createContact(scannerId,qrExporterId,contact)
+    }
+
+    override fun getContacts(
+        scannerId: String,
+        onSuccess: (users: List<UserVO>) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mFirebaseApi.getContacts(scannerId, onSuccess, onFailure)
+    }
 }

@@ -63,6 +63,7 @@ class LoginActivity : AppCompatActivity() , LoginView {
 
     override fun navigateToHomeScreen() {
         startActivity(MainActivity.newIntent(this))
+        finish()
     }
 
     override fun showError(error: String) {

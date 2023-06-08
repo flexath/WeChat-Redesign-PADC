@@ -33,6 +33,7 @@
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/margin_medium_3"
             android:layout_marginStart="@dimen/margin_10dp"
+            android:layout_marginBottom="@dimen/margin_10dp"
             android:layout_below="@+id/tvAlphabetContacts"
             tools:listitem="@layout/view_holder_contacts_list"
             tools:itemCount="3"

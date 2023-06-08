@@ -3,6 +3,8 @@ package com.flexath.moments.mvp.impls
 import android.content.Context
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
+import com.flexath.moments.data.models.AuthenticationModel
+import com.flexath.moments.data.models.AuthenticationModelImpl
 import com.flexath.moments.data.models.MomentModel
 import com.flexath.moments.data.models.MomentModelImpl
 import com.flexath.moments.data.vos.MomentVO
@@ -13,6 +15,7 @@ class MomentPresenterImpl : MomentPresenter , ViewModel() {
 
     private var mView:MomentView? = null
     private val mMomentModel:MomentModel = MomentModelImpl
+    private val mAuthModel:AuthenticationModel = AuthenticationModelImpl
 
     override fun initPresenter(view: MomentView) {
         mView = view
@@ -43,5 +46,9 @@ class MomentPresenterImpl : MomentPresenter , ViewModel() {
 
     override fun createMoment(moment: MomentVO) {
         mMomentModel.createMoment(moment)
+    }
+
+    override fun getUserId(): String {
+        return mAuthModel.getUserId()
     }
 }

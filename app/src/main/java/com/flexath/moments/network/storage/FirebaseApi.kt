@@ -11,6 +11,7 @@ interface FirebaseApi {
         onSuccess: (users: List<UserVO>) -> Unit, onFailure: (String) -> Unit
     )
 
+
     fun createMoment(moment: MomentVO)
     fun updateAndUploadMomentImage(bitmap: Bitmap)
 
@@ -18,4 +19,9 @@ interface FirebaseApi {
     fun getMoments(
         onSuccess: (moments: List<MomentVO>) -> Unit, onFailure: (String) -> Unit
     )
+
+
+    fun createContact(scannerId:String,qrExporterId:String,contact: UserVO)
+
+    fun getContacts(scannerId:String,onSuccess: (users: List<UserVO>) -> Unit, onFailure: (String) -> Unit)
 }

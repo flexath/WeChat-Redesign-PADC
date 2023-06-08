@@ -40,6 +40,7 @@ class NewMomentActivity : AppCompatActivity(), NewMomentView {
     private var momentImages: String = ""
     private var userName: String = ""
     private var userProfileImage: String = ""
+    private var userId:String = ""
 
     companion object {
         fun newIntent(context: Context): Intent {
@@ -79,6 +80,7 @@ class NewMomentActivity : AppCompatActivity(), NewMomentView {
         val caption = binding.etPostNewMoment.text.toString()
         return MomentVO(
             System.currentTimeMillis().toString(),
+            userId,
             userName,
             userProfileImage,
             caption,
@@ -142,6 +144,7 @@ class NewMomentActivity : AppCompatActivity(), NewMomentView {
         for (user in userList) {
             if (mPresenter.getUserId() == user.userId) {
 
+                userId = user.userId
                 userName = user.userName
                 userProfileImage = user.imageUrl
 

@@ -132,6 +132,7 @@ object CloudFireStoreFirebaseApiImpl : FirebaseApi {
     override fun createMoment(moment: MomentVO) {
         val userMap = hashMapOf(
             "id" to moment.id,
+            "user_id" to moment.userId,
             "user_name" to moment.userName,
             "user_profile_image" to moment.userProfileImage,
             "caption" to moment.caption,
@@ -177,15 +178,82 @@ object CloudFireStoreFirebaseApiImpl : FirebaseApi {
                     for (document in documentList) {
                         val data = document.data
                         val id = data?.get("id") as String
+                        val userId = data["user_id"] as? String ?: ""
                         val userName = data["user_name"] as String
                         val userProfileImage = data["user_profile_image"] as String
                         val caption = data["caption"] as String
                         val imageUrl = data["image_url"] as String
                         val isBookmarked = data["is_bookmarked"] as? Boolean ?: false
-                        val moment = MomentVO(id, userName, userProfileImage, caption, imageUrl,isBookmarked)
+                        val moment = MomentVO(id,userId, userName, userProfileImage, caption, imageUrl,isBookmarked)
                         momentList.add(moment)
                     }
                     onSuccess(momentList)
+                }
+            }
+    }
+
+    override fun createContact(scannerId:String,qrExporterId:String,contact: UserVO) {
+        val userMap = hashMapOf(
+            "id" to contact.userId,
+            "name" to contact.userName,
+            "phone_number" to contact.phoneNumber,
+            "email" to contact.email,
+            "password" to contact.password,
+            "birth_date" to contact.birthDate,
+            "gender" to contact.gender,
+            "qr_code" to contact.userId,
+            "image_url" to contact.imageUrl
+        )
+
+        Log.i("QrExporterId",qrExporterId)
+
+        database.collection("users")
+            .document(scannerId)
+            .collection("contacts")
+            .document(qrExporterId)
+            .set(userMap)
+            .addOnSuccessListener {
+                Log.i("FirebaseCall", "Successfully Added")
+            }.addOnFailureListener {
+                Log.i("FirebaseCall", "Failed Added")
+            }
+    }
+
+    override fun getContacts(scannerId:String,onSuccess: (users: List<UserVO>) -> Unit, onFailure: (String) -> Unit) {
+        database.collection("users")
+            .document(scannerId)
+            .collection("contacts")
+            .addSnapshotListener { value, error ->
+                error?.let {
+                    onFailure(it.localizedMessage ?: "Check Internet Connection")
+                } ?: run {
+                    val userList: MutableList<UserVO> = arrayListOf()
+                    val documentList = value?.documents ?: arrayListOf()
+                    for (document in documentList) {
+                        val data = document.data
+                        val id = data?.get("id") as String
+                        val name = data["name"] as String
+                        val phoneNumber = data["phone_number"] as String
+                        val email = data["email"] as String
+                        val password = data["password"] as String
+                        val birthDate = data["birth_date"] as String
+                        val gender = data["gender"] as String
+                        val qrCode = data["qr_code"] as String
+                        val imageUrl = data["image_url"] as String
+                        val user = UserVO(
+                            id,
+                            name,
+                            phoneNumber,
+                            email,
+                            password,
+                            birthDate,
+                            gender,
+                            qrCode,
+                            imageUrl
+                        )
+                        userList.add(user)
+                    }
+                    onSuccess(userList)
                 }
             }
     }
