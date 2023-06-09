@@ -15,7 +15,7 @@ import java.io.ByteArrayOutputStream
 import java.util.UUID
 
 @SuppressLint("StaticFieldLeak")
-object CloudFireStoreFirebaseApiImpl : FirebaseApi {
+object CloudFireStoreFirebaseApiImpl : CloudFireStoreFirebaseApi {
 
     private var database: FirebaseFirestore = Firebase.firestore
     private val storageRef = FirebaseStorage.getInstance().reference

@@ -3,11 +3,11 @@ package com.flexath.moments.data.models
 import android.graphics.Bitmap
 import com.flexath.moments.data.vos.MomentVO
 import com.flexath.moments.network.storage.CloudFireStoreFirebaseApiImpl
-import com.flexath.moments.network.storage.FirebaseApi
+import com.flexath.moments.network.storage.CloudFireStoreFirebaseApi
 
 object MomentModelImpl : MomentModel {
 
-    override var mFirebaseApi: FirebaseApi = CloudFireStoreFirebaseApiImpl
+    override var mFirebaseApi: CloudFireStoreFirebaseApi = CloudFireStoreFirebaseApiImpl
 
     override fun createMoment(moment: MomentVO) {
         mFirebaseApi.createMoment(moment)

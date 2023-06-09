@@ -80,6 +80,7 @@
         android:id="@+id/rvConversation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margin_10dp"
         android:layout_above="@+id/rlMessageSectionChatDetail"
         android:layout_below="@+id/rlActionBarChatDetail" />
 
@@ -102,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/btnSendMessageChatDetail"
+                android:layout_toStartOf="@+id/btnSendMessage"
                 android:background="@color/colorPrimary"
                 android:fontFamily="@font/noto_sans"
                 android:hint="@string/lbl_type_a_message"
@@ -111,7 +112,7 @@
                 android:textSize="@dimen/text_regular_2x" />
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btnSendMessageChatDetail"
+                android:id="@+id/btnSendMessage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -137,19 +138,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/rlSendMessageSection"
-            android:paddingBottom="@dimen/margin_14dp"
+            android:background="@color/colorPrimary"
+            android:layout_marginBottom="@dimen/margin_14dp"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingStart="@dimen/margin_28dp"
+            android:paddingStart="@dimen/margin_large"
             android:paddingTop="@dimen/margin_14dp"
-            android:paddingEnd="@dimen/margin_28dp">
+            android:paddingEnd="@dimen/margin_large">
 
             <FrameLayout
                 android:id="@+id/btnOpenGallery"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
-                android:elevation="@dimen/margin_small"
                 android:background="@drawable/background_buttons_chat_detail">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -167,7 +168,6 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/margin_36dp"
-                android:elevation="@dimen/margin_small"
                 android:background="@drawable/background_buttons_chat_detail">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -185,7 +185,6 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/margin_36dp"
-                android:elevation="@dimen/margin_small"
                 android:background="@drawable/background_buttons_chat_detail">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -203,7 +202,6 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/margin_36dp"
-                android:elevation="@dimen/margin_small"
                 android:background="@drawable/background_buttons_chat_detail">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -221,7 +219,6 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/margin_36dp"
-                android:elevation="@dimen/margin_small"
                 android:background="@drawable/background_buttons_chat_detail">
 
                 <androidx.appcompat.widget.AppCompatImageView

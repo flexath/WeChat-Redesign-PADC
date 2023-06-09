@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/margin_card_medium"
+    android:paddingBottom="@dimen/margin_small">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="@dimen/margin_medium_2"
+        android:background="@drawable/background_send_chat_message"
+        android:paddingStart="@dimen/margin_10dp"
+        android:paddingTop="@dimen/margin_5dp"
+        android:paddingBottom="@dimen/margin_5dp"
+        android:paddingEnd="@dimen/margin_10dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSentMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|top"
+            android:fontFamily="@font/dm_sans"
+            android:text="Hello I am aungthiha"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_15sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTimeReceiveMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="@dimen/margin_30dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/dm_sans"
+            android:text="12:30 AM"
+            android:textColor="@color/white"
+            android:textSize="8sp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/width_20dp"
+            android:layout_height="@dimen/height_20dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginTop="@dimen/margin_large"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/icon_seen" />
+
+    </FrameLayout>
+
+</RelativeLayout>

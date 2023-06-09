@@ -2,11 +2,11 @@ package com.flexath.moments.data.models
 
 import android.graphics.Bitmap
 import com.flexath.moments.data.vos.UserVO
-import com.flexath.moments.network.storage.FirebaseApi
+import com.flexath.moments.network.storage.CloudFireStoreFirebaseApi
 
 interface UserModel {
 
-    var mFirebaseApi:FirebaseApi
+    var mFirebaseApi:CloudFireStoreFirebaseApi
 
     fun addUser(user: UserVO)
 

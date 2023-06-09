@@ -2,10 +2,10 @@ package com.flexath.moments.data.models
 
 import android.graphics.Bitmap
 import com.flexath.moments.data.vos.MomentVO
-import com.flexath.moments.network.storage.FirebaseApi
+import com.flexath.moments.network.storage.CloudFireStoreFirebaseApi
 
 interface MomentModel {
-    var mFirebaseApi: FirebaseApi
+    var mFirebaseApi: CloudFireStoreFirebaseApi
 
     fun createMoment(moment: MomentVO)
 

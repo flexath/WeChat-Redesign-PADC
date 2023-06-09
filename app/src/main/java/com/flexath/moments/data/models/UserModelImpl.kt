@@ -1,14 +1,13 @@
 package com.flexath.moments.data.models
 
 import android.graphics.Bitmap
-import android.util.Log
 import com.flexath.moments.data.vos.UserVO
 import com.flexath.moments.network.storage.CloudFireStoreFirebaseApiImpl
-import com.flexath.moments.network.storage.FirebaseApi
+import com.flexath.moments.network.storage.CloudFireStoreFirebaseApi
 
 object UserModelImpl : UserModel {
 
-    override var mFirebaseApi: FirebaseApi = CloudFireStoreFirebaseApiImpl
+    override var mFirebaseApi: CloudFireStoreFirebaseApi = CloudFireStoreFirebaseApiImpl
 
     override fun addUser(user: UserVO) {
         mFirebaseApi.addUser(user)
