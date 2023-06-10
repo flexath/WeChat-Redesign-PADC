@@ -1,7 +1,6 @@
 package com.flexath.moments.adapters
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +17,7 @@ class ChatDetailAdapter : RecyclerView.Adapter<IBaseMessageViewHolder>() {
 
     private var mMessageList: List<MessageVO> = listOf()
     private var mUserId: String = ""
+    private var mCurrentTime = ""
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IBaseMessageViewHolder {
         return if (viewType == VIEW_TYPE_SEND) {

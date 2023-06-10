@@ -2,9 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:paddingTop="@dimen/margin_card_medium"
-    android:paddingBottom="@dimen/margin_small"
-    android:layout_height="wrap_content">
+    android:paddingBottom="@dimen/margin_small">
 
     <com.flexath.moments.views.components.RoundedProfileImage
         android:id="@+id/ivProfileChatHead"
@@ -12,8 +12,8 @@
         android:layout_height="40dp"
         android:layout_alignParentStart="true"
         android:layout_marginStart="@dimen/margin_medium_2"
-        android:elevation="@dimen/margin_medium"
         android:layout_marginTop="@dimen/margin_2dp"
+        android:elevation="@dimen/margin_medium"
         android:gravity="top"
         android:scaleType="centerCrop"
         app:cornerRadius="25dp"
@@ -23,36 +23,57 @@
     <RelativeLayout
         android:id="@+id/rlChatMessage"
         android:layout_width="wrap_content"
-        android:layout_toEndOf="@+id/ivProfileChatHead"
-        android:layout_marginEnd="@dimen/margin_50dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_small"
-        android:gravity="start"
-        android:paddingTop="@dimen/margin_5dp"
-        android:paddingStart="@dimen/margin_10dp"
-        android:paddingEnd="@dimen/margin_10dp"
-        android:paddingBottom="@dimen/margin_5dp"
+        android:layout_marginEnd="@dimen/margin_50dp"
+        android:layout_toEndOf="@+id/ivProfileChatHead"
         android:background="@drawable/background_receive_chat_message"
-        android:layout_height="wrap_content">
+        android:gravity="start"
+        android:paddingStart="@dimen/margin_10dp"
+        android:paddingTop="@dimen/margin_5dp"
+        android:paddingEnd="@dimen/margin_10dp"
+        android:paddingBottom="@dimen/margin_5dp">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvReceivedMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_myanmar_regular"
-            android:textSize="@dimen/text_15sp"
             android:text="Hello I am aungthiha"
-            android:textColor="@color/colorPrimaryText" />
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_15sp" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTimeReceiveMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_sans_myanmar_regular"
             android:layout_below="@+id/tvReceivedMessage"
-            android:textSize="8sp"
+            android:fontFamily="@font/noto_sans_myanmar_regular"
             android:text="12:30 AM"
-            android:textColor="@color/colorPrimaryLight_2" />
+            android:textColor="@color/colorPrimaryLight_2"
+            android:textSize="8sp" />
 
     </RelativeLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvReceiveImageChatDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="@dimen/margin_2dp"
+        android:layout_marginEnd="@dimen/margin_medium_2"
+        android:visibility="gone"
+        app:cardCornerRadius="@dimen/margin_5dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivReceiveImage"
+            android:layout_width="@dimen/height_200dp"
+            android:layout_height="110dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ath_profile" />
+
+    </com.google.android.material.card.MaterialCardView>
 
 </RelativeLayout>

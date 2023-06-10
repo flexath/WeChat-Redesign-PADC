@@ -68,7 +68,7 @@ class MomentFragment : Fragment(), MomentView {
 
     override fun showMoments(momentList: List<MomentVO>) {
         mMomentList = momentList
-        mViewpod.setNewData(momentList)
+        mViewpod.setNewData(momentList.reversed())
     }
 
     override fun getMomentIsBookmarked(id: String, isBookmarked: Boolean) {

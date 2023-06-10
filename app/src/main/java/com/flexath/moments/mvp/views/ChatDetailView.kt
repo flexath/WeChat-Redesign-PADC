@@ -6,5 +6,8 @@ import com.flexath.moments.data.vos.UserVO
 interface ChatDetailView : BaseView {
     fun showUsers(userList: List<UserVO>)
     fun showMessages(messageList: List<MessageVO>)
+    fun showGallery()
+    fun getImageUrlForFile(file: String)
+
 
 }

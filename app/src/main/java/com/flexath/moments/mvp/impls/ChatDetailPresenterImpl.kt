@@ -1,6 +1,7 @@
 package com.flexath.moments.mvp.impls
 
 import android.content.Context
+import android.graphics.Bitmap
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import com.flexath.moments.data.models.AuthenticationModel
@@ -35,6 +36,10 @@ class ChatDetailPresenterImpl : ChatDetailPresenter, ViewModel() {
         )
     }
 
+    override fun onTapGetImageButton() {
+        mView?.showGallery()
+    }
+
     override fun getUserId(): String {
         return mAuthModel.getUserId()
     }
@@ -62,5 +67,17 @@ class ChatDetailPresenterImpl : ChatDetailPresenter, ViewModel() {
         )
     }
 
-
+    override fun uploadAndSendImage(
+        bitmap: Bitmap
+    ) {
+        mChatModel.uploadAndSendImage(
+            bitmap,
+            onSuccess = {
+                mView?.getImageUrlForFile(it)
+            },
+            onFailure = {
+                mView?.showError(it)
+            }
+        )
+    }
 }

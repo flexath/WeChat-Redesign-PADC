@@ -1,6 +1,7 @@
 package com.flexath.moments.fragments
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color.BLACK
@@ -19,13 +20,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.flexath.moments.R
 import com.flexath.moments.data.vos.MomentVO
 import com.flexath.moments.data.vos.UserVO
 import com.flexath.moments.databinding.DialogEditProfileBinding
 import com.flexath.moments.databinding.DialogQrCodeBinding
 import com.flexath.moments.databinding.FragmentProfileBinding
 import com.flexath.moments.dialogs.EditProfileDialog
-import com.flexath.moments.dialogs.QrCodeDialog
 import com.flexath.moments.mvp.impls.ProfilePresenterImpl
 import com.flexath.moments.mvp.interfaces.ProfilePresenter
 import com.flexath.moments.mvp.views.ProfileView
@@ -161,7 +162,6 @@ class ProfileFragment : Fragment() , ProfileView {
                     .into(binding.ivProfileImageProfile)
 
                 binding.ivQrCodeProfile.setImageBitmap(textToImageEncode(user.qrCode))
-                Log.i("ScannerId",user.qrCode.toString())
             }
         }
     }
@@ -200,10 +200,10 @@ class ProfileFragment : Fragment() , ProfileView {
 
     override fun showQrCodeDialog() {
         val dialogBinding = DialogQrCodeBinding.inflate(layoutInflater)
-        val dialog = QrCodeDialog(requireActivity())
+        val dialog = Dialog(requireActivity(), R.style.TransparentDialogTheme)
 
         dialog.setContentView(dialogBinding.root)
-        dialog.setCancelable(true)
+        dialog.setCancelable(false)
 
         dialogBinding.btnCloseProfileDialog.setOnClickListener {
             dialog.dismiss()

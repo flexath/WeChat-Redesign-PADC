@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.WindowManager
 
 @Suppress("DEPRECATION")
-class QrCodeDialog(context: Context) : Dialog(context, android.R.style.Theme_DeviceDefault_Light_Dialog) {
+class QrCodeDialog(context: Context) : Dialog(context, android.R.style.Theme_DeviceDefault_NoActionBar_Fullscreen) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

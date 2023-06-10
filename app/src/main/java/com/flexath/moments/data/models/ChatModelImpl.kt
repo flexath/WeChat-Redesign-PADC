@@ -1,5 +1,6 @@
 package com.flexath.moments.data.models
 
+import android.graphics.Bitmap
 import com.flexath.moments.data.vos.MessageVO
 import com.flexath.moments.network.storage.RealtimeDatabaseFirebaseApiImpl
 import com.flexath.moments.network.storage.RealtimeFirebaseApi
@@ -30,5 +31,14 @@ object ChatModelImpl : ChatModel {
     ) {
         mFirebaseApi.getMessages(senderId, receiverId, onSuccess, onFailure)
     }
+
+    override fun uploadAndSendImage(
+        bitmap: Bitmap,
+        onSuccess: (file: String) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mFirebaseApi.uploadAndSendImage(bitmap,onSuccess,onFailure)
+    }
+
 
 }
