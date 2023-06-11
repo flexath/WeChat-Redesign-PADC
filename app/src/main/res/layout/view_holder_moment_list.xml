@@ -71,7 +71,6 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPagerMomentImages"
         android:layout_width="match_parent"
-        android:layout_margin="@dimen/margin_10dp"
         android:layout_below="@+id/tvMomentCaption"
         android:layout_marginTop="@dimen/margin_card_medium_2"
         android:layout_height="wrap_content"/>

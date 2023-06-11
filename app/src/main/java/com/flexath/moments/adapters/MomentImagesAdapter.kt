@@ -18,7 +18,7 @@ class MomentImagesAdapter : RecyclerView.Adapter<MomentImagesViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MomentImagesViewHolder, position: Int) {
-        holder.bindNewData(mImageList[position])
+        holder.bindNewData(mImageList[position],itemCount)
     }
 
     override fun getItemCount(): Int {

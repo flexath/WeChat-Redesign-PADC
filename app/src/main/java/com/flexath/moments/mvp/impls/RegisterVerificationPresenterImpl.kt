@@ -17,7 +17,7 @@ class RegisterVerificationPresenterImpl : RegisterVerificationPresenter , ViewMo
         mView = view
     }
 
-    override fun onUIReady(context: Context, lifecycleOwner: LifecycleOwner) {
+    override fun onUIReady(lifecycleOwner: LifecycleOwner) {
         mChatModel.getOtp(
             onSuccess = {
                 mView?.showOtp(it)

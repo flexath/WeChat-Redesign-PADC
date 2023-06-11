@@ -25,7 +25,7 @@ class ChatDetailPresenterImpl : ChatDetailPresenter, ViewModel() {
         mView = view
     }
 
-    override fun onUIReady(context: Context, lifecycleOwner: LifecycleOwner) {
+    override fun onUIReady(lifecycleOwner: LifecycleOwner) {
         mUserModel.getUsers(
             onSuccess = {
                 mView?.showUsers(it)

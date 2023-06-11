@@ -43,7 +43,7 @@ class MomentFragment : Fragment(), MomentView {
 
         setUpListeners()
 
-        mPresenter.onUIReady(requireActivity(), this)
+        mPresenter.onUIReady( this)
     }
 
     private fun setUpPresenter() {
@@ -88,9 +88,7 @@ class MomentFragment : Fragment(), MomentView {
         mViewpod.setNewData(mMomentList)
     }
 
-    override fun showOptionDialogBox() {
-
-    }
+    override fun showOptionDialogBox() {}
 
     override fun showError(error: String) {
         Toast.makeText(requireActivity(), error, Toast.LENGTH_SHORT).show()

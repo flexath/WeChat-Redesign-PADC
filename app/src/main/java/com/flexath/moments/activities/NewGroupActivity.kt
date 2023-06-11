@@ -3,6 +3,7 @@ package com.flexath.moments.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -28,6 +29,10 @@ class NewGroupActivity : AppCompatActivity(), NewGroupView {
     // ViewPods
     private lateinit var mViewPod: ContactsViewPod
 
+    // General
+    private var mMemberList:ArrayList<UserVO> = arrayListOf()
+    private var mUserList:List<UserVO> = listOf()
+
     companion object {
         fun newIntent(context: Context): Intent {
             return Intent(context, NewGroupActivity::class.java)
@@ -40,13 +45,30 @@ class NewGroupActivity : AppCompatActivity(), NewGroupView {
         setContentView(binding.root)
         setUpPresenter()
         setUpViewPods()
-
         setUpRecyclerView()
+
+        setUpListeners()
     }
 
     private fun setUpPresenter() {
         mPresenter = ViewModelProvider(this)[NewGroupPresenterImpl::class.java]
         mPresenter.initPresenter(this)
+    }
+
+    private fun setUpListeners() {
+
+        binding.btnCreateNewGroup.setOnClickListener {
+            val mUserIdList = arrayListOf<String>()
+            val groupName = binding.etGroupNameNewGroup.text.toString()
+            for(member in mMemberList) {
+                mUserIdList.add(member.userId)
+            }
+            mUserIdList.add(mPresenter.getUserId())
+            if(groupName.isNotEmpty()) {
+                mPresenter.onTapCreateButton(System.currentTimeMillis(),groupName,mUserIdList.toList())
+                finish()
+            }
+        }
     }
 
     private fun setUpViewPods() {
@@ -71,20 +93,35 @@ class NewGroupActivity : AppCompatActivity(), NewGroupView {
         return alphabetList.sorted()
     }
 
-    override fun showContacts(contactList: List<UserVO>) {
+    override fun showContacts(userList: List<UserVO>) {
+        mUserList = userList
         val nameList = arrayListOf<String>()
-        for(contact in contactList) {
+        for(contact in userList) {
             nameList.add(0,contact.userName)
         }
-        mViewPod.setNewData(getAlphabetList(nameList),contactList,true)
+        mViewPod.setNewData(getAlphabetList(nameList),userList,true)
     }
 
     override fun navigateToChatDetailScreen(userId: String) {
         startActivity(ChatDetailActivity.newIntent(this,userId))
     }
 
-    override fun addUserToGroup(userId: String) {
+    override fun addUserToGroup(userId: String, isCheck: Boolean) {
 
+        if(isCheck) {
+            for(user in mUserList) {
+                if(userId == user.userId) {
+                    mMemberList.add(user)
+                }
+            }
+        } else {
+            for(user in mUserList) {
+                if(userId == user.userId) {
+                    mMemberList.remove(user)
+                }
+            }
+        }
+        mAdapter.setNewData(mMemberList)
     }
 
     override fun showError(error: String) {

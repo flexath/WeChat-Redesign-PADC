@@ -36,7 +36,7 @@ class RegisterVerificationActivity : AppCompatActivity(), RegisterVerificationVi
 
         setUpListeners()
 
-        mPresenter.onUIReady(this,this)
+        mPresenter.onUIReady(this)
     }
 
     private fun setUpPresenter() {
@@ -70,7 +70,6 @@ class RegisterVerificationActivity : AppCompatActivity(), RegisterVerificationVi
     override fun showOtp(otp: String) {
         mOtp = otp
         Toast.makeText(this,otp,Toast.LENGTH_SHORT).show()
-        binding.otpPinRegisterVerification.setText(otp)
     }
 
     override fun showError(error: String) {

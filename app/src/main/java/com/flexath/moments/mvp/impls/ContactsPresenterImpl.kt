@@ -5,6 +5,8 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import com.flexath.moments.data.models.AuthenticationModel
 import com.flexath.moments.data.models.AuthenticationModelImpl
+import com.flexath.moments.data.models.ChatModel
+import com.flexath.moments.data.models.ChatModelImpl
 import com.flexath.moments.data.models.UserModel
 import com.flexath.moments.data.models.UserModelImpl
 import com.flexath.moments.mvp.interfaces.ContactsPresenter
@@ -15,13 +17,21 @@ class ContactsPresenterImpl : ContactsPresenter , ViewModel() {
     private var mView:ContactsView? = null
     private var mUserModel:UserModel = UserModelImpl
     private var mAuthModel:AuthenticationModel = AuthenticationModelImpl
+    private var mChatModel:ChatModel = ChatModelImpl
 
     override fun initPresenter(view: ContactsView) {
         mView = view
     }
 
-    override fun onUIReady(context: Context, lifecycleOwner: LifecycleOwner) {
-
+    override fun onUIReady(lifecycleOwner: LifecycleOwner) {
+        mChatModel.getGroups(
+            onSuccess = {
+                mView?.getGroupList(it)
+            },
+            onFailure = {
+                mView?.showError(it)
+            }
+        )
     }
 
     override fun onTapAddNewContactButton() {
@@ -54,5 +64,5 @@ class ContactsPresenterImpl : ContactsPresenter , ViewModel() {
         mView?.navigateToChatDetailScreen(userId)
     }
 
-    override fun onTapCheckbox(userId: String) {}
+    override fun onTapCheckbox(userId: String, isCheck: Boolean) {}
 }

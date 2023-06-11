@@ -60,13 +60,13 @@
         android:layout_marginTop="@dimen/margin_2dp"
         android:layout_marginEnd="@dimen/margin_medium_2"
         android:visibility="gone"
-        app:cardCornerRadius="@dimen/margin_5dp">
+        app:cardCornerRadius="@dimen/margin_10dp">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivSendImageChatDetail"
-            android:layout_width="@dimen/height_200dp"
-            android:layout_height="110dp"
-            android:scaleType="centerCrop"
+            android:layout_width="220dp"
+            android:layout_height="250dp"
+            android:scaleType="fitXY"
             android:visibility="gone"
             app:srcCompat="@drawable/ath_profile" />
 

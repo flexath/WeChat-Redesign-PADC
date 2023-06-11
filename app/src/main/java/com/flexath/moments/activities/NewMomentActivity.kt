@@ -57,7 +57,7 @@ class NewMomentActivity : AppCompatActivity(), NewMomentView {
         setUpListeners()
         setUpRecyclerView()
 
-        mPresenter.onUIReady(this, this)
+        mPresenter.onUIReady( this)
     }
 
     private fun setUpPresenter() {

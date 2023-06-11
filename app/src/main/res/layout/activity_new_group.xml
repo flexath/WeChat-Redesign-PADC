@@ -33,6 +33,7 @@
                 android:textSize="@dimen/text_heading_1x" />
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/btnCreateNewGroup"
                 android:layout_width="60dp"
                 android:layout_height="32dp"
                 android:layout_gravity="end|center_vertical"

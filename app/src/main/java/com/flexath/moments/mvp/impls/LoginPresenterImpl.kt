@@ -17,7 +17,7 @@ class LoginPresenterImpl : LoginPresenter, ViewModel() {
         mView = view
     }
 
-    override fun onUIReady(context: Context, lifecycleOwner: LifecycleOwner) {
+    override fun onUIReady(lifecycleOwner: LifecycleOwner) {
 
     }
 

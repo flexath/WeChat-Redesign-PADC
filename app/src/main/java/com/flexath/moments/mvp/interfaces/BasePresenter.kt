@@ -7,5 +7,5 @@ import com.flexath.moments.mvp.views.BaseView
 interface BasePresenter<V : BaseView> {
 
     fun initPresenter(view: V)
-    fun onUIReady(context: Context, lifecycleOwner: LifecycleOwner)
+    fun onUIReady(lifecycleOwner: LifecycleOwner)
 }

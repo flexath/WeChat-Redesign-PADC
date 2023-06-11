@@ -30,6 +30,14 @@ class ContactsViewHolder(itemView: View,private val delegate: ChatItemActionDele
 
         if(isGroup) {
             binding.cbGroup.visibility = View.VISIBLE
+
+            binding.cbGroup.setOnCheckedChangeListener { _, isChecked ->
+                if(isChecked) {
+                    delegate.onTapCheckbox(user.userId,true)
+                } else {
+                    delegate.onTapCheckbox(user.userId,false)
+                }
+            }
         } else {
             binding.cbGroup.visibility = View.GONE
         }

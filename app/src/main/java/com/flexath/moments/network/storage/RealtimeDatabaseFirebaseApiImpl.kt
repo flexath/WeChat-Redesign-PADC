@@ -2,6 +2,8 @@ package com.flexath.moments.network.storage
 
 import android.graphics.Bitmap
 import android.util.Log
+import com.flexath.moments.data.vos.GroupMessageVO
+import com.flexath.moments.data.vos.GroupVO
 import com.flexath.moments.data.vos.MessageVO
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -101,5 +103,56 @@ object RealtimeDatabaseFirebaseApiImpl : RealtimeFirebaseApi {
                 onSuccess(imageUrl)
             }
         }
+    }
+
+    override fun getChatHistoryUserId(
+        senderId: String,
+        onSuccess: (messageList: List<String>) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        database.child("contactsAndMessages")
+            .child(senderId)
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+                    onFailure(error.message)
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val messageList = arrayListOf<String>()
+                    snapshot.children.forEach { dataSnapShot ->
+                        dataSnapShot.key?.let {
+                            messageList.add(it)
+                        }
+                    }
+                    onSuccess(messageList)
+                }
+            })
+    }
+
+    override fun addGroup(timeStamp: Long, groupName: String,userList:List<String>) {
+        database.child("groups").child(timeStamp.toString()).child("name").setValue(groupName)
+        database.child("groups").child(timeStamp.toString()).child("userIdList").setValue(userList)
+    }
+
+    override fun getGroups(
+        onSuccess: (groupIdList: List<GroupVO>) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        database.child("groups")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+                    onFailure(error.message)
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val groupList = arrayListOf<GroupVO>()
+                    snapshot.children.forEach { dataSnapShot ->
+                        dataSnapShot.getValue(GroupVO::class.java)?.let {
+                            groupList.add(it)
+                        }
+                    }
+                    onSuccess(groupList)
+                }
+            })
     }
 }

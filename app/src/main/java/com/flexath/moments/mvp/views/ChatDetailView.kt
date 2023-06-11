@@ -9,5 +9,4 @@ interface ChatDetailView : BaseView {
     fun showGallery()
     fun getImageUrlForFile(file: String)
 
-
 }

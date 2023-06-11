@@ -78,7 +78,7 @@ class ProfileFragment : Fragment() , ProfileView {
         setUpViewPods()
         setUpListeners()
 
-        mPresenter.onUIReady(requireActivity(),this)
+        mPresenter.onUIReady(this)
     }
 
     private fun setUpPresenter() {

@@ -13,9 +13,12 @@ class MomentImagesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
         binding = ViewHolderMomentImagesListBinding.bind(itemView)
     }
 
-    fun bindNewData(image: String) {
+    fun bindNewData(image: String,itemCount:Int) {
         Glide.with(itemView.context)
             .load(image)
             .into(binding.ivMomentPictureMoment)
+
+        val currentCount = adapterPosition + 1
+        binding.tvImageCount.text = "$currentCount/${itemCount}"
     }
 }

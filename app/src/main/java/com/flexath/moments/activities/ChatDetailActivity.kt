@@ -62,7 +62,7 @@ class ChatDetailActivity : AppCompatActivity(), ChatDetailView {
         mReceiverId = intent?.extras?.getString(EXTRA_USER_ID, "") ?: ""
         setUpListeners()
 
-        mPresenter.onUIReady(this, this)
+        mPresenter.onUIReady( this)
 
         mPresenter.getMessages(mPresenter.getUserId(), mReceiverId)
     }
@@ -86,9 +86,7 @@ class ChatDetailActivity : AppCompatActivity(), ChatDetailView {
             Log.i("FileStringFile",mFile)
             if (message.isNotEmpty() || mFile.isNotEmpty()) {
 
-                if(mFile.isNotEmpty()) {
-                    Toast.makeText(this,"You choose a photo",Toast.LENGTH_SHORT).show()
-                }
+
 
                 mPresenter.sendMessage(
                     mPresenter.getUserId(),
@@ -159,6 +157,7 @@ class ChatDetailActivity : AppCompatActivity(), ChatDetailView {
 
             val filePath = data.data
 
+            Toast.makeText(this,"You choose a photo",Toast.LENGTH_SHORT).show()
 
             try {
                 filePath?.let { fileUrl ->

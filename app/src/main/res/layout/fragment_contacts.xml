@@ -86,10 +86,11 @@
                     android:textSize="@dimen/text_regular" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvNumberOfGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_sans_semibold"
-                    android:text="5"
+                    android:text="@string/lbl_dash"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="@dimen/text_regular" />
 
@@ -103,22 +104,42 @@
 
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvGroupContacts"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/llNewGroup"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_medium_3"
                 android:layout_below="@+id/tvGroupsLabel"
-                android:layout_marginStart="@dimen/margin_10dp"
-                android:layout_marginTop="@dimen/margin_10dp"
-                tools:itemCount="1"
-                tools:listitem="@layout/view_holder_group_list" />
+                android:clipToPadding="false"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btnAddNewGroup"
+                    android:layout_width="@dimen/margin_90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium_2"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/button_add_new_group" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvGroupContacts"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clipToPadding="false"
+                    android:layout_marginStart="@dimen/margin_10dp"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/view_holder_group_list" />
+
+            </LinearLayout>
+
 
             <include
                 android:id="@+id/vpContacts"
                 layout="@layout/view_pod_contacts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/rvGroupContacts" />
+                android:layout_below="@+id/llNewGroup" />
 
         </RelativeLayout>
 

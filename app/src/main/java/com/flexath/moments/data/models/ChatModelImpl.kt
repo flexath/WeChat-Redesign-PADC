@@ -1,6 +1,7 @@
 package com.flexath.moments.data.models
 
 import android.graphics.Bitmap
+import com.flexath.moments.data.vos.GroupVO
 import com.flexath.moments.data.vos.MessageVO
 import com.flexath.moments.network.storage.RealtimeDatabaseFirebaseApiImpl
 import com.flexath.moments.network.storage.RealtimeFirebaseApi
@@ -38,6 +39,29 @@ object ChatModelImpl : ChatModel {
         onFailure: (String) -> Unit
     ) {
         mFirebaseApi.uploadAndSendImage(bitmap,onSuccess,onFailure)
+    }
+
+    override fun getChatHistoryUserId(
+        senderId: String,
+        onSuccess: (messageList: List<String>) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mFirebaseApi.getChatHistoryUserId(senderId, onSuccess, onFailure)
+    }
+
+    override fun addGroup(
+        timeStamp: Long,
+        groupName: String,
+        userList: List<String>
+    ) {
+        mFirebaseApi.addGroup(timeStamp, groupName, userList)
+    }
+
+    override fun getGroups(
+        onSuccess: (groupIdList: List<GroupVO>) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mFirebaseApi.getGroups(onSuccess,onFailure)
     }
 
 
