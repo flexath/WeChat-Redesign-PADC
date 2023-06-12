@@ -17,19 +17,31 @@ class MessageReceiveViewHolder(itemView: View) : IBaseMessageViewHolder(itemView
     }
 
     override fun bindData(message: MessageVO) {
-        binding.tvReceivedMessage.text = message.message
-
-        binding.tvTimeReceiveMessage.text = getCurrentHourAndMinutes(message.timeStamp)
 
         Glide.with(itemView.context)
             .load(message.userProfileImage)
             .into(binding.ivProfileChatHead)
 
-        if(message.file.isNotEmpty() && message.message.isEmpty()) {
+        if (message.message.isEmpty()) {
             binding.rlChatMessage.visibility = View.GONE
-
-            binding.ivReceiveImage.visibility = View.VISIBLE
             binding.mcvReceiveImageChatDetail.visibility = View.VISIBLE
+
+            Glide.with(itemView.context)
+                .load(message.file)
+                .into(binding.ivReceiveImage)
+
+        } else if (message.message.isNotEmpty() && message.file.isEmpty()) {
+            binding.rlChatMessage.visibility = View.VISIBLE
+            binding.mcvReceiveImageChatDetail.visibility = View.GONE
+
+            binding.tvReceivedMessage.text = message.message
+            binding.tvTimeReceiveMessage.text = getCurrentHourAndMinutes(message.timeStamp)
+        } else {
+            binding.rlChatMessage.visibility = View.VISIBLE
+            binding.mcvReceiveImageChatDetail.visibility = View.VISIBLE
+
+            binding.tvReceivedMessage.text = message.message
+            binding.tvTimeReceiveMessage.text = getCurrentHourAndMinutes(message.timeStamp)
 
             Glide.with(itemView.context)
                 .load(message.file)

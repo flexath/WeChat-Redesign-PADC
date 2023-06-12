@@ -2,7 +2,6 @@ package com.flexath.moments.network.storage
 
 import android.graphics.Bitmap
 import android.util.Log
-import com.flexath.moments.data.vos.GroupMessageVO
 import com.flexath.moments.data.vos.GroupVO
 import com.flexath.moments.data.vos.MessageVO
 import com.google.firebase.database.DataSnapshot
@@ -129,9 +128,10 @@ object RealtimeDatabaseFirebaseApiImpl : RealtimeFirebaseApi {
             })
     }
 
-    override fun addGroup(timeStamp: Long, groupName: String,userList:List<String>) {
+    override fun addGroup(timeStamp: Long, groupName: String, userList: List<String>) {
         database.child("groups").child(timeStamp.toString()).child("name").setValue(groupName)
         database.child("groups").child(timeStamp.toString()).child("userIdList").setValue(userList)
+        database.child("groups").child(timeStamp.toString()).child("id").setValue(timeStamp)
     }
 
     override fun getGroups(
@@ -155,4 +155,36 @@ object RealtimeDatabaseFirebaseApiImpl : RealtimeFirebaseApi {
                 }
             })
     }
+
+    override fun sendGroupMessage(groupId: Long,timeStamp:Long, message: MessageVO) {
+        database.child("groups").child(groupId.toString()).child("messages")
+            .child(timeStamp.toString()).setValue(message)
+    }
+
+    override fun getGroupMessages(
+        groupId: Long,
+        onSuccess: (messageList: List<MessageVO>) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        database.child("groups")
+            .child(groupId.toString())
+            .child("messages")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+                    onFailure(error.message)
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val messageList = arrayListOf<MessageVO>()
+                    snapshot.children.forEach { dataSnapShot ->
+                        dataSnapShot.getValue(MessageVO::class.java)?.let {
+                            messageList.add(it)
+                        }
+                    }
+                    onSuccess(messageList)
+                }
+            })
+    }
+
+
 }

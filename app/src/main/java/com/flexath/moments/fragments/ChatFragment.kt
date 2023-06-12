@@ -76,7 +76,7 @@ class ChatFragment : Fragment(), ChatView {
     }
 
     override fun navigateToChatDetailScreen(userId: String) {
-        startActivity(ChatDetailActivity.newIntent(requireActivity(), userId))
+        startActivity(ChatDetailActivity.newIntent(requireActivity(), userId,""))
     }
 
     override fun showUserId(userIdList: List<String>) {

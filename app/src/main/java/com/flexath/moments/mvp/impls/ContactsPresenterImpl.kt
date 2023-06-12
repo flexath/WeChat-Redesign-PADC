@@ -34,6 +34,10 @@ class ContactsPresenterImpl : ContactsPresenter , ViewModel() {
         )
     }
 
+    override fun onTapGroupItem(groupId: Long) {
+        mView?.navigateToChatDetailScreenFromGroupItem(groupId.toString())
+    }
+
     override fun onTapAddNewContactButton() {
         mView?.navigateToNewContactScreen()
     }
@@ -52,10 +56,6 @@ class ContactsPresenterImpl : ContactsPresenter , ViewModel() {
 
     override fun getUserId(): String {
         return mAuthModel.getUserId()
-    }
-
-    override fun onTapGroupItem() {
-        mView?.navigateToNewGroupScreen()
     }
 
     override fun onTapAlphabetItem(position: Int) {}

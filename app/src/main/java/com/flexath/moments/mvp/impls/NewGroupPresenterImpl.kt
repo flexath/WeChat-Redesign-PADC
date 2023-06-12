@@ -8,10 +8,8 @@ import com.flexath.moments.data.models.ChatModel
 import com.flexath.moments.data.models.ChatModelImpl
 import com.flexath.moments.data.models.UserModel
 import com.flexath.moments.data.models.UserModelImpl
-import com.flexath.moments.data.vos.GroupMessageVO
 import com.flexath.moments.mvp.interfaces.NewGroupPresenter
 import com.flexath.moments.mvp.views.NewGroupView
-import com.google.android.play.integrity.internal.t
 
 class NewGroupPresenterImpl : NewGroupPresenter , ViewModel() {
 

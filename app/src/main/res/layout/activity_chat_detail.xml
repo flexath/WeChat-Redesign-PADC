@@ -53,7 +53,8 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/margin_10dp"
             android:layout_toEndOf="@+id/ivProfileImageChatDetail"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="RelativeOverlap">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvNameChatDetail"
@@ -80,9 +81,19 @@
         android:id="@+id/rvConversation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/margin_10dp"
         android:layout_above="@+id/rlMessageSectionChatDetail"
-        android:layout_below="@+id/rlActionBarChatDetail" />
+        android:layout_below="@+id/rlActionBarChatDetail"
+        android:layout_marginTop="@dimen/margin_10dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvImages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_above="@+id/rlMessageSectionChatDetail"
+        android:layout_alignParentStart="true"
+        tools:itemCount="1"
+        tools:listitem="@layout/view_holder_chat_detail_image_list" />
 
     <RelativeLayout
         android:id="@+id/rlMessageSectionChatDetail"
@@ -138,8 +149,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/rlSendMessageSection"
-            android:background="@color/colorPrimary"
             android:layout_marginBottom="@dimen/margin_14dp"
+            android:background="@color/colorPrimary"
             android:gravity="center"
             android:orientation="horizontal"
             android:paddingStart="@dimen/margin_large"

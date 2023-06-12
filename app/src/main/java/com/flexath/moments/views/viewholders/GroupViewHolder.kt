@@ -31,6 +31,10 @@ class GroupViewHolder(itemView: View, private val delegate: GroupItemActionDeleg
 //            binding.tvGroupName.text = group.name
 //        }
         binding.tvGroupName.text = group.name
+
+        itemView.setOnClickListener {
+            delegate.onTapGroupItem(group.id)
+        }
     }
 
 }

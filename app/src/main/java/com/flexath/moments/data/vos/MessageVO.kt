@@ -6,5 +6,6 @@ data class MessageVO(
     var userProfileImage:String = "",
     var timeStamp:Long = 0L,
     var file:String = "",
-    var message:String = ""
+    var message:String = "",
+    var groupName:String = ""
 )

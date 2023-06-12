@@ -103,7 +103,7 @@ class NewGroupActivity : AppCompatActivity(), NewGroupView {
     }
 
     override fun navigateToChatDetailScreen(userId: String) {
-        startActivity(ChatDetailActivity.newIntent(this,userId))
+        startActivity(ChatDetailActivity.newIntent(this,userId,""))
     }
 
     override fun addUserToGroup(userId: String, isCheck: Boolean) {

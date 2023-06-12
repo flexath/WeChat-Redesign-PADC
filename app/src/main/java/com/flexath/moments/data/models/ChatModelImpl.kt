@@ -64,5 +64,15 @@ object ChatModelImpl : ChatModel {
         mFirebaseApi.getGroups(onSuccess,onFailure)
     }
 
+    override fun sendGroupMessage(groupId: Long, timeStamp:Long, message: MessageVO) {
+        mFirebaseApi.sendGroupMessage(groupId,timeStamp, message)
+    }
 
+    override fun getGroupMessages(
+        groupId: Long,
+        onSuccess: (messageList: List<MessageVO>) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mFirebaseApi.getGroupMessages(groupId, onSuccess, onFailure)
+    }
 }

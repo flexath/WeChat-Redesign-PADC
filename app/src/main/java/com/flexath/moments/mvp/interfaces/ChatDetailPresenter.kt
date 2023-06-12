@@ -17,4 +17,10 @@ interface ChatDetailPresenter : BasePresenter<ChatDetailView> {
     )
 
     fun uploadAndSendImage(bitmap: Bitmap)
+
+    fun sendGroupMessage(groupId: Long, timeStamp:Long, message:MessageVO)
+
+    fun getGroupMessages(
+        groupId:Long
+    )
 }

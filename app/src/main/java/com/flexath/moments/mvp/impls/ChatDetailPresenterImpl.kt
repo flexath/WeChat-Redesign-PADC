@@ -17,9 +17,9 @@ import com.flexath.moments.mvp.views.ChatDetailView
 class ChatDetailPresenterImpl : ChatDetailPresenter, ViewModel() {
 
     private var mView: ChatDetailView? = null
-    private val mChatModel:ChatModel = ChatModelImpl
-    private val mAuthModel:AuthenticationModel = AuthenticationModelImpl
-    private val mUserModel:UserModel = UserModelImpl
+    private val mChatModel: ChatModel = ChatModelImpl
+    private val mAuthModel: AuthenticationModel = AuthenticationModelImpl
+    private val mUserModel: UserModel = UserModelImpl
 
     override fun initPresenter(view: ChatDetailView) {
         mView = view
@@ -29,6 +29,15 @@ class ChatDetailPresenterImpl : ChatDetailPresenter, ViewModel() {
         mUserModel.getUsers(
             onSuccess = {
                 mView?.showUsers(it)
+            },
+            onFailure = {
+                mView?.showError(it)
+            }
+        )
+
+        mChatModel.getGroups(
+            onSuccess = {
+                mView?.getGroups(it)
             },
             onFailure = {
                 mView?.showError(it)
@@ -74,6 +83,23 @@ class ChatDetailPresenterImpl : ChatDetailPresenter, ViewModel() {
             bitmap,
             onSuccess = {
                 mView?.getImageUrlForFile(it)
+            },
+            onFailure = {
+                mView?.showError(it)
+            }
+        )
+    }
+
+    override fun sendGroupMessage(groupId: Long, timeStamp: Long, message: MessageVO) {
+        mChatModel.sendGroupMessage(groupId, timeStamp, message)
+    }
+
+    override fun getGroupMessages(groupId: Long) {
+        mChatModel.getGroupMessages(
+            groupId,
+            onSuccess = { messageList ->
+                val sortedMessages = messageList.sortedBy { it.timeStamp }
+                mView?.showGroupMessages(sortedMessages)
             },
             onFailure = {
                 mView?.showError(it)

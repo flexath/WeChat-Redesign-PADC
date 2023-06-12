@@ -10,20 +10,34 @@ import java.util.Locale
 
 class MessageSendViewHolder(itemView: View) : IBaseMessageViewHolder(itemView) {
 
-    private var binding:ViewHolderMessageSendBinding
+    private var binding: ViewHolderMessageSendBinding
 
     init {
         binding = ViewHolderMessageSendBinding.bind(itemView)
     }
 
     override fun bindData(message: MessageVO) {
-        binding.tvSentMessage.text = message.message
-        binding.tvTimeSendMessage.text = getCurrentHourAndMinutes(message.timeStamp)
 
-        if(message.file.isNotEmpty() && message.message.isEmpty()) {
+        if (message.message.isEmpty() && message.file.isNotEmpty()) {
             binding.flSendMessage.visibility = View.GONE
-            binding.ivSendImageChatDetail.visibility = View.VISIBLE
             binding.mcvSendImageChatDetail.visibility = View.VISIBLE
+
+            Glide.with(itemView.context)
+                .load(message.file)
+                .into(binding.ivSendImageChatDetail)
+
+        } else if (message.message.isNotEmpty() && message.file.isEmpty()) {
+            binding.flSendMessage.visibility = View.VISIBLE
+            binding.mcvSendImageChatDetail.visibility = View.GONE
+
+            binding.tvSentMessage.text = message.message
+            binding.tvTimeSendMessage.text = getCurrentHourAndMinutes(message.timeStamp)
+        } else {
+            binding.flSendMessage.visibility = View.VISIBLE
+            binding.mcvSendImageChatDetail.visibility = View.VISIBLE
+
+            binding.tvSentMessage.text = message.message
+            binding.tvTimeSendMessage.text = getCurrentHourAndMinutes(message.timeStamp)
 
             Glide.with(itemView.context)
                 .load(message.file)
@@ -31,7 +45,7 @@ class MessageSendViewHolder(itemView: View) : IBaseMessageViewHolder(itemView) {
         }
     }
 
-    private fun getCurrentHourAndMinutes(currentTimeMillis:Long) :String {
+    private fun getCurrentHourAndMinutes(currentTimeMillis: Long): String {
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = currentTimeMillis
 

@@ -71,7 +71,6 @@
             android:layout_width="220dp"
             android:layout_height="250dp"
             android:scaleType="fitXY"
-            android:visibility="gone"
             app:srcCompat="@drawable/ath_profile" />
 
     </com.google.android.material.card.MaterialCardView>

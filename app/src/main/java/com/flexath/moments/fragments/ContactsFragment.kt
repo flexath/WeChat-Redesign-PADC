@@ -19,7 +19,6 @@ import com.flexath.moments.databinding.FragmentContactsBinding
 import com.flexath.moments.mvp.impls.ContactsPresenterImpl
 import com.flexath.moments.mvp.interfaces.ContactsPresenter
 import com.flexath.moments.mvp.views.ContactsView
-import com.flexath.moments.utils.GeneralListData
 import com.flexath.moments.views.viewpods.ContactsViewPod
 
 class ContactsFragment : Fragment(), ContactsView {
@@ -96,10 +95,6 @@ class ContactsFragment : Fragment(), ContactsView {
         return alphabetList.sorted()
     }
 
-    override fun navigateToNewGroupScreen() {
-        startActivity(NewGroupActivity.newIntent(requireActivity()))
-    }
-
     override fun navigateToNewContactScreen() {
         startActivity(NewContactActivity.newIntent(requireActivity()))
     }
@@ -113,7 +108,7 @@ class ContactsFragment : Fragment(), ContactsView {
     }
 
     override fun navigateToChatDetailScreen(userId: String) {
-        startActivity(ChatDetailActivity.newIntent(requireActivity(), userId))
+        startActivity(ChatDetailActivity.newIntent(requireActivity(), userId,""))
     }
 
     override fun addUserToGroup(userId: String) {
@@ -131,6 +126,10 @@ class ContactsFragment : Fragment(), ContactsView {
         Log.i("GroupNumber2", mGroupList.size.toString())
         mGroupAdapter.setNewData(mGroupList)
         binding.tvNumberOfGroup.text = mGroupList.size.toString()
+    }
+
+    override fun navigateToChatDetailScreenFromGroupItem(groupId: String) {
+        startActivity(ChatDetailActivity.newIntent(requireActivity(),"",groupId))
     }
 
     override fun onResume() {
