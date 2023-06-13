@@ -13,4 +13,5 @@ interface ProfileView  : BaseView {
     fun showMoments(momentList: List<MomentVO>)
     fun getMomentIsBookmarked(id: String, bookmarked: Boolean)
     fun showOptionDialogBox()
+    fun openCamera()
 }

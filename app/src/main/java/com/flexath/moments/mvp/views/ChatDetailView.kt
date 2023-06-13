@@ -11,5 +11,6 @@ interface ChatDetailView : BaseView {
     fun getImageUrlForFile(file: String)
     fun showGroupMessages(messageList: List<MessageVO>)
     fun getGroups(groupList: List<GroupVO>)
+    fun openCamera()
 
 }

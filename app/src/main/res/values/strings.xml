@@ -45,4 +45,10 @@
     <string name="lbl_scan_the_qr_code_to_add_your_frined_in_ncontact">Scan the QR code to add your friend in\ncontact.</string>
     <string name="lbl_enter_your_email_address">Enter Your Email Address</string>
     <string name="lbl_dash">-</string>
+    <string name="lbl_take_photo">Take Photo</string>
+    <string name="lbl_choose_from_gallery">Choose From Gallery</string>
+    <string name="lbl_select_an_action">Select an action</string>
+    <string name="lbl_please_login_again">We have set up your account with our server to\ncontinue with the registration process.\nPlease Login.</string>
+    <string name="lbl_login">Login</string>
+    <string name="lbl_successful_registration">Successful Registration</string>
 </resources>

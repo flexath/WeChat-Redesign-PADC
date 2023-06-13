@@ -49,6 +49,10 @@ class ChatDetailPresenterImpl : ChatDetailPresenter, ViewModel() {
         mView?.showGallery()
     }
 
+    override fun onTapOpenCameraButton() {
+        mView?.openCamera()
+    }
+
     override fun getUserId(): String {
         return mAuthModel.getUserId()
     }

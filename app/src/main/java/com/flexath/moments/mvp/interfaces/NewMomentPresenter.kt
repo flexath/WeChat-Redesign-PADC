@@ -14,11 +14,14 @@ interface NewMomentPresenter : BasePresenter<NewMomentView> , NewMomentImageDele
     var mMomentModel: MomentModel
     var mUserModel: UserModel
     fun onTapBackButton()
+
     fun onTapCreateButton(moment: MomentVO)
 
     fun createMomentImages(bitmap: Bitmap)
 
     fun getMomentImages(): String
+
+    fun clearMomentImages()
 
     fun getUserId(): String
 }

@@ -1,6 +1,8 @@
 package com.flexath.moments.activities
 
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -8,7 +10,6 @@ import android.graphics.ImageDecoder
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
@@ -16,11 +17,16 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.flexath.moments.R
 import com.flexath.moments.data.vos.UserVO
 import com.flexath.moments.databinding.ActivityRegisterBinding
+import com.flexath.moments.databinding.BottoomSheetDialogChooseImageBinding
+import com.flexath.moments.databinding.DialogRegisterationSuccessfulBinding
+import com.flexath.moments.dialogs.RegisterSuccessfulDialog
 import com.flexath.moments.mvp.impls.RegisterPresenterImpl
 import com.flexath.moments.mvp.interfaces.RegisterPresenter
 import com.flexath.moments.mvp.views.RegisterView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.io.IOException
 import java.util.Calendar
 
@@ -34,11 +40,13 @@ class RegisterActivity : AppCompatActivity(), RegisterView {
 
     // General
     private var bitmap:Bitmap? = null
-    private val REQUEST_CODE_GALLERY = 100
+    private val REQUEST_CODE_GALLERY = 0
+    private val REQUEST_IMAGE_CAPTURE = 1
     private var day = ""
     private var month = ""
     private var year = ""
     private var gender = ""
+    private lateinit var dialog:BottomSheetDialog
 
     companion object {
         private const val EXTRA_PHONE_NUMBER = "PhoneNumber"
@@ -70,6 +78,8 @@ class RegisterActivity : AppCompatActivity(), RegisterView {
     private fun setUpListeners() {
         setUpYearSpinner()
 
+        dialog = BottomSheetDialog(this)
+
         binding.btnSignUpRegister.setOnClickListener {
             bitmap?.let { bitmapImage ->
                 mPresenter.onTapSignUpButton(getNewUserInformation(), bitmapImage)
@@ -81,7 +91,23 @@ class RegisterActivity : AppCompatActivity(), RegisterView {
         }
 
         binding.ivProfileImageRegister.setOnClickListener {
-            mPresenter.onTapProfileImage()
+            val dialogBinding = BottoomSheetDialogChooseImageBinding.inflate(layoutInflater)
+
+            dialog.setContentView(dialogBinding.root)
+            dialog.setCancelable(true)
+
+            dialogBinding.btnTakePhotoRegister.setOnClickListener {
+                mPresenter.onTapOpenCameraButton()
+            }
+
+            dialogBinding.btnChooseFromGalleryRegister.setOnClickListener {
+                mPresenter.onTapProfileImage()
+            }
+
+            dialogBinding.btnCancelBottomSheetDialog.setOnClickListener {
+                dialog.dismiss()
+            }
+            dialog.show()
         }
     }
 
@@ -193,21 +219,41 @@ class RegisterActivity : AppCompatActivity(), RegisterView {
     }
 
     override fun navigateToLoginScreen() {
-        val intent = LoginActivity.newIntent(this)
-        startActivity(intent)
-        finish()
+
+        val dialogBindingRegister = DialogRegisterationSuccessfulBinding.inflate(layoutInflater)
+        val dialogRegister = RegisterSuccessfulDialog(this)
+        dialogRegister.setContentView(dialogBindingRegister.root)
+        dialogRegister.setCancelable(false)
+
+        dialogBindingRegister.btnLoginRegister.setOnClickListener {
+            val intent = LoginActivity.newIntent(this)
+            startActivity(intent)
+            finish()
+        }
+        dialogRegister.show()
     }
 
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == REQUEST_CODE_GALLERY && resultCode == Activity.RESULT_OK) {
-            if (data == null || data.data == null) {
+        if ((requestCode == REQUEST_CODE_GALLERY || requestCode == REQUEST_IMAGE_CAPTURE) && resultCode == Activity.RESULT_OK) {
+//            if (data == null || data.data == null) {
+//                return
+//            }
+
+            val filePath = data?.data
+
+            if(requestCode == REQUEST_IMAGE_CAPTURE) {
+                Toast.makeText(this, "You take a photo", Toast.LENGTH_SHORT).show()
+                val imageBitmap = data?.extras?.get("data") as Bitmap
+                bitmap = imageBitmap
+                binding.ivProfileImageRegister.setImageBitmap(bitmap)
+                dialog.dismiss()
                 return
             }
 
-            val filePath = data.data
+            Toast.makeText(this, "You choose a photo", Toast.LENGTH_SHORT).show()
 
             try {
                 filePath?.let { fileUrl ->
@@ -224,6 +270,7 @@ class RegisterActivity : AppCompatActivity(), RegisterView {
                         binding.ivProfileImageRegister.setImageBitmap(bitmap)
                     }
                 }
+                dialog.dismiss()
             } catch (e: IOException) {
                 e.printStackTrace()
             }
@@ -235,6 +282,17 @@ class RegisterActivity : AppCompatActivity(), RegisterView {
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(Intent.createChooser(intent, "Select Upload Image"), REQUEST_CODE_GALLERY)
+    }
+
+    @SuppressLint("QueryPermissionsNeeded")
+    override fun openCamera() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        if (intent.resolveActivity(packageManager) != null) {
+            startActivityForResult(
+                Intent.createChooser(intent, "Select Upload Image"),
+                REQUEST_IMAGE_CAPTURE
+            )
+        }
     }
 
     override fun showError(error: String) {

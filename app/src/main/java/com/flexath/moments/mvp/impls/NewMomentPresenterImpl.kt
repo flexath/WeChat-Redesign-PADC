@@ -57,6 +57,10 @@ class NewMomentPresenterImpl: NewMomentPresenter , ViewModel() {
         return mMomentModel.getMomentImages()
     }
 
+    override fun clearMomentImages() {
+        mMomentModel.clearMomentImages()
+    }
+
     override fun getUserId(): String {
         return mAuthModel.getUserId()
     }

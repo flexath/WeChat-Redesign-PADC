@@ -1,5 +1,6 @@
 package com.flexath.moments.fragments
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
@@ -23,6 +24,7 @@ import com.bumptech.glide.Glide
 import com.flexath.moments.R
 import com.flexath.moments.data.vos.MomentVO
 import com.flexath.moments.data.vos.UserVO
+import com.flexath.moments.databinding.BottoomSheetDialogChooseImageBinding
 import com.flexath.moments.databinding.DialogEditProfileBinding
 import com.flexath.moments.databinding.DialogQrCodeBinding
 import com.flexath.moments.databinding.FragmentProfileBinding
@@ -31,6 +33,7 @@ import com.flexath.moments.mvp.impls.ProfilePresenterImpl
 import com.flexath.moments.mvp.interfaces.ProfilePresenter
 import com.flexath.moments.mvp.views.ProfileView
 import com.flexath.moments.views.viewpods.MomentViewPod
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
@@ -59,10 +62,12 @@ class ProfileFragment : Fragment() , ProfileView {
     private var month:String = ""
     private var year:String = ""
 
-    private val REQUEST_CODE_GALLERY = 200
+    private val REQUEST_CODE_GALLERY = 0
+    private val REQUEST_IMAGE_CAPTURE = 1
     private var bitmap:Bitmap? = null
     private var mUser:UserVO? = null
     private var mMomentList:ArrayList<MomentVO> = arrayListOf()
+    private lateinit var dialog:BottomSheetDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -100,8 +105,27 @@ class ProfileFragment : Fragment() , ProfileView {
             mPresenter.onTapQrCodeImage()
         }
 
+        dialog = BottomSheetDialog(requireActivity())
+
         binding.ivUpdatePictureProfile.setOnClickListener {
-            mPresenter.onTapGalleryImage()
+
+            val dialogBinding = BottoomSheetDialogChooseImageBinding.inflate(layoutInflater)
+
+            dialog.setContentView(dialogBinding.root)
+            dialog.setCancelable(true)
+
+            dialogBinding.btnTakePhotoRegister.setOnClickListener {
+                mPresenter.onTapOpenCameraButton()
+            }
+
+            dialogBinding.btnChooseFromGalleryRegister.setOnClickListener {
+                mPresenter.onTapGalleryImage()
+            }
+
+            dialogBinding.btnCancelBottomSheetDialog.setOnClickListener {
+                dialog.dismiss()
+            }
+            dialog.show()
         }
     }
 
@@ -218,12 +242,25 @@ class ProfileFragment : Fragment() , ProfileView {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == REQUEST_CODE_GALLERY && resultCode == Activity.RESULT_OK) {
-            if (data == null || data.data == null) {
+        if ((requestCode == REQUEST_CODE_GALLERY || requestCode == REQUEST_IMAGE_CAPTURE) && resultCode == Activity.RESULT_OK) {
+//            if (data == null || data.data == null) {
+//                return
+//            }
+
+            val filePath = data?.data
+
+            if(requestCode == REQUEST_IMAGE_CAPTURE) {
+                Toast.makeText(requireActivity(), "You take a photo", Toast.LENGTH_SHORT).show()
+                val imageBitmap = data?.extras?.get("data") as Bitmap
+                bitmap = imageBitmap
+                bitmap?.let { image ->
+                    mUser?.let {user ->
+                        mPresenter.updateAndUploadProfileImage(image, user)
+                    }
+                }
+                dialog.dismiss()
                 return
             }
-
-            val filePath = data.data
 
             try {
                 filePath?.let { fileUrl ->
@@ -249,6 +286,7 @@ class ProfileFragment : Fragment() , ProfileView {
                         }
                     }
                 }
+                dialog.dismiss()
             } catch (e: IOException) {
                 e.printStackTrace()
             }
@@ -260,6 +298,15 @@ class ProfileFragment : Fragment() , ProfileView {
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(Intent.createChooser(intent, "Select Upload Image"), REQUEST_CODE_GALLERY)
+    }
+
+    @SuppressLint("QueryPermissionsNeeded")
+    override fun openCamera() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(
+            Intent.createChooser(intent, "Select Upload Image"),
+            REQUEST_IMAGE_CAPTURE
+        )
     }
 
     override fun showMoments(momentList: List<MomentVO>) {
@@ -284,9 +331,7 @@ class ProfileFragment : Fragment() , ProfileView {
         mViewpod.setNewData(mMomentList)
     }
 
-    override fun showOptionDialogBox() {
-
-    }
+    override fun showOptionDialogBox() {}
 
     private fun setUpDateOfBirthSpinners(dialogBinding:DialogEditProfileBinding) {
         dialogBinding.daySpinnerEditProfile.onItemSelectedListener = object :

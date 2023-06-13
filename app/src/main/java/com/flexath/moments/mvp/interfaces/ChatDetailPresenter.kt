@@ -8,6 +8,8 @@ interface ChatDetailPresenter : BasePresenter<ChatDetailView> {
 
     fun onTapGetImageButton()
 
+    fun onTapOpenCameraButton()
+
     fun getUserId(): String
     fun sendMessage(senderId: String, receiverId: String, timeStamp: Long, message: MessageVO)
 

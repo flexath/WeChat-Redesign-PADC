@@ -7,7 +7,9 @@
         <item>@font/inter_semibold</item>
         <item>@font/noto_sans</item>
         <item>@font/noto_sans_bold</item>
+        <item>@font/nunito_sans</item>
         <item>@font/nunito_sans_bold</item>
+        <item>@font/nunito_sans_light</item>
         <item>@font/nunito_sans_semibold</item>
     </array>
 </resources>

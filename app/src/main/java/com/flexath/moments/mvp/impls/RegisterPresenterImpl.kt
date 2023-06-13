@@ -1,8 +1,6 @@
 package com.flexath.moments.mvp.impls
 
-import android.content.Context
 import android.graphics.Bitmap
-import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import com.flexath.moments.data.models.AuthenticationModel
@@ -29,6 +27,10 @@ class RegisterPresenterImpl : RegisterPresenter , ViewModel() {
 
     override fun onTapBackButton() {
         mView?.navigateToPreviousScreen()
+    }
+
+    override fun onTapOpenCameraButton() {
+        mView?.openCamera()
     }
 
     override fun onTapSignUpButton(user:UserVO,bitmap: Bitmap) {

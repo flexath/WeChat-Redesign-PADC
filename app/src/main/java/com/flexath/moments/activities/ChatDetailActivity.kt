@@ -1,8 +1,10 @@
 package com.flexath.moments.activities
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.os.Build
 import android.os.Bundle
@@ -44,6 +46,7 @@ class ChatDetailActivity : AppCompatActivity(), ChatDetailView {
     private var mGroupName = ""
 //    private var timeStamp = 0L
     private var REQUEST_CODE_GALLERY = 0
+    private var REQUEST_IMAGE_CAPTURE = 1
     private var mImageList: ArrayList<String> = arrayListOf()
 
     companion object {
@@ -115,8 +118,12 @@ class ChatDetailActivity : AppCompatActivity(), ChatDetailView {
             binding.etSendMessageChatDetail.text?.clear()
         }
 
-        binding.btnGetImageChatDetail.setOnClickListener {
+        binding.btnOpenGallery.setOnClickListener {
             mPresenter.onTapGetImageButton()
+        }
+
+        binding.btnGetImageChatDetail.setOnClickListener {
+            mPresenter.onTapOpenCameraButton()
         }
     }
 
@@ -167,13 +174,11 @@ class ChatDetailActivity : AppCompatActivity(), ChatDetailView {
     }
 
     override fun showMessages(messageList: List<MessageVO>) {
-        Log.i("WhoIsIt", "User")
         mAdapter.setNewData(mPresenter.getUserId(), messageList)
         binding.rvConversation.scrollToPosition(messageList.size - 1)
     }
 
     override fun showGroupMessages(messageList: List<MessageVO>) {
-        Log.i("WhoIsIt", "Group")
         mAdapter.setNewData(mPresenter.getUserId(), messageList)
         binding.rvConversation.scrollToPosition(messageList.size - 1)
     }
@@ -208,12 +213,20 @@ class ChatDetailActivity : AppCompatActivity(), ChatDetailView {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == REQUEST_CODE_GALLERY && resultCode == Activity.RESULT_OK) {
-            if (data == null || data.data == null) {
+        if ((requestCode == REQUEST_CODE_GALLERY || requestCode == REQUEST_IMAGE_CAPTURE) && resultCode == Activity.RESULT_OK) {
+//            if (data == null || data.data == null) {
+//                Toast.makeText(this, "Data is null", Toast.LENGTH_SHORT).show()
+//                return
+//            }
+
+            val filePath = data?.data
+
+            if(requestCode == REQUEST_IMAGE_CAPTURE) {
+                Toast.makeText(this, "You take a photo", Toast.LENGTH_SHORT).show()
+                val imageBitmap = data?.extras?.get("data") as Bitmap
+                mPresenter.uploadAndSendImage(imageBitmap)
                 return
             }
-
-            val filePath = data.data
 
             Toast.makeText(this, "You choose a photo", Toast.LENGTH_SHORT).show()
 
@@ -244,6 +257,17 @@ class ChatDetailActivity : AppCompatActivity(), ChatDetailView {
             Intent.createChooser(intent, "Select Upload Image"),
             REQUEST_CODE_GALLERY
         )
+    }
+
+    @SuppressLint("QueryPermissionsNeeded")
+    override fun openCamera() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        if (intent.resolveActivity(packageManager) != null) {
+            startActivityForResult(
+                Intent.createChooser(intent, "Select Upload Image"),
+                REQUEST_IMAGE_CAPTURE
+            )
+        }
     }
 
     override fun getImageUrlForFile(file: String) {

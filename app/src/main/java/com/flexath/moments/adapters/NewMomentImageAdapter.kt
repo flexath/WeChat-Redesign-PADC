@@ -1,6 +1,7 @@
 package com.flexath.moments.adapters
 
 import android.annotation.SuppressLint
+import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -32,9 +33,6 @@ class NewMomentImageAdapter(private val delegate: NewMomentImageDelegate) : Recy
     @SuppressLint("NotifyDataSetChanged")
     fun setNewData(imageString:String) {
         imageList.add(0,imageString)
-//        imageList = imageString.splitToSequence(',').toMutableList()
-//        imageList.removeLast()
-//        imageList.add(0,imageString)
         notifyDataSetChanged()
     }
 }

@@ -15,6 +15,8 @@ interface CloudFireStoreFirebaseApi {
     fun updateAndUploadMomentImage(bitmap: Bitmap)
 
     fun getMomentImages()  : String
+
+    fun clearMomentImages()
     fun getMoments(
         onSuccess: (moments: List<MomentVO>) -> Unit, onFailure: (String) -> Unit
     )

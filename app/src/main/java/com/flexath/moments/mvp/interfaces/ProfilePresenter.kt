@@ -16,6 +16,8 @@ interface ProfilePresenter : BasePresenter<ProfileView> , MomentItemActionDelega
 
     fun onTapEditProfileButton()
 
+    fun onTapOpenCameraButton()
+
     fun onTapQrCodeImage()
 
     fun onTapGalleryImage()

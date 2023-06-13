@@ -13,6 +13,8 @@ interface MomentModel {
 
     fun getMomentImages(): String
 
+    fun clearMomentImages()
+
     fun getMoments(
         onSuccess: (moments: List<MomentVO>) -> Unit, onFailure: (String) -> Unit
     )

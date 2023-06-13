@@ -164,6 +164,11 @@ object CloudFireStoreFirebaseApiImpl : CloudFireStoreFirebaseApi {
         return mMomentImages
     }
 
+    override fun clearMomentImages() {
+        mMomentImages = ""
+    }
+
+
     override fun getMoments(
         onSuccess: (moments: List<MomentVO>) -> Unit,
         onFailure: (String) -> Unit

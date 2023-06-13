@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivCheckRegister"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_medium_3"
+        app:srcCompat="@drawable/check" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSuccessfulRegistration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivCheckRegister"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_medium_3"
+        android:fontFamily="@font/nunito_sans_bold"
+        android:text="@string/lbl_successful_registration"
+        android:textSize="@dimen/text_regular_3x"
+        android:textStyle="bold" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPleaseLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvSuccessfulRegistration"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_medium_2"
+        android:fontFamily="@font/nunito_sans"
+        android:gravity="center"
+        android:text="@string/lbl_please_login_again"
+        android:textSize="@dimen/text_regular" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLoginRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvPleaseLogin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_medium_3"
+        android:layout_marginBottom="@dimen/margin_medium_3"
+        android:fontFamily="@font/nunito_sans_semibold"
+        android:text="@string/lbl_login"
+        app:cornerRadius="@dimen/margin_small" />
+
+</RelativeLayout>

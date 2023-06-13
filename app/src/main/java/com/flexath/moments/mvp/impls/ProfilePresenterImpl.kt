@@ -54,6 +54,10 @@ class ProfilePresenterImpl : ProfilePresenter , ViewModel() {
         mView?.showOptionDialogBox()
     }
 
+    override fun onTapOpenCameraButton() {
+        mView?.openCamera()
+    }
+
     override fun getUserId(): String {
         return mAuthModel.getUserId()
     }

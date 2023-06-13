@@ -21,6 +21,10 @@ object MomentModelImpl : MomentModel {
         return mFirebaseApi.getMomentImages()
     }
 
+    override fun clearMomentImages() {
+        mFirebaseApi.clearMomentImages()
+    }
+
     override fun getMoments(
         onSuccess: (moments: List<MomentVO>) -> Unit,
         onFailure: (String) -> Unit
