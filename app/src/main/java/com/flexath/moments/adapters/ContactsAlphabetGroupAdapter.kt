@@ -28,6 +28,10 @@ class ContactsAlphabetGroupAdapter(private val delegate: ChatItemActionDelegate)
         return mAlphabetList.size
     }
 
+    fun getUserCount():Int {
+        return mUserList.size
+    }
+
     @SuppressLint("NotifyDataSetChanged")
     fun setNewData(alphabetList: List<Char>, userList: List<UserVO>, isGroup: Boolean) {
         mAlphabetList = alphabetList

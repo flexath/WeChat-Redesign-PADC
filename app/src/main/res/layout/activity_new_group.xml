@@ -72,11 +72,14 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvMemberNewGroup"
             android:layout_width="match_parent"
-            android:layout_below="@+id/etSearchContactsNewGroup"
-            android:layout_margin="@dimen/margin_10dp"
-            tools:listitem="@layout/view_holder_new_member_list"
             android:layout_height="wrap_content"
-            tools:itemCount="1" />
+            android:layout_below="@+id/etSearchContactsNewGroup"
+            android:layout_marginStart="@dimen/margin_10dp"
+            android:layout_marginTop="@dimen/margin_10dp"
+            android:layout_marginEnd="@dimen/margin_10dp"
+            android:layout_marginBottom="@dimen/margin_10dp"
+            tools:itemCount="1"
+            tools:listitem="@layout/view_holder_new_member_list" />
 
         <include
             android:id="@+id/vpGroup"

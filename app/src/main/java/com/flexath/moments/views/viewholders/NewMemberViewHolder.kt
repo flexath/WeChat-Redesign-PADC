@@ -21,6 +21,8 @@ class NewMemberViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     }
 
     fun bindData(user: UserVO) {
+        binding.tvGroupName.text = user.userName
+
         Glide.with(itemView.context)
             .load(user.imageUrl)
             .into(binding.ivProfileImageNewMemberGroup)

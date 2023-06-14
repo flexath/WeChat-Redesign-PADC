@@ -16,6 +16,68 @@
         android:visibility="gone"
         app:srcCompat="@drawable/search_no_contacts_or_groups" />
 
+    <LinearLayout
+        android:id="@+id/llNotFound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:elevation="@dimen/margin_medium_2"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:elevation="@dimen/margin_medium_2"
+            app:srcCompat="@drawable/search_not_found" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/nunito_sans"
+            android:text="No contact or group with name"
+            android:textColor="@color/colorPrimaryLight_2" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/nunito_sans"
+                android:gravity="center"
+                android:text="&quot;"
+                android:textColor="@color/colorPrimaryLight_2" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSearchName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/nunito_sans_semibold"
+                android:text="Aung Thiha"
+                android:textColor="@color/colorPrimaryText" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/nunito_sans"
+                android:gravity="center"
+                android:text="&quot; exists"
+                android:textColor="@color/colorPrimaryLight_2" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -108,8 +170,8 @@
                 android:id="@+id/llNewGroup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/margin_medium_3"
                 android:layout_below="@+id/tvGroupsLabel"
+                android:layout_marginTop="@dimen/margin_medium_3"
                 android:clipToPadding="false"
                 android:orientation="horizontal">
 
@@ -125,14 +187,13 @@
                     android:id="@+id/rvGroupContacts"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/margin_10dp"
                     android:layout_weight="1"
                     android:clipToPadding="false"
-                    android:layout_marginStart="@dimen/margin_10dp"
                     tools:itemCount="1"
                     tools:listitem="@layout/view_holder_group_list" />
 
             </LinearLayout>
-
 
             <include
                 android:id="@+id/vpContacts"

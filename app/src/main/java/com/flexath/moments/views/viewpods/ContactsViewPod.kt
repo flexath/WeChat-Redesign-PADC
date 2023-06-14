@@ -51,4 +51,8 @@ class ContactsViewPod @JvmOverloads constructor(
     fun setNewData(alphabetList: List<Char>, contactList: List<UserVO>,isGroup:Boolean) {
         mContactsAlphabetGroupAdapter.setNewData(alphabetList,contactList,isGroup)
     }
+
+    fun getItemCount():Int {
+        return mContactsAlphabetGroupAdapter.getUserCount()
+    }
 }
