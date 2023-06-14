@@ -7,4 +7,5 @@ interface MomentView  : BaseView {
     fun showMoments(momentList: List<MomentVO>)
     fun getMomentIsBookmarked(id: String,isBookmarked:Boolean)
     fun showOptionDialogBox()
+    fun showMomentsFromBookmarked(momentList: List<MomentVO>)
 }

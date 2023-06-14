@@ -11,7 +11,6 @@ import android.graphics.ImageDecoder
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -84,6 +83,7 @@ class ProfileFragment : Fragment() , ProfileView {
         setUpListeners()
 
         mPresenter.onUIReady(this)
+        mPresenter.getMomentsFromUserBookmarked(mPresenter.getUserId())
     }
 
     private fun setUpPresenter() {
@@ -310,25 +310,19 @@ class ProfileFragment : Fragment() , ProfileView {
     }
 
     override fun showMoments(momentList: List<MomentVO>) {
-        for (moment in momentList) {
-            if(moment.isBookmarked) {
-                mMomentList.add(moment)
-            }
-        }
-        mViewpod.setNewData(mMomentList)
+        mMomentList = momentList as ArrayList<MomentVO>
+        mViewpod.setNewData(momentList, "profile")
     }
 
     override fun getMomentIsBookmarked(id: String, bookmarked:Boolean) {
         for(moment in mMomentList) {
             if(id == moment.id) {
-                if(!bookmarked) {
-                    moment.isBookmarked = false
-                    mPresenter.createMoment(moment)
-                    break
-                }
+                mMomentList.remove(moment)
+                mPresenter.deleteMomentFromUserBookmarked(mPresenter.getUserId(),id)
+                break
             }
         }
-        mViewpod.setNewData(mMomentList)
+        mViewpod.setNewData(mMomentList, "profile")
     }
 
     override fun showOptionDialogBox() {}

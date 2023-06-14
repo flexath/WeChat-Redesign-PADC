@@ -73,6 +73,16 @@
             tools:listitem="@layout/view_holder_chat_list"
             android:layout_height="wrap_content"/>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvGroupsChats"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/rvChats"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_medium"
+            tools:itemCount="5"
+            tools:listitem="@layout/view_holder_chat_list"
+            android:layout_height="wrap_content"/>
+
     </RelativeLayout>
 
 </androidx.core.widget.NestedScrollView>

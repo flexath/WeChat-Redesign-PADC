@@ -10,39 +10,29 @@ import com.flexath.moments.data.vos.UserVO
 import com.flexath.moments.data.vos.VO
 import com.flexath.moments.databinding.ViewHolderChatListBinding
 import com.flexath.moments.delegates.ChatItemActionDelegate
+import com.flexath.moments.delegates.GroupItemActionDelegate
 
-class ChatViewHolder(itemView: View,private val delegate: ChatItemActionDelegate) :
+class GroupChatViewHolder(itemView: View, private val delegate: GroupItemActionDelegate) :
     RecyclerView.ViewHolder(itemView) {
 
     private var binding:ViewHolderChatListBinding
-    private var mUserId:String? = null
+    private var mGroupId:Long? = null
 
     init {
         binding = ViewHolderChatListBinding.bind(itemView)
-
         setUpListeners()
     }
 
     private fun setUpListeners() {
         itemView.setOnClickListener {
-            mUserId?.let { userId ->
-                delegate.onTapChatItem(userId)
+            mGroupId?.let { id ->
+                delegate.onTapGroupItem(id)
             }
         }
     }
 
-    fun bindData(user: UserVO) {
-        mUserId = user.userId
-
-        binding.tvNameChat.text = user.userName
-
-        Glide.with(itemView.context)
-            .load(user.imageUrl)
-            .into(binding.ivProfileImageChat)
-    }
-
-    fun bindDataForGroup(group: GroupVO) {
-        mUserId = group.id.toString()
+    fun bindData(group: GroupVO) {
+        mGroupId = group.id
 
         binding.tvNameChat.text = group.name
 

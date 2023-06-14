@@ -8,28 +8,30 @@ import com.flexath.moments.R
 import com.flexath.moments.data.vos.GroupVO
 import com.flexath.moments.data.vos.UserVO
 import com.flexath.moments.delegates.ChatItemActionDelegate
+import com.flexath.moments.delegates.GroupItemActionDelegate
 import com.flexath.moments.views.viewholders.ChatViewHolder
+import com.flexath.moments.views.viewholders.GroupChatViewHolder
 
-class ChatAdapter(private val delegate:ChatItemActionDelegate) : RecyclerView.Adapter<ChatViewHolder>() {
+class GroupChatAdapter(private val delegate:GroupItemActionDelegate) : RecyclerView.Adapter<GroupChatViewHolder>() {
 
-    private var mUserList:ArrayList<UserVO> = arrayListOf()
+    private var mGroupList:ArrayList<GroupVO> = arrayListOf()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupChatViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.view_holder_chat_list,parent,false)
-        return ChatViewHolder(view,delegate)
+        return GroupChatViewHolder(view,delegate)
     }
 
-    override fun onBindViewHolder(holder: ChatViewHolder, position: Int) {
-        holder.bindData(mUserList[position])
+    override fun onBindViewHolder(holder: GroupChatViewHolder, position: Int) {
+        holder.bindData(mGroupList[position])
     }
 
     override fun getItemCount(): Int {
-        return mUserList.size
+        return mGroupList.size
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setNewData(userList: ArrayList<UserVO>) {
-        mUserList = userList
+    fun setNewData(group: GroupVO) {
+        mGroupList.add(group)
         notifyDataSetChanged()
     }
 }

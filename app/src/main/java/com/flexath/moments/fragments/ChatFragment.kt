@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.flexath.moments.activities.ChatDetailActivity
 import com.flexath.moments.adapters.ActiveChatAdapter
 import com.flexath.moments.adapters.ChatAdapter
+import com.flexath.moments.adapters.GroupChatAdapter
+import com.flexath.moments.data.vos.GroupVO
 import com.flexath.moments.data.vos.UserVO
 import com.flexath.moments.databinding.FragmentChatBinding
 import com.flexath.moments.mvp.impls.ChatPresenterImpl
@@ -24,6 +26,7 @@ class ChatFragment : Fragment(), ChatView {
     // Adapters
     private lateinit var mActiveChatAdapter: ActiveChatAdapter
     private lateinit var mChatAdapter: ChatAdapter
+    private lateinit var mGroupChatAdapter: GroupChatAdapter
 
     // Presenters
     private lateinit var mPresenter: ChatPresenter
@@ -45,12 +48,13 @@ class ChatFragment : Fragment(), ChatView {
 
         setUpActiveChatRecyclerView()
         setUpChatRecyclerView()
+        setUpGroupChatRecyclerView()
 
         mPresenter.onUIReady(this)
 
-        val currentUserId = mPresenter.getUserId()
-        mPresenter.getContacts(currentUserId)
-        mPresenter.getChatHistoryUserId(currentUserId)
+        mPresenter.getContacts(mPresenter.getUserId())
+
+        mPresenter.getChatHistoryUserId(mPresenter.getUserId())
     }
 
     private fun setUpPresenters() {
@@ -71,12 +75,22 @@ class ChatFragment : Fragment(), ChatView {
         binding.rvChats.layoutManager = LinearLayoutManager(requireActivity())
     }
 
+    private fun setUpGroupChatRecyclerView() {
+        mGroupChatAdapter = GroupChatAdapter(mPresenter)
+        binding.rvGroupsChats.adapter = mGroupChatAdapter
+        binding.rvGroupsChats.layoutManager = LinearLayoutManager(requireActivity())
+    }
+
     override fun showContacts(contactList: List<UserVO>) {
         mActiveChatAdapter.setNewData(contactList)
     }
 
     override fun navigateToChatDetailScreen(userId: String) {
         startActivity(ChatDetailActivity.newIntent(requireActivity(), userId,""))
+    }
+
+    override fun navigateToGroupChatDetailScreen(groupId: Long) {
+        startActivity(ChatDetailActivity.newIntent(requireActivity(), "",groupId.toString()))
     }
 
     override fun showUserId(userIdList: List<String>) {
@@ -90,6 +104,25 @@ class ChatFragment : Fragment(), ChatView {
             }
         }
         mChatAdapter.setNewData(chatUserList)
+    }
+
+    override fun getGroups(groupList: List<GroupVO>) {
+        for(group in groupList) {
+
+            for(userId in group.userIdList) {
+                if(mPresenter.getUserId() == userId) {
+                    mPresenter.getGroupMessages(
+                        groupId = group.id,
+                        onSuccess = {
+                            if(it > 0) {
+                                mGroupChatAdapter.setNewData(group)
+                            }
+                        }
+                    )
+                    break
+                }
+            }
+        }
     }
 
     override fun getUsers(userList: List<UserVO>) {

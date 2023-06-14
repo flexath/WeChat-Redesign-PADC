@@ -1,6 +1,7 @@
 package com.flexath.moments.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -26,7 +27,8 @@ class MomentFragment : Fragment(), MomentView {
     private lateinit var mViewpod: MomentViewPod
 
     // Generals
-    private var mMomentList: List<MomentVO> = listOf()
+    private var mMomentList: ArrayList<MomentVO> = arrayListOf()
+    private var mBookmarkedMoments: List<MomentVO> = listOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +45,8 @@ class MomentFragment : Fragment(), MomentView {
 
         setUpListeners()
 
-        mPresenter.onUIReady( this)
+        mPresenter.onUIReady(this)
+        mPresenter.getMomentsFromUserBookmarked(mPresenter.getUserId())
     }
 
     private fun setUpPresenter() {
@@ -67,28 +70,45 @@ class MomentFragment : Fragment(), MomentView {
     }
 
     override fun showMoments(momentList: List<MomentVO>) {
-        mMomentList = momentList
-        mViewpod.setNewData(momentList.reversed())
+        mMomentList = momentList as ArrayList<MomentVO>
+        mViewpod.setNewData(mMomentList, "moment")
     }
+
+
 
     override fun getMomentIsBookmarked(id: String, isBookmarked: Boolean) {
         for (moment in mMomentList) {
             if (id == moment.id) {
                 if (isBookmarked) {
                     moment.isBookmarked = true
-                    mPresenter.createMoment(moment)
+                    mPresenter.addMomentToUserBookmarked(mPresenter.getUserId(), moment)
                     break
                 } else {
                     moment.isBookmarked = false
-                    mPresenter.createMoment(moment)
+                    mPresenter.deleteMomentFromUserBookmarked(mPresenter.getUserId(),id)
                     break
                 }
             }
         }
-        mViewpod.setNewData(mMomentList)
+        mViewpod.setNewData(mMomentList,"moment")
+    }
+
+    override fun showMomentsFromBookmarked(momentList: List<MomentVO>) {
+        mBookmarkedMoments = momentList
+
+        for(bookmarkedMoment in mBookmarkedMoments) {
+            for(moment in mMomentList) {
+                if(bookmarkedMoment.id == moment.id) {
+                    moment.isBookmarked = true
+                    break
+                }
+            }
+        }
+        mViewpod.setNewData(mMomentList,"moment")
     }
 
     override fun showOptionDialogBox() {}
+
 
     override fun showError(error: String) {
         Toast.makeText(requireActivity(), error, Toast.LENGTH_SHORT).show()

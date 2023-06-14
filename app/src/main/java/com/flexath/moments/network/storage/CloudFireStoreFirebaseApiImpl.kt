@@ -136,8 +136,7 @@ object CloudFireStoreFirebaseApiImpl : CloudFireStoreFirebaseApi {
             "user_name" to moment.userName,
             "user_profile_image" to moment.userProfileImage,
             "caption" to moment.caption,
-            "image_url" to moment.imageUrl,
-            "is_bookmarked" to moment.isBookmarked
+            "image_url" to moment.imageUrl
         )
 
         database.collection("moments")
@@ -259,6 +258,72 @@ object CloudFireStoreFirebaseApiImpl : CloudFireStoreFirebaseApi {
                         userList.add(user)
                     }
                     onSuccess(userList)
+                }
+            }
+    }
+
+    override fun addMomentToUserBookmarked(currentUserId: String, moment: MomentVO) {
+        val userMap = hashMapOf(
+            "id" to moment.id,
+            "user_id" to moment.userId,
+            "user_name" to moment.userName,
+            "user_profile_image" to moment.userProfileImage,
+            "caption" to moment.caption,
+            "image_url" to moment.imageUrl
+        )
+
+        database.collection("users")
+            .document(currentUserId)
+            .collection("moments")
+            .document(moment.id)
+            .set(userMap)
+            .addOnSuccessListener {
+                Log.i("FirebaseCall", "Successfully Added")
+            }.addOnFailureListener {
+                Log.i("FirebaseCall", "Failed Added")
+            }
+    }
+
+    override fun deleteMomentFromUserBookmarked(currentUserId: String, momentId: String) {
+        database.collection("users")
+            .document(currentUserId)
+            .collection("moments")
+            .document(momentId)
+            .delete()
+            .addOnSuccessListener {
+                Log.i("FirebaseCall", "Successfully deleted")
+            }.addOnFailureListener {
+                Log.i("FirebaseCall", "Failed deleted")
+            }
+    }
+
+    override fun getMomentsFromUserBookmarked(
+        currentUserId: String,
+        onSuccess: (moments: List<MomentVO>) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        database.collection("users")
+            .document(currentUserId)
+            .collection("moments")
+            .addSnapshotListener { value, error ->
+                error?.let {
+                    onFailure(it.localizedMessage ?: "Check Internet Connection")
+                } ?: run {
+                    val momentList: MutableList<MomentVO> = arrayListOf()
+                    val documentList = value?.documents ?: arrayListOf()
+                    for (document in documentList) {
+                        val data = document.data
+                        val id = data?.get("id") as String
+                        val userId = data["user_id"] as? String ?: ""
+                        val userName = data["user_name"] as String
+                        val userProfileImage = data["user_profile_image"] as String
+                        val caption = data["caption"] as String
+                        val imageUrl = data["image_url"] as String
+                        val isBookmarked = data["is_bookmarked"] as? Boolean ?: false
+                        val moment = MomentVO(id,userId, userName, userProfileImage, caption, imageUrl,isBookmarked)
+                        momentList.add(moment)
+                    }
+                    onSuccess(momentList)
                 }
             }
     }

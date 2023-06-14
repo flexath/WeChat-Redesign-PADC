@@ -19,7 +19,7 @@ abstract class BaseRecyclerAdapter<T : BaseViewHolder<W>, W> : RecyclerView.Adap
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setNewData(newData: List<W>) {
+    fun setNewData(newData: List<W>, tabName: String) {
         if (newData.isEmpty()) {
             mData.clear()
         } else {

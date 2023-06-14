@@ -18,4 +18,13 @@ interface MomentModel {
     fun getMoments(
         onSuccess: (moments: List<MomentVO>) -> Unit, onFailure: (String) -> Unit
     )
+
+    fun addMomentToUserBookmarked(currentUserId:String,moment: MomentVO)
+    fun deleteMomentFromUserBookmarked(currentUserId: String,momentId:String)
+
+    fun getMomentsFromUserBookmarked(
+        currentUserId: String,
+        onSuccess: (moments: List<MomentVO>) -> Unit,
+        onFailure: (String) -> Unit
+    )
 }

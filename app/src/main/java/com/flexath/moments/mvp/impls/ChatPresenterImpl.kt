@@ -1,5 +1,6 @@
 package com.flexath.moments.mvp.impls
 
+import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import com.flexath.moments.data.models.AuthenticationModel
@@ -31,6 +32,15 @@ class ChatPresenterImpl : ChatPresenter , ViewModel() {
                 mView?.showError(it)
             }
         )
+
+        mChatModel.getGroups(
+            onSuccess = {
+                mView?.getGroups(it)
+            },
+            onFailure = {
+                mView?.showError(it)
+            }
+        )
     }
 
     override fun onTapChatItem(userId: String) {
@@ -38,6 +48,9 @@ class ChatPresenterImpl : ChatPresenter , ViewModel() {
     }
 
     override fun onTapCheckbox(userId: String, isCheck: Boolean) {}
+    override fun onTapGroupItem(groupId: Long) {
+        mView?.navigateToGroupChatDetailScreen(groupId)
+    }
 
     override fun getContacts(
         scannerId: String
@@ -62,6 +75,18 @@ class ChatPresenterImpl : ChatPresenter , ViewModel() {
             senderId,
             onSuccess = {
                 mView?.showUserId(it)
+            },
+            onFailure = {
+                mView?.showError(it)
+            }
+        )
+    }
+
+    override fun getGroupMessages(groupId: Long, onSuccess: (Int) -> Unit) {
+        mChatModel.getGroupMessages(
+            groupId,
+            onSuccess = {
+                onSuccess(it.size)
             },
             onFailure = {
                 mView?.showError(it)

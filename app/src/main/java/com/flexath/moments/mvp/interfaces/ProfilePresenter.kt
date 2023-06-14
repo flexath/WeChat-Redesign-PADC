@@ -29,4 +29,8 @@ interface ProfilePresenter : BasePresenter<ProfileView> , MomentItemActionDelega
     fun updateAndUploadProfileImage(bitmap: Bitmap, user: UserVO)
 
     fun createMoment(moment: MomentVO)
+
+    fun getMomentsFromUserBookmarked(currentUserId: String)
+
+    fun deleteMomentFromUserBookmarked(currentUserId: String, momentId: String)
 }

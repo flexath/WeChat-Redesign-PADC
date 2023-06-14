@@ -51,4 +51,24 @@ class MomentPresenterImpl : MomentPresenter , ViewModel() {
     override fun getUserId(): String {
         return mAuthModel.getUserId()
     }
+
+    override fun addMomentToUserBookmarked(currentUserId: String, moment: MomentVO) {
+        mMomentModel.addMomentToUserBookmarked(currentUserId,moment)
+    }
+
+    override fun deleteMomentFromUserBookmarked(currentUserId: String, momentId: String) {
+        mMomentModel.deleteMomentFromUserBookmarked(currentUserId, momentId)
+    }
+
+    override fun getMomentsFromUserBookmarked(currentUserId: String) {
+        mMomentModel.getMomentsFromUserBookmarked(
+            currentUserId,
+            onSuccess = {
+                mView?.showMomentsFromBookmarked(it)
+            },
+            onFailure = {
+                mView?.showError(it)
+            }
+        )
+    }
 }

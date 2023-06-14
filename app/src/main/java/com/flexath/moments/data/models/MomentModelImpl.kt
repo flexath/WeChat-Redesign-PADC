@@ -32,4 +32,19 @@ object MomentModelImpl : MomentModel {
         mFirebaseApi.getMoments(onSuccess = onSuccess, onFailure = onFailure)
     }
 
+    override fun addMomentToUserBookmarked(currentUserId: String, moment: MomentVO) {
+        mFirebaseApi.addMomentToUserBookmarked(currentUserId,moment)
+    }
+
+    override fun deleteMomentFromUserBookmarked(currentUserId: String, momentId: String) {
+        mFirebaseApi.deleteMomentFromUserBookmarked(currentUserId,momentId)
+    }
+
+    override fun getMomentsFromUserBookmarked(
+        currentUserId: String,
+        onSuccess: (moments: List<MomentVO>) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mFirebaseApi.getMomentsFromUserBookmarked(currentUserId, onSuccess, onFailure)
+    }
 }

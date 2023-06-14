@@ -2,7 +2,7 @@ package com.flexath.moments.views.viewholders
 
 import android.view.View
 import com.bumptech.glide.Glide
-import com.flexath.moments.data.vos.MessageVO
+import com.flexath.moments.data.vos.PrivateMessageVO
 import com.flexath.moments.databinding.ViewHolderMessageSendBinding
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -16,7 +16,7 @@ class MessageSendViewHolder(itemView: View) : IBaseMessageViewHolder(itemView) {
         binding = ViewHolderMessageSendBinding.bind(itemView)
     }
 
-    override fun bindData(message: MessageVO) {
+    override fun bindData(message: PrivateMessageVO) {
 
         if (message.message.isEmpty() && message.file.isNotEmpty()) {
             binding.flSendMessage.visibility = View.GONE

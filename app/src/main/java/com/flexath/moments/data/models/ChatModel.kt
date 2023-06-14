@@ -2,7 +2,7 @@ package com.flexath.moments.data.models
 
 import android.graphics.Bitmap
 import com.flexath.moments.data.vos.GroupVO
-import com.flexath.moments.data.vos.MessageVO
+import com.flexath.moments.data.vos.PrivateMessageVO
 import com.flexath.moments.network.storage.RealtimeFirebaseApi
 
 interface ChatModel {
@@ -14,12 +14,12 @@ interface ChatModel {
         onFailure: (String) -> Unit
     )
 
-    fun sendMessage(senderId: String, receiverId: String,timeStamp:Long, message: MessageVO)
+    fun sendMessage(senderId: String, receiverId: String,timeStamp:Long, message: PrivateMessageVO)
 
     fun getMessages(
         senderId: String,
         receiverId: String,
-        onSuccess: (groceries: List<MessageVO>) -> Unit,
+        onSuccess: (groceries: List<PrivateMessageVO>) -> Unit,
         onFailure: (String) -> Unit
     )
 
@@ -38,11 +38,11 @@ interface ChatModel {
         onFailure: (String) -> Unit
     )
 
-    fun sendGroupMessage(groupId: Long,timeStamp:Long, message:MessageVO)
+    fun sendGroupMessage(groupId: Long,timeStamp:Long, message:PrivateMessageVO)
 
     fun getGroupMessages(
         groupId:Long,
-        onSuccess: (messageList: List<MessageVO>) -> Unit,
+        onSuccess: (messageList: List<PrivateMessageVO>) -> Unit,
         onFailure: (String) -> Unit
     )
 }

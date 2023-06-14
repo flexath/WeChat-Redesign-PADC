@@ -35,15 +35,6 @@ class ProfilePresenterImpl : ProfilePresenter , ViewModel() {
                 mView?.showError(it)
             }
         )
-
-        mMomentModel.getMoments(
-            onSuccess = {
-                mView?.showMoments(it)
-            },
-            onFailure = {
-                mView?.showError(it)
-            }
-        )
     }
 
     override fun onTapBookmarkButton(id: String,isBookmarked:Boolean) {
@@ -84,5 +75,21 @@ class ProfilePresenterImpl : ProfilePresenter , ViewModel() {
 
     override fun createMoment(moment: MomentVO) {
         mMomentModel.createMoment(moment)
+    }
+
+    override fun getMomentsFromUserBookmarked(currentUserId: String) {
+        mMomentModel.getMomentsFromUserBookmarked(
+            currentUserId,
+            onSuccess = {
+                mView?.showMoments(it)
+            },
+            onFailure = {
+                mView?.showError(it)
+            }
+        )
+    }
+
+    override fun deleteMomentFromUserBookmarked(currentUserId: String, momentId: String) {
+        mMomentModel.deleteMomentFromUserBookmarked(currentUserId, momentId)
     }
 }

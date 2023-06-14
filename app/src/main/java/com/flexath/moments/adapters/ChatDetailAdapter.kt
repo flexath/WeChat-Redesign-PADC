@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.flexath.moments.R
-import com.flexath.moments.data.vos.MessageVO
+import com.flexath.moments.data.vos.PrivateMessageVO
 import com.flexath.moments.views.viewholders.IBaseMessageViewHolder
 import com.flexath.moments.views.viewholders.MessageReceiveViewHolder
 import com.flexath.moments.views.viewholders.MessageSendViewHolder
@@ -15,7 +15,7 @@ class ChatDetailAdapter : RecyclerView.Adapter<IBaseMessageViewHolder>() {
     private val VIEW_TYPE_SEND = 0
     private val VIEW_TYPE_RECEIVE = 1
 
-    private var mMessageList: List<MessageVO> = listOf()
+    private var mMessageList: List<PrivateMessageVO> = listOf()
     private var mUserId: String = ""
     private var mCurrentTime = ""
 
@@ -60,7 +60,7 @@ class ChatDetailAdapter : RecyclerView.Adapter<IBaseMessageViewHolder>() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setNewData(userId: String, messageList: List<MessageVO>) {
+    fun setNewData(userId: String, messageList: List<PrivateMessageVO>) {
         mUserId = userId
         mMessageList = messageList
         notifyDataSetChanged()

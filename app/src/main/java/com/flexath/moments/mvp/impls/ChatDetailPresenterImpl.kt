@@ -1,6 +1,5 @@
 package com.flexath.moments.mvp.impls
 
-import android.content.Context
 import android.graphics.Bitmap
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
@@ -10,7 +9,7 @@ import com.flexath.moments.data.models.ChatModel
 import com.flexath.moments.data.models.ChatModelImpl
 import com.flexath.moments.data.models.UserModel
 import com.flexath.moments.data.models.UserModelImpl
-import com.flexath.moments.data.vos.MessageVO
+import com.flexath.moments.data.vos.PrivateMessageVO
 import com.flexath.moments.mvp.interfaces.ChatDetailPresenter
 import com.flexath.moments.mvp.views.ChatDetailView
 
@@ -61,7 +60,7 @@ class ChatDetailPresenterImpl : ChatDetailPresenter, ViewModel() {
         senderId: String,
         receiverId: String,
         timeStamp: Long,
-        message: MessageVO
+        message: PrivateMessageVO
     ) {
         mChatModel.sendMessage(senderId, receiverId, timeStamp, message)
     }
@@ -94,7 +93,7 @@ class ChatDetailPresenterImpl : ChatDetailPresenter, ViewModel() {
         )
     }
 
-    override fun sendGroupMessage(groupId: Long, timeStamp: Long, message: MessageVO) {
+    override fun sendGroupMessage(groupId: Long, timeStamp: Long, message: PrivateMessageVO) {
         mChatModel.sendGroupMessage(groupId, timeStamp, message)
     }
 

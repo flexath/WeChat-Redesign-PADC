@@ -35,7 +35,7 @@ class MomentViewPod @JvmOverloads constructor(
         binding.rvMoment.layoutManager = LinearLayoutManager(context)
     }
 
-    fun setNewData(momentList: List<MomentVO>) {
-        mAdapter.setNewData(momentList)
+    fun setNewData(momentList: List<MomentVO>, tabName: String) {
+        mAdapter.setNewData(momentList,tabName)
     }
 }

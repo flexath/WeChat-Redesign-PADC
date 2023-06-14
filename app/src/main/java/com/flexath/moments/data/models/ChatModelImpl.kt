@@ -2,7 +2,7 @@ package com.flexath.moments.data.models
 
 import android.graphics.Bitmap
 import com.flexath.moments.data.vos.GroupVO
-import com.flexath.moments.data.vos.MessageVO
+import com.flexath.moments.data.vos.PrivateMessageVO
 import com.flexath.moments.network.storage.RealtimeDatabaseFirebaseApiImpl
 import com.flexath.moments.network.storage.RealtimeFirebaseApi
 
@@ -19,7 +19,7 @@ object ChatModelImpl : ChatModel {
         senderId: String,
         receiverId: String,
         timeStamp: Long,
-        message: MessageVO
+        message: PrivateMessageVO
     ) {
         mFirebaseApi.sendMessage(senderId, receiverId, timeStamp, message)
     }
@@ -27,7 +27,7 @@ object ChatModelImpl : ChatModel {
     override fun getMessages(
         senderId: String,
         receiverId: String,
-        onSuccess: (groceries: List<MessageVO>) -> Unit,
+        onSuccess: (groceries: List<PrivateMessageVO>) -> Unit,
         onFailure: (String) -> Unit
     ) {
         mFirebaseApi.getMessages(senderId, receiverId, onSuccess, onFailure)
@@ -64,13 +64,13 @@ object ChatModelImpl : ChatModel {
         mFirebaseApi.getGroups(onSuccess,onFailure)
     }
 
-    override fun sendGroupMessage(groupId: Long, timeStamp:Long, message: MessageVO) {
+    override fun sendGroupMessage(groupId: Long, timeStamp:Long, message: PrivateMessageVO) {
         mFirebaseApi.sendGroupMessage(groupId,timeStamp, message)
     }
 
     override fun getGroupMessages(
         groupId: Long,
-        onSuccess: (messageList: List<MessageVO>) -> Unit,
+        onSuccess: (messageList: List<PrivateMessageVO>) -> Unit,
         onFailure: (String) -> Unit
     ) {
         mFirebaseApi.getGroupMessages(groupId, onSuccess, onFailure)

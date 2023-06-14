@@ -1,6 +1,6 @@
 package com.flexath.moments.data.vos
 
-data class MessageVO(
+data class PrivateMessageVO(
     var userId:String = "",
     var userName:String = "",
     var userProfileImage:String = "",

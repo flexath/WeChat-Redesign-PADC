@@ -10,4 +10,10 @@ interface MomentPresenter  : BasePresenter<MomentView> , MomentItemActionDelegat
     fun createMoment(moment:MomentVO)
 
     fun getUserId(): String
+
+    fun addMomentToUserBookmarked(currentUserId:String,moment: MomentVO)
+
+    fun deleteMomentFromUserBookmarked(currentUserId: String,momentId:String)
+
+    fun getMomentsFromUserBookmarked(currentUserId: String)
 }

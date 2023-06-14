@@ -1,17 +1,15 @@
 package com.flexath.moments.views.viewholders
 
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.Glide.init
 import com.flexath.moments.R
 import com.flexath.moments.adapters.MomentImagesAdapter
 import com.flexath.moments.data.vos.MomentVO
 import com.flexath.moments.databinding.ViewHolderMomentListBinding
 import com.flexath.moments.delegates.MomentItemActionDelegate
-import io.reactivex.internal.util.LinkedArrayList
 
-class MomentViewHolder(itemView: View,private val delegate: MomentItemActionDelegate) : BaseViewHolder<MomentVO>(itemView) {
+class MomentViewHolder(itemView: View,private val delegate: MomentItemActionDelegate) : RecyclerView.ViewHolder(itemView) {
 
     private var binding:ViewHolderMomentListBinding
 
@@ -40,7 +38,7 @@ class MomentViewHolder(itemView: View,private val delegate: MomentItemActionDele
         }
     }
 
-    override fun bindData(data: MomentVO) {
+    fun bindData(data: MomentVO, tabName: String) {
         mMoment = data
 
         binding.tvMomentProfileName.text = data.userName
@@ -55,8 +53,15 @@ class MomentViewHolder(itemView: View,private val delegate: MomentItemActionDele
 
         if(data.isBookmarked) {
             binding.btnMomentBookmark.setImageResource(R.drawable.baseline_bookmark_red_24dp)
+            mMoment?.isBookmarked = true
         } else {
             binding.btnMomentBookmark.setImageResource(R.drawable.baseline_bookmark_border_accent_24dp)
+            mMoment?.isBookmarked = false
+        }
+
+        if(tabName == "profile") {
+            binding.btnMomentBookmark.setImageResource(R.drawable.baseline_bookmark_red_24dp)
+            mMoment?.isBookmarked = true
         }
     }
 

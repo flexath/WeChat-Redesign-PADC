@@ -14,14 +14,28 @@ interface CloudFireStoreFirebaseApi {
     fun createMoment(moment: MomentVO)
     fun updateAndUploadMomentImage(bitmap: Bitmap)
 
-    fun getMomentImages()  : String
+    fun getMomentImages(): String
 
     fun clearMomentImages()
     fun getMoments(
         onSuccess: (moments: List<MomentVO>) -> Unit, onFailure: (String) -> Unit
     )
 
-    fun createContact(scannerId:String,qrExporterId:String,contact: UserVO)
+    fun createContact(scannerId: String, qrExporterId: String, contact: UserVO)
 
-    fun getContacts(scannerId:String,onSuccess: (users: List<UserVO>) -> Unit, onFailure: (String) -> Unit)
+    fun getContacts(
+        scannerId: String,
+        onSuccess: (users: List<UserVO>) -> Unit,
+        onFailure: (String) -> Unit
+    )
+
+    fun addMomentToUserBookmarked(currentUserId: String, moment: MomentVO)
+
+    fun deleteMomentFromUserBookmarked(currentUserId: String, momentId: String)
+
+    fun getMomentsFromUserBookmarked(
+        currentUserId: String,
+        onSuccess: (moments: List<MomentVO>) -> Unit,
+        onFailure: (String) -> Unit
+    )
 }

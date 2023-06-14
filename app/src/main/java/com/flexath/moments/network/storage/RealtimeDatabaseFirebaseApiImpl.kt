@@ -3,7 +3,7 @@ package com.flexath.moments.network.storage
 import android.graphics.Bitmap
 import android.util.Log
 import com.flexath.moments.data.vos.GroupVO
-import com.flexath.moments.data.vos.MessageVO
+import com.flexath.moments.data.vos.PrivateMessageVO
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -45,7 +45,7 @@ object RealtimeDatabaseFirebaseApiImpl : RealtimeFirebaseApi {
         senderId: String,
         receiverId: String,
         timeStamp: Long,
-        message: MessageVO
+        message: PrivateMessageVO
     ) {
         database.child("contactsAndMessages").child(senderId).child(receiverId)
             .child(timeStamp.toString()).setValue(message)
@@ -54,7 +54,7 @@ object RealtimeDatabaseFirebaseApiImpl : RealtimeFirebaseApi {
     override fun getMessages(
         senderId: String,
         receiverId: String,
-        onSuccess: (messageList: List<MessageVO>) -> Unit,
+        onSuccess: (messageList: List<PrivateMessageVO>) -> Unit,
         onFailure: (String) -> Unit
     ) {
         database.child("contactsAndMessages")
@@ -66,9 +66,9 @@ object RealtimeDatabaseFirebaseApiImpl : RealtimeFirebaseApi {
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val messageList = arrayListOf<MessageVO>()
+                    val messageList = arrayListOf<PrivateMessageVO>()
                     snapshot.children.forEach { dataSnapShot ->
-                        dataSnapShot.getValue(MessageVO::class.java)?.let {
+                        dataSnapShot.getValue(PrivateMessageVO::class.java)?.let {
                             messageList.add(it)
                         }
                     }
@@ -103,7 +103,6 @@ object RealtimeDatabaseFirebaseApiImpl : RealtimeFirebaseApi {
             }
         }
     }
-
     override fun getChatHistoryUserId(
         senderId: String,
         onSuccess: (messageList: List<String>) -> Unit,
@@ -156,14 +155,14 @@ object RealtimeDatabaseFirebaseApiImpl : RealtimeFirebaseApi {
             })
     }
 
-    override fun sendGroupMessage(groupId: Long,timeStamp:Long, message: MessageVO) {
+    override fun sendGroupMessage(groupId: Long,timeStamp:Long, message: PrivateMessageVO) {
         database.child("groups").child(groupId.toString()).child("messages")
             .child(timeStamp.toString()).setValue(message)
     }
 
     override fun getGroupMessages(
         groupId: Long,
-        onSuccess: (messageList: List<MessageVO>) -> Unit,
+        onSuccess: (messageList: List<PrivateMessageVO>) -> Unit,
         onFailure: (String) -> Unit
     ) {
         database.child("groups")
@@ -175,9 +174,9 @@ object RealtimeDatabaseFirebaseApiImpl : RealtimeFirebaseApi {
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val messageList = arrayListOf<MessageVO>()
+                    val messageList = arrayListOf<PrivateMessageVO>()
                     snapshot.children.forEach { dataSnapShot ->
-                        dataSnapShot.getValue(MessageVO::class.java)?.let {
+                        dataSnapShot.getValue(PrivateMessageVO::class.java)?.let {
                             messageList.add(it)
                         }
                     }
