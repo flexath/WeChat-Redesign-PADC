@@ -12,5 +12,6 @@ interface ChatDetailView : BaseView {
     fun showGroupMessages(messageList: List<PrivateMessageVO>)
     fun getGroups(groupList: List<GroupVO>)
     fun openCamera()
+    fun navigateToSearchGifsActivity()
 
 }

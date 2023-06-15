@@ -1,5 +1,6 @@
 package com.flexath.moments.data.models
 
+import android.content.Context
 import android.graphics.Bitmap
 import com.flexath.moments.data.vos.GroupVO
 import com.flexath.moments.data.vos.PrivateMessageVO
@@ -39,6 +40,15 @@ object ChatModelImpl : ChatModel {
         onFailure: (String) -> Unit
     ) {
         mFirebaseApi.uploadAndSendImage(bitmap,onSuccess,onFailure)
+    }
+
+    override fun uploadGif(
+        gifString: String,
+        context: Context,
+        onSuccess: (file: String) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mFirebaseApi.uploadGif(gifString, context, onSuccess, onFailure)
     }
 
     override fun getChatHistoryUserId(

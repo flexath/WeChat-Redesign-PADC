@@ -1,5 +1,6 @@
 package com.flexath.moments.network.storage
 
+import android.content.Context
 import android.graphics.Bitmap
 import com.flexath.moments.data.vos.GroupVO
 import com.flexath.moments.data.vos.PrivateMessageVO
@@ -21,6 +22,13 @@ interface RealtimeFirebaseApi {
 
     fun uploadAndSendImage(
         bitmap: Bitmap,
+        onSuccess: (file: String) -> Unit,
+        onFailure: (String) -> Unit
+    )
+
+    fun uploadGif(
+        gifString: String,
+        context: Context,
         onSuccess: (file: String) -> Unit,
         onFailure: (String) -> Unit
     )

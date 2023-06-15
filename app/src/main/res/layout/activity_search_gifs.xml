@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.SearchGifsActivity">
+
+    <View
+        android:id="@+id/vLine"
+        android:layout_width="50dp"
+        android:layout_height="3dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_medium_2"
+        android:background="@color/colorPrimaryLight_2" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etSearchGif"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/vLine"
+        android:layout_margin="@dimen/margin_medium_3"
+        android:background="@drawable/background_search_gif"
+        android:drawableStart="@drawable/baseline_search_accent_24dp"
+        android:drawablePadding="@dimen/margin_medium_2"
+        android:focusableInTouchMode="true"
+        android:fontFamily="@font/inter"
+        android:gravity="center_vertical"
+        android:hint="@string/lbl_search_giphy"
+        android:padding="@dimen/margin_10dp"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="@dimen/text_regular_2x" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvGif"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etSearchGif"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:layout_marginBottom="@dimen/margin_medium_3"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:spanCount="2"
+        tools:listitem="@layout/view_holder_gif_list" />
+
+</RelativeLayout>

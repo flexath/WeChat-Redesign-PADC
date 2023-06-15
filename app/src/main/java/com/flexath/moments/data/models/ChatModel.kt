@@ -1,5 +1,6 @@
 package com.flexath.moments.data.models
 
+import android.content.Context
 import android.graphics.Bitmap
 import com.flexath.moments.data.vos.GroupVO
 import com.flexath.moments.data.vos.PrivateMessageVO
@@ -24,6 +25,13 @@ interface ChatModel {
     )
 
     fun uploadAndSendImage(bitmap: Bitmap, onSuccess: (file: String) -> Unit, onFailure: (String) -> Unit)
+
+    fun uploadGif(
+        gifString: String,
+        context: Context,
+        onSuccess: (file: String) -> Unit,
+        onFailure: (String) -> Unit
+    )
 
     fun getChatHistoryUserId(
         senderId: String,

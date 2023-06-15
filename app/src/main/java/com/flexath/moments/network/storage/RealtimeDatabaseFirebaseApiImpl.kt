@@ -1,7 +1,14 @@
+@file:Suppress("DEPRECATION")
+
 package com.flexath.moments.network.storage
 
+import android.content.Context
 import android.graphics.Bitmap
+import android.net.Uri
 import android.util.Log
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.transition.Transition
 import com.flexath.moments.data.vos.GroupVO
 import com.flexath.moments.data.vos.PrivateMessageVO
 import com.google.firebase.database.DataSnapshot
@@ -11,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import java.io.ByteArrayOutputStream
+import java.io.File
 import java.util.UUID
 
 object RealtimeDatabaseFirebaseApiImpl : RealtimeFirebaseApi {
@@ -103,6 +111,36 @@ object RealtimeDatabaseFirebaseApiImpl : RealtimeFirebaseApi {
             }
         }
     }
+
+    override fun uploadGif(
+        gifString: String,
+        context: Context,
+        onSuccess: (file: String) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        Glide.with(context)
+            .asFile()
+            .load(gifString)
+            .into(object : SimpleTarget<File>() {
+                override fun onResourceReady(resource: File, transition: Transition<in File>?) {
+                    // Upload the downloaded GIF file to Firebase Storage
+                    val gifUri = Uri.fromFile(resource)
+                    val gifRef = storageRef.child("gifs/${UUID.randomUUID()}.gif")
+
+                    val uploadTask = gifRef.putFile(gifUri)
+                    uploadTask.addOnSuccessListener { taskSnapshot ->
+                        val downloadUrl = taskSnapshot.storage.downloadUrl
+                        downloadUrl.addOnCompleteListener {
+                            onSuccess(downloadUrl.result.toString())
+                        }
+
+                    }.addOnFailureListener { exception ->
+                        onFailure(exception.localizedMessage ?: "")
+                    }
+                }
+            })
+    }
+
     override fun getChatHistoryUserId(
         senderId: String,
         onSuccess: (messageList: List<String>) -> Unit,

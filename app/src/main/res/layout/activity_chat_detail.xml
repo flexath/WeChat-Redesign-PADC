@@ -193,6 +193,7 @@
             </FrameLayout>
 
             <FrameLayout
+                android:id="@+id/btnGifChatDetail"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"

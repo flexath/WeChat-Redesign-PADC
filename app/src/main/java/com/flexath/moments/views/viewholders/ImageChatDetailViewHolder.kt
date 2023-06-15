@@ -1,5 +1,6 @@
 package com.flexath.moments.views.viewholders
 
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -14,8 +15,16 @@ class ImageChatDetailViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVi
     }
 
     fun bindNewData(imageUrl:String) {
-        Glide.with(itemView.context)
-            .load(imageUrl)
-            .into(binding.ivSendImage)
+
+        if(imageUrl.endsWith(".gif")) {
+            Glide.with(itemView.context)
+                .asGif()
+                .load(imageUrl)
+                .into(binding.ivSendImage)
+        } else {
+            Glide.with(itemView.context)
+                .load(imageUrl)
+                .into(binding.ivSendImage)
+        }
     }
 }

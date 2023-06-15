@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingEnd="@dimen/margin_medium"
+    android:paddingStart="@dimen/margin_medium"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivGif"
+        android:layout_width="wrap_content"
+        app:srcCompat="@drawable/ath_post_picture"
+        android:layout_height="300dp"/>
+
+</RelativeLayout>

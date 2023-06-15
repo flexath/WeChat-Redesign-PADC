@@ -51,4 +51,5 @@
     <string name="lbl_please_login_again">We have set up your account with our server to\ncontinue with the registration process.\nPlease Login.</string>
     <string name="lbl_login">Login</string>
     <string name="lbl_successful_registration">Successful Registration</string>
+    <string name="lbl_search_giphy">Search GIPHY</string>
 </resources>
