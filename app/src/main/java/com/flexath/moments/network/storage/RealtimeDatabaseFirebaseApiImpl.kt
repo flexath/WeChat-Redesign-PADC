@@ -9,6 +9,7 @@ import android.util.Log
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
+import com.flexath.moments.data.vos.GroupMessageVO
 import com.flexath.moments.data.vos.GroupVO
 import com.flexath.moments.data.vos.PrivateMessageVO
 import com.google.firebase.database.DataSnapshot
@@ -81,6 +82,28 @@ object RealtimeDatabaseFirebaseApiImpl : RealtimeFirebaseApi {
                         }
                     }
                     onSuccess(messageList)
+                }
+            })
+    }
+
+    override fun getLastMessage(
+        senderId: String,
+        receiverId: String,
+        onSuccess: (message: PrivateMessageVO) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        database.child("contactsAndMessages")
+            .child(senderId)
+            .child(receiverId)
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+                    onFailure(error.message)
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    snapshot.children.last().getValue(PrivateMessageVO::class.java)?.let {
+                        onSuccess(it)
+                    }
                 }
             })
     }
@@ -165,10 +188,16 @@ object RealtimeDatabaseFirebaseApiImpl : RealtimeFirebaseApi {
             })
     }
 
-    override fun addGroup(timeStamp: Long, groupName: String, userList: List<String>) {
+    override fun addGroup(
+        timeStamp: Long,
+        groupName: String,
+        userList: List<String>,
+        imageUrl: String
+    ) {
         database.child("groups").child(timeStamp.toString()).child("name").setValue(groupName)
         database.child("groups").child(timeStamp.toString()).child("userIdList").setValue(userList)
         database.child("groups").child(timeStamp.toString()).child("id").setValue(timeStamp)
+        database.child("groups").child(timeStamp.toString()).child("imageUrl").setValue(imageUrl)
     }
 
     override fun getGroups(
@@ -193,7 +222,7 @@ object RealtimeDatabaseFirebaseApiImpl : RealtimeFirebaseApi {
             })
     }
 
-    override fun sendGroupMessage(groupId: Long,timeStamp:Long, message: PrivateMessageVO) {
+    override fun sendGroupMessage(groupId: Long, timeStamp: Long, message: PrivateMessageVO) {
         database.child("groups").child(groupId.toString()).child("messages")
             .child(timeStamp.toString()).setValue(message)
     }
@@ -223,5 +252,34 @@ object RealtimeDatabaseFirebaseApiImpl : RealtimeFirebaseApi {
             })
     }
 
+    override fun uploadGroupCoverPhoto(
+        timeStamp: Long,
+        bitmap: Bitmap,
+        onSuccess: (imageUrl: String) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
 
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val data = baos.toByteArray()
+
+        val imageRef = storageRef.child("images/${UUID.randomUUID()}")
+        val uploadTask = imageRef.putBytes(data)
+        uploadTask.addOnFailureListener {
+            Log.i("FileUpload", "File uploaded failed")
+        }.addOnSuccessListener {
+            Log.i("FileUpload", "File uploaded successful")
+        }
+
+        val urlTask = uploadTask.continueWithTask {
+            return@continueWithTask imageRef.downloadUrl
+        }.addOnCompleteListener {
+            val imageUrl = it.result?.toString()
+            if (imageUrl != null) {
+                onSuccess(imageUrl)
+            }
+        }.addOnFailureListener { error ->
+            onFailure(error.localizedMessage ?: "")
+        }
+    }
 }

@@ -1,8 +1,10 @@
 package com.flexath.moments.views.viewholders
 
 import android.graphics.Color
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.flexath.moments.R
 import com.flexath.moments.data.vos.GroupVO
 import com.flexath.moments.databinding.ViewHolderGroupListBinding
@@ -31,6 +33,13 @@ class GroupViewHolder(itemView: View, private val delegate: GroupItemActionDeleg
 //            binding.tvGroupName.text = group.name
 //        }
         binding.tvGroupName.text = group.name
+
+        Log.i("GroupCover",group.imageUrl)
+
+        Glide.with(itemView.context)
+            .load(group.imageUrl)
+            .placeholder(R.drawable.dummy_group_photo)
+            .into(binding.ivGroupPhoto)
 
         itemView.setOnClickListener {
             delegate.onTapGroupItem(group.id)

@@ -1,6 +1,5 @@
 package com.flexath.moments.mvp.impls
 
-import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import com.flexath.moments.data.models.AuthenticationModel
@@ -75,6 +74,19 @@ class ChatPresenterImpl : ChatPresenter , ViewModel() {
             senderId,
             onSuccess = {
                 mView?.showUserId(it)
+            },
+            onFailure = {
+                mView?.showError(it)
+            }
+        )
+    }
+
+    override fun getLastMessage(senderId: String, receiverId: String) {
+        mChatModel.getLastMessage(
+            senderId = senderId,
+            receiverId = receiverId,
+            onSuccess = {
+                mView?.getLastMessage(it)
             },
             onFailure = {
                 mView?.showError(it)

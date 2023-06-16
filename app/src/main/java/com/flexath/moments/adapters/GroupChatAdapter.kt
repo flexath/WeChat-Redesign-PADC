@@ -6,10 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.flexath.moments.R
 import com.flexath.moments.data.vos.GroupVO
-import com.flexath.moments.data.vos.UserVO
-import com.flexath.moments.delegates.ChatItemActionDelegate
+import com.flexath.moments.data.vos.PrivateMessageVO
 import com.flexath.moments.delegates.GroupItemActionDelegate
-import com.flexath.moments.views.viewholders.ChatViewHolder
 import com.flexath.moments.views.viewholders.GroupChatViewHolder
 
 class GroupChatAdapter(private val delegate:GroupItemActionDelegate) : RecyclerView.Adapter<GroupChatViewHolder>() {

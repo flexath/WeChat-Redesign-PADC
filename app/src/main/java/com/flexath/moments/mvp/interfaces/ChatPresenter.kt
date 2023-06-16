@@ -1,5 +1,6 @@
 package com.flexath.moments.mvp.interfaces
 
+import com.flexath.moments.data.vos.PrivateMessageVO
 import com.flexath.moments.data.vos.UserVO
 import com.flexath.moments.delegates.ChatItemActionDelegate
 import com.flexath.moments.delegates.GroupItemActionDelegate
@@ -12,6 +13,11 @@ interface ChatPresenter  : BasePresenter<ChatView> , ChatItemActionDelegate , Gr
 
     fun getChatHistoryUserId(
         senderId: String
+    )
+
+    fun getLastMessage(
+        senderId: String,
+        receiverId: String
     )
     fun getGroupMessages(groupId: Long, onSuccess: (Int) -> Unit)
 }

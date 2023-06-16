@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -21,7 +20,6 @@ import com.flexath.moments.mvp.impls.ContactsPresenterImpl
 import com.flexath.moments.mvp.interfaces.ContactsPresenter
 import com.flexath.moments.mvp.views.ContactsView
 import com.flexath.moments.views.viewpods.ContactsViewPod
-import com.google.firebase.firestore.auth.User
 
 class ContactsFragment : Fragment(), ContactsView {
 
@@ -190,15 +188,21 @@ class ContactsFragment : Fragment(), ContactsView {
 
     override fun addUserToGroup(userId: String) {}
 
-    override fun getGroupList(groupList: List<GroupVO>) {
+    override fun onResume() {
+        super.onResume()
+        mPresenter.onUIReady(this)
+    }
 
+    override fun getGroupList(groupList: List<GroupVO>) {
+        val newGroupList: ArrayList<GroupVO> = arrayListOf()
         for (group in groupList) {
             if (mPresenter.getUserId() in group.userIdList) {
-                mGroupList.add(group)
+                newGroupList.add(group)
             }
         }
+        mGroupList = newGroupList
         mGroupAdapter.setNewData(mGroupList)
-        binding.tvNumberOfGroup.text = mGroupList.size.toString()
+        binding.tvNumberOfGroup.text = newGroupList.size.toString()
     }
 
     override fun navigateToChatDetailScreenFromGroupItem(groupId: String) {

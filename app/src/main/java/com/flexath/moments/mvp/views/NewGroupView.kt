@@ -9,4 +9,8 @@ interface NewGroupView : BaseView {
 
     fun navigateToChatDetailScreen(userId: String)
     fun showContacts(userList: List<UserVO>)
+
+    fun showGallery()
+    fun openCamera()
+    fun getGroupCoverImageUrl(imageUrl: String)
 }

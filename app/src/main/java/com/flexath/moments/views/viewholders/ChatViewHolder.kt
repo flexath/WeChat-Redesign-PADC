@@ -3,11 +3,8 @@ package com.flexath.moments.views.viewholders
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.Glide.init
-import com.flexath.moments.R
-import com.flexath.moments.data.vos.GroupVO
+import com.flexath.moments.data.vos.PrivateMessageVO
 import com.flexath.moments.data.vos.UserVO
-import com.flexath.moments.data.vos.VO
 import com.flexath.moments.databinding.ViewHolderChatListBinding
 import com.flexath.moments.delegates.ChatItemActionDelegate
 
@@ -31,7 +28,8 @@ class ChatViewHolder(itemView: View,private val delegate: ChatItemActionDelegate
         }
     }
 
-    fun bindData(user: UserVO) {
+    fun bindData(user: UserVO, message: PrivateMessageVO) {
+
         mUserId = user.userId
 
         binding.tvNameChat.text = user.userName
@@ -39,18 +37,12 @@ class ChatViewHolder(itemView: View,private val delegate: ChatItemActionDelegate
         Glide.with(itemView.context)
             .load(user.imageUrl)
             .into(binding.ivProfileImageChat)
+
+        if(message.message.isEmpty()) {
+            val lastMessage = "${message.userName} sent a photo"
+            binding.tvLastMessage.text = lastMessage
+        } else {
+            binding.tvLastMessage.text = message.message
+        }
     }
-
-    fun bindDataForGroup(group: GroupVO) {
-        mUserId = group.id.toString()
-
-        binding.tvNameChat.text = group.name
-
-        Glide.with(itemView.context)
-            .load(R.drawable.dummy_group_photo)
-            .placeholder(R.drawable.dummy_group_photo)
-            .into(binding.ivProfileImageChat)
-    }
-
-
 }

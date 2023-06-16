@@ -11,4 +11,5 @@ interface ChatView  : BaseView {
     fun getUsers(userList: List<UserVO>)
     fun getGroups(groupList: List<GroupVO>)
     fun navigateToGroupChatDetailScreen(groupId: Long)
+    fun getLastMessage(message: PrivateMessageVO)
 }

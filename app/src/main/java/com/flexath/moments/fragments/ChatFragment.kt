@@ -13,6 +13,7 @@ import com.flexath.moments.adapters.ActiveChatAdapter
 import com.flexath.moments.adapters.ChatAdapter
 import com.flexath.moments.adapters.GroupChatAdapter
 import com.flexath.moments.data.vos.GroupVO
+import com.flexath.moments.data.vos.PrivateMessageVO
 import com.flexath.moments.data.vos.UserVO
 import com.flexath.moments.databinding.FragmentChatBinding
 import com.flexath.moments.mvp.impls.ChatPresenterImpl
@@ -33,6 +34,8 @@ class ChatFragment : Fragment(), ChatView {
 
     // General
     private var mUserList: List<UserVO> = listOf()
+    private var mMessageList:ArrayList<PrivateMessageVO> = arrayListOf()
+    private var mChatUserList:ArrayList<UserVO> = arrayListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -102,8 +105,18 @@ class ChatFragment : Fragment(), ChatView {
                     break
                 }
             }
+            mPresenter.getLastMessage(mPresenter.getUserId(),userId)
         }
-        mChatAdapter.setNewData(chatUserList)
+        mChatUserList.clear()
+        mChatUserList = chatUserList
+    }
+
+    override fun getLastMessage(message: PrivateMessageVO) {
+        mMessageList.add(message)
+
+        if(mMessageList.size == mChatUserList.size) {
+            mChatAdapter.setNewData(mChatUserList,mMessageList)
+        }
     }
 
     override fun getGroups(groupList: List<GroupVO>) {

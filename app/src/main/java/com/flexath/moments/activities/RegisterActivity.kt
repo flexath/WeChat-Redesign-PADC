@@ -238,10 +238,6 @@ class RegisterActivity : AppCompatActivity(), RegisterView {
         super.onActivityResult(requestCode, resultCode, data)
 
         if ((requestCode == REQUEST_CODE_GALLERY || requestCode == REQUEST_IMAGE_CAPTURE) && resultCode == Activity.RESULT_OK) {
-//            if (data == null || data.data == null) {
-//                return
-//            }
-
             val filePath = data?.data
 
             if(requestCode == REQUEST_IMAGE_CAPTURE) {

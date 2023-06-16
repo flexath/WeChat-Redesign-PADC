@@ -65,4 +65,6 @@ class ContactsPresenterImpl : ContactsPresenter , ViewModel() {
     }
 
     override fun onTapCheckbox(userId: String, isCheck: Boolean) {}
+
+
 }

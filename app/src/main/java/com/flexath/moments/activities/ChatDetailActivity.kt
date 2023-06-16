@@ -138,7 +138,7 @@ class ChatDetailActivity : AppCompatActivity(), ChatDetailView {
     }
 
     override fun navigateToSearchGifsActivity() {
-        startActivityForResult(SearchGifsActivity.newIntent(this),REQUEST_CODE_GIF)
+        startActivityForResult(SearchGifsActivity.newIntent(this), REQUEST_CODE_GIF)
         overridePendingTransition(R.anim.scroll_up, 0)
     }
 
@@ -369,6 +369,12 @@ class ChatDetailActivity : AppCompatActivity(), ChatDetailView {
             if (mGroupId == group.id.toString()) {
                 binding.tvNameChatDetail.text = group.name
                 mGroupName = group.name
+
+                Glide.with(applicationContext)
+                    .load(group.imageUrl ?: "")
+                    .placeholder(R.drawable.dummy_group_photo)
+                    .into(binding.ivProfileImageChatDetail)
+
             }
         }
     }
@@ -384,7 +390,7 @@ class ChatDetailActivity : AppCompatActivity(), ChatDetailView {
             if (requestCode == REQUEST_CODE_GIF) {
                 Toast.makeText(this, "You took a gif", Toast.LENGTH_SHORT).show()
                 val gifUrl = data?.getStringExtra("data") ?: ""
-                mPresenter.uploadGif(gifUrl,this)
+                mPresenter.uploadGif(gifUrl, this)
                 return
             }
 
@@ -395,7 +401,7 @@ class ChatDetailActivity : AppCompatActivity(), ChatDetailView {
                 return
             }
 
-            if(requestCode == REQUEST_CODE_GALLERY) {
+            if (requestCode == REQUEST_CODE_GALLERY) {
                 val filePath = data?.data
                 Toast.makeText(this, "You choose a photo from gallery", Toast.LENGTH_SHORT).show()
 
@@ -448,6 +454,6 @@ class ChatDetailActivity : AppCompatActivity(), ChatDetailView {
 
     override fun showError(error: String) {
         Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
-        Log.i("ErrorFire",error)
+        Log.i("ErrorFire", error)
     }
 }

@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"/>
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLastMessage"
             android:layout_width="wrap_content"
             android:text="You sent a Video"
             android:layout_toEndOf="@+id/ivProfileImageChat"
