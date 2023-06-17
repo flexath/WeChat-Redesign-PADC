@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide
 import com.flexath.moments.R
 import com.flexath.moments.data.vos.MomentVO
 import com.flexath.moments.data.vos.UserVO
+import com.flexath.moments.databinding.BottomSheetDialogMomentOptionBinding
 import com.flexath.moments.databinding.BottoomSheetDialogChooseImageBinding
 import com.flexath.moments.databinding.DialogEditProfileBinding
 import com.flexath.moments.databinding.DialogQrCodeBinding
@@ -33,6 +34,7 @@ import com.flexath.moments.mvp.interfaces.ProfilePresenter
 import com.flexath.moments.mvp.views.ProfileView
 import com.flexath.moments.views.viewpods.MomentViewPod
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
@@ -325,7 +327,34 @@ class ProfileFragment : Fragment() , ProfileView {
         mViewpod.setNewData(mMomentList, "profile")
     }
 
-    override fun showOptionDialogBox() {}
+    override fun showOptionDialogBox(momentId:String,momentOwnerUserId:String) {
+        val dialogBinding = BottomSheetDialogMomentOptionBinding.inflate(layoutInflater)
+        val dialog = BottomSheetDialog(requireContext())
+        dialog.setContentView(dialogBinding.root)
+        dialog.setCancelable(true)
+
+        dialogBinding.btnEditMoment.setOnClickListener {
+
+        }
+
+        dialogBinding.btnDeleteMoment.setOnClickListener {
+            val dialogDeleteBox =
+                MaterialAlertDialogBuilder(requireActivity(), R.style.RoundedAlertDialog)
+                    .setTitle("Delete Moment ?")
+                    .setMessage("Are you sure to delete ?")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes") { deleteDialog, _ ->
+
+                    }
+                    .setNegativeButton("Cancel") { deleteDialog, _ ->
+                        deleteDialog?.dismiss()
+                    }
+                    .create()
+            dialogDeleteBox.show()
+        }
+
+        dialog.show()
+    }
 
     private fun setUpDateOfBirthSpinners(dialogBinding:DialogEditProfileBinding) {
         dialogBinding.daySpinnerEditProfile.onItemSelectedListener = object :

@@ -9,6 +9,12 @@ interface MomentModel {
 
     fun createMoment(moment: MomentVO)
 
+    fun deleteMoment(
+        momentId: String,
+        onSuccess: (String) -> Unit,
+        onFailure: (String) -> Unit
+    )
+
     fun updateAndUploadMomentImage(bitmap: Bitmap)
 
     fun getMomentImages(): String

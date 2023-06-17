@@ -52,4 +52,8 @@
     <string name="lbl_login">Login</string>
     <string name="lbl_successful_registration">Successful Registration</string>
     <string name="lbl_search_giphy">Search GIPHY</string>
+    <string name="lbl_edit_moment">Edit moment</string>
+    <string name="lbl_delete_moment">Delete moment</string>
+    <string name="lbl_hide_moment">Hide moment</string>
+    <string name="lbl_save_moment">Save moment</string>
 </resources>

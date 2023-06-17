@@ -13,6 +13,14 @@ object MomentModelImpl : MomentModel {
         mFirebaseApi.createMoment(moment)
     }
 
+    override fun deleteMoment(
+        momentId: String,
+        onSuccess: (String) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mFirebaseApi.deleteMoment(momentId, onSuccess, onFailure)
+    }
+
     override fun updateAndUploadMomentImage(bitmap: Bitmap) {
         mFirebaseApi.updateAndUploadMomentImage(bitmap)
     }

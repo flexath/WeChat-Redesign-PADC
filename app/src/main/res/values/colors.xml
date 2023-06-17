@@ -12,4 +12,5 @@
     <color name="colorSecondaryText">#062743</color>
     <color name="colorActiveNow">#00DC5D</color>
     <color name="colorLightBlue">#3b7dc6</color>
+    <color name="colorRed">#F6002C</color>
 </resources>

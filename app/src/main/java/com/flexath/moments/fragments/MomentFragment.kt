@@ -2,19 +2,23 @@ package com.flexath.moments.fragments
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.flexath.moments.R
 import com.flexath.moments.activities.NewMomentActivity
 import com.flexath.moments.data.vos.MomentVO
+import com.flexath.moments.databinding.BottomSheetDialogMomentOptionBinding
 import com.flexath.moments.databinding.FragmentMomentBinding
 import com.flexath.moments.mvp.impls.MomentPresenterImpl
 import com.flexath.moments.mvp.interfaces.MomentPresenter
 import com.flexath.moments.mvp.views.MomentView
 import com.flexath.moments.views.viewpods.MomentViewPod
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class MomentFragment : Fragment(), MomentView {
 
@@ -75,7 +79,6 @@ class MomentFragment : Fragment(), MomentView {
     }
 
 
-
     override fun getMomentIsBookmarked(id: String, isBookmarked: Boolean) {
         for (moment in mMomentList) {
             if (id == moment.id) {
@@ -85,31 +88,68 @@ class MomentFragment : Fragment(), MomentView {
                     break
                 } else {
                     moment.isBookmarked = false
-                    mPresenter.deleteMomentFromUserBookmarked(mPresenter.getUserId(),id)
+                    mPresenter.deleteMomentFromUserBookmarked(mPresenter.getUserId(), id)
                     break
                 }
             }
         }
-        mViewpod.setNewData(mMomentList,"moment")
+        mViewpod.setNewData(mMomentList, "moment")
     }
 
     override fun showMomentsFromBookmarked(momentList: List<MomentVO>) {
         mBookmarkedMoments = momentList
 
-        for(bookmarkedMoment in mBookmarkedMoments) {
-            for(moment in mMomentList) {
-                if(bookmarkedMoment.id == moment.id) {
+        for (bookmarkedMoment in mBookmarkedMoments) {
+            for (moment in mMomentList) {
+                if (bookmarkedMoment.id == moment.id) {
                     moment.isBookmarked = true
                     break
                 }
             }
         }
-        mViewpod.setNewData(mMomentList,"moment")
+        mViewpod.setNewData(mMomentList, "moment")
     }
 
-    override fun showOptionDialogBox() {}
+    override fun showOptionDialogBox(momentId:String,momentOwnerUserId:String) {
+        val dialogBinding = BottomSheetDialogMomentOptionBinding.inflate(layoutInflater)
+        val dialog = BottomSheetDialog(requireContext())
+        dialog.setContentView(dialogBinding.root)
+        dialog.setCancelable(true)
 
+        dialogBinding.btnEditMoment.setOnClickListener {
 
+        }
+
+        if(mPresenter.getUserId() != momentOwnerUserId) {
+            dialogBinding.btnDeleteMoment.visibility = View.GONE
+        } else {
+            dialogBinding.btnDeleteMoment.visibility = View.VISIBLE
+            dialogBinding.btnDeleteMoment.setOnClickListener {
+                val dialogDeleteBox =
+                    MaterialAlertDialogBuilder(requireActivity(), R.style.RoundedAlertDialog)
+                        .setTitle("Delete Moment ?")
+                        .setMessage("Are you sure to delete ?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes") { deleteDialog, _ ->
+                            Log.i("MomentId",momentId)
+                            mPresenter.deleteMoment(momentId)
+                            deleteDialog?.dismiss()
+                            dialog.dismiss()
+                        }
+                        .setNegativeButton("Cancel") { deleteDialog, _ ->
+                            deleteDialog?.dismiss()
+                        }
+                        .create()
+                dialogDeleteBox.show()
+            }
+        }
+
+        dialog.show()
+    }
+
+    override fun showDeleteSuccessfulMessage(successfulMessage: String) {
+        Toast.makeText(requireActivity(), successfulMessage, Toast.LENGTH_SHORT).show()
+    }
     override fun showError(error: String) {
         Toast.makeText(requireActivity(), error, Toast.LENGTH_SHORT).show()
     }

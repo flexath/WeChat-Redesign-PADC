@@ -149,6 +149,21 @@ object CloudFireStoreFirebaseApiImpl : CloudFireStoreFirebaseApi {
             }
     }
 
+    override fun deleteMoment(
+        momentId: String,
+        onSuccess: (String) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        database.collection("moments")
+            .document(momentId)
+            .delete()
+            .addOnSuccessListener {
+                onSuccess("Deleted successfully")
+            }.addOnFailureListener {
+                onFailure("Deleted failed")
+            }
+    }
+
     override fun updateAndUploadMomentImage(bitmap: Bitmap) {
         val urlTask = changeBitmapToUrlString(bitmap)
 
@@ -188,7 +203,15 @@ object CloudFireStoreFirebaseApiImpl : CloudFireStoreFirebaseApi {
                         val caption = data["caption"] as String
                         val imageUrl = data["image_url"] as String
                         val isBookmarked = data["is_bookmarked"] as? Boolean ?: false
-                        val moment = MomentVO(id,userId, userName, userProfileImage, caption, imageUrl,isBookmarked)
+                        val moment = MomentVO(
+                            id,
+                            userId,
+                            userName,
+                            userProfileImage,
+                            caption,
+                            imageUrl,
+                            isBookmarked
+                        )
                         momentList.add(moment)
                     }
                     onSuccess(momentList)
@@ -196,7 +219,7 @@ object CloudFireStoreFirebaseApiImpl : CloudFireStoreFirebaseApi {
             }
     }
 
-    override fun createContact(scannerId:String,qrExporterId:String,contact: UserVO) {
+    override fun createContact(scannerId: String, qrExporterId: String, contact: UserVO) {
         val userMap = hashMapOf(
             "id" to contact.userId,
             "name" to contact.userName,
@@ -209,7 +232,7 @@ object CloudFireStoreFirebaseApiImpl : CloudFireStoreFirebaseApi {
             "image_url" to contact.imageUrl
         )
 
-        Log.i("QrExporterId",qrExporterId)
+        Log.i("QrExporterId", qrExporterId)
 
         database.collection("users")
             .document(scannerId)
@@ -223,7 +246,11 @@ object CloudFireStoreFirebaseApiImpl : CloudFireStoreFirebaseApi {
             }
     }
 
-    override fun getContacts(scannerId:String,onSuccess: (users: List<UserVO>) -> Unit, onFailure: (String) -> Unit) {
+    override fun getContacts(
+        scannerId: String,
+        onSuccess: (users: List<UserVO>) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
         database.collection("users")
             .document(scannerId)
             .collection("contacts")
@@ -320,7 +347,15 @@ object CloudFireStoreFirebaseApiImpl : CloudFireStoreFirebaseApi {
                         val caption = data["caption"] as String
                         val imageUrl = data["image_url"] as String
                         val isBookmarked = data["is_bookmarked"] as? Boolean ?: false
-                        val moment = MomentVO(id,userId, userName, userProfileImage, caption, imageUrl,isBookmarked)
+                        val moment = MomentVO(
+                            id,
+                            userId,
+                            userName,
+                            userProfileImage,
+                            caption,
+                            imageUrl,
+                            isBookmarked
+                        )
                         momentList.add(moment)
                     }
                     onSuccess(momentList)

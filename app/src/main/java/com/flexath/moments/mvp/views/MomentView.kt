@@ -6,6 +6,7 @@ interface MomentView  : BaseView {
     fun navigateToNewMomentScreen()
     fun showMoments(momentList: List<MomentVO>)
     fun getMomentIsBookmarked(id: String,isBookmarked:Boolean)
-    fun showOptionDialogBox()
+    fun showOptionDialogBox(momentId:String,momentOwnerUserId:String)
     fun showMomentsFromBookmarked(momentList: List<MomentVO>)
+    fun showDeleteSuccessfulMessage(successfulMessage: String)
 }

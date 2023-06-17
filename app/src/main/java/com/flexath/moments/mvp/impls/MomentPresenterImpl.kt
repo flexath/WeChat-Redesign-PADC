@@ -36,8 +36,8 @@ class MomentPresenterImpl : MomentPresenter , ViewModel() {
         mView?.getMomentIsBookmarked(id,isBookmarked)
     }
 
-    override fun onTapOptionButton() {
-        mView?.showOptionDialogBox()
+    override fun onTapOptionButton(momentId:String,momentOwnerUserId:String) {
+        mView?.showOptionDialogBox(momentId,momentOwnerUserId)
     }
 
     override fun onTapAddMomentButton() {
@@ -46,6 +46,18 @@ class MomentPresenterImpl : MomentPresenter , ViewModel() {
 
     override fun createMoment(moment: MomentVO) {
         mMomentModel.createMoment(moment)
+    }
+
+    override fun deleteMoment(momentId: String) {
+        mMomentModel.deleteMoment(
+            momentId,
+            onSuccess = {
+                mView?.showDeleteSuccessfulMessage(it)
+            },
+            onFailure = {
+                mView?.showError(it)
+            }
+        )
     }
 
     override fun getUserId(): String {

@@ -26,7 +26,7 @@ class MomentViewHolder(itemView: View,private val delegate: MomentItemActionDele
 
     private fun setUpListeners() {
         binding.btnMomentOption.setOnClickListener {
-            delegate.onTapOptionButton()
+            delegate.onTapOptionButton(mMoment?.id ?: "",mMoment?.userId ?: "")
         }
 
         binding.btnMomentBookmark.setOnClickListener {

@@ -1,6 +1,5 @@
 package com.flexath.moments.mvp.impls
 
-import android.content.Context
 import android.graphics.Bitmap
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
@@ -41,8 +40,8 @@ class ProfilePresenterImpl : ProfilePresenter , ViewModel() {
         mView?.getMomentIsBookmarked(id,isBookmarked)
     }
 
-    override fun onTapOptionButton() {
-        mView?.showOptionDialogBox()
+    override fun onTapOptionButton(momentId:String,momentOwnerUserId:String) {
+        mView?.showOptionDialogBox(momentId,momentOwnerUserId)
     }
 
     override fun onTapOpenCameraButton() {
