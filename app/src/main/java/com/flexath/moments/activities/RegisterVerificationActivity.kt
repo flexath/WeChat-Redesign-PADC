@@ -20,7 +20,7 @@ class RegisterVerificationActivity : AppCompatActivity(), RegisterVerificationVi
     private lateinit var mPresenter: RegisterVerificationPresenter
 
     // General
-    private var mOtp:String = ""
+    private lateinit var mOtp:String
 
     companion object {
         fun newIntent(context: Context): Intent {
@@ -33,6 +33,8 @@ class RegisterVerificationActivity : AppCompatActivity(), RegisterVerificationVi
         binding = ActivityRegisterVerificationBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setUpPresenter()
+
+        mOtp = ""
 
         setUpListeners()
 
@@ -61,15 +63,15 @@ class RegisterVerificationActivity : AppCompatActivity(), RegisterVerificationVi
     override fun navigateToRegisterScreen() {
         val phoneNumber = binding.etPhoneNumberRegisterVerification.text.toString()
         val email = binding.etEmailRegisterVerification.text.toString()
+        val otp = binding.otpPinRegisterVerification.text.toString()
 
-        if(binding.otpPinRegisterVerification.text.toString() == mOtp) {
+        if(otp == mOtp) {
             startActivity(RegisterActivity.newIntent(this,phoneNumber,email))
         }
     }
 
     override fun showOtp(otp: String) {
         mOtp = otp
-        Toast.makeText(this,otp,Toast.LENGTH_SHORT).show()
     }
 
     override fun showError(error: String) {

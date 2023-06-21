@@ -74,6 +74,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-storage-ktx'
+    implementation 'com.google.firebase:firebase-messaging'
 
     // Retrofit
     implementation("com.squareup.okhttp3:okhttp:4.10.0")

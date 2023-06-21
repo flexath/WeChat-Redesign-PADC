@@ -19,6 +19,7 @@ import com.flexath.moments.mvp.views.MomentView
 import com.flexath.moments.views.viewpods.MomentViewPod
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.messaging.FirebaseMessaging
 
 class MomentFragment : Fragment(), MomentView {
 
@@ -44,6 +45,11 @@ class MomentFragment : Fragment(), MomentView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener {
+            Log.i("NewToken",it.result)
+        }
+
         setUpPresenter()
         setUpViewPods()
 

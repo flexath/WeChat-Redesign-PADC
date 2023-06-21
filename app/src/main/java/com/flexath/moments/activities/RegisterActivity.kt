@@ -10,6 +10,7 @@ import android.graphics.ImageDecoder
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
@@ -27,6 +28,7 @@ import com.flexath.moments.mvp.impls.RegisterPresenterImpl
 import com.flexath.moments.mvp.interfaces.RegisterPresenter
 import com.flexath.moments.mvp.views.RegisterView
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.firebase.messaging.FirebaseMessaging
 import java.io.IOException
 import java.util.Calendar
 
@@ -47,6 +49,7 @@ class RegisterActivity : AppCompatActivity(), RegisterView {
     private var year = ""
     private var gender = ""
     private lateinit var dialog:BottomSheetDialog
+    private lateinit var fcmToken:String
 
     companion object {
         private const val EXTRA_PHONE_NUMBER = "PhoneNumber"
@@ -56,6 +59,14 @@ class RegisterActivity : AppCompatActivity(), RegisterView {
             intent.putExtra(EXTRA_PHONE_NUMBER, phoneNumber)
             intent.putExtra(EXTRA_EMAIL, email)
             return intent
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        FirebaseMessaging.getInstance().token.addOnCompleteListener {
+            Log.i("NewTokenFCM",it.result)
+            fcmToken = it.result
         }
     }
 
@@ -138,7 +149,8 @@ class RegisterActivity : AppCompatActivity(), RegisterView {
             email = email,
             password = password,
             birthDate = "$year-$month-$day",
-            gender = gender
+            gender = gender,
+            fcmKey = fcmToken,
         )
     }
 

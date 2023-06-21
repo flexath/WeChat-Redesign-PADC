@@ -26,10 +26,11 @@ object AuthenticationModelImpl : AuthenticationModel {
         birthDate: String,
         gender: String,
         imageUrl:String,
+        fcmKey:String,
         onSuccess: (user: UserVO) -> Unit,
         onFailure: (String) -> Unit
     ) {
-        mAuthManager.register(userName, phoneNumber, email, password, birthDate, gender,imageUrl, onSuccess, onFailure)
+        mAuthManager.register(userName, phoneNumber, email, password, birthDate, gender,imageUrl,fcmKey, onSuccess, onFailure)
     }
 
     override fun getUserId(): String {

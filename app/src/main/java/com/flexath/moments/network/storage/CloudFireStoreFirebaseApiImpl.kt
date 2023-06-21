@@ -34,7 +34,8 @@ object CloudFireStoreFirebaseApiImpl : CloudFireStoreFirebaseApi {
             "birth_date" to user.birthDate,
             "gender" to user.gender,
             "qr_code" to user.userId,
-            "image_url" to user.imageUrl
+            "image_url" to user.imageUrl,
+            "fcm_key" to user.fcmKey
         )
 
         database.collection("users")
@@ -86,7 +87,8 @@ object CloudFireStoreFirebaseApiImpl : CloudFireStoreFirebaseApi {
                     birthDate = user.birthDate,
                     gender = user.gender,
                     qrCode = user.userId,
-                    imageUrl = imageUrl ?: ""
+                    imageUrl = imageUrl ?: "",
+                    fcmKey = user.fcmKey
                 )
             )
         }
@@ -111,6 +113,7 @@ object CloudFireStoreFirebaseApiImpl : CloudFireStoreFirebaseApi {
                         val gender = data["gender"] as String
                         val qrCode = data["qr_code"] as String
                         val imageUrl = data["image_url"] as String
+                        val fcmKey = data["fcm_key"].toString()
                         val user = UserVO(
                             id,
                             name,
@@ -120,11 +123,52 @@ object CloudFireStoreFirebaseApiImpl : CloudFireStoreFirebaseApi {
                             birthDate,
                             gender,
                             qrCode,
-                            imageUrl
+                            imageUrl,
+                            fcmKey
                         )
                         userList.add(user)
                     }
                     onSuccess(userList)
+                }
+            }
+    }
+
+    override fun getSpecificUser(
+        userId: String,
+        onSuccess: (UserVO) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        database.collection("users")
+            .document(userId)
+            .addSnapshotListener { value, error ->
+                error?.let {
+                    onFailure(it.localizedMessage ?: "Check Internet Connection")
+                } ?: run {
+                    val userList: MutableList<UserVO> = arrayListOf()
+                    val data = value?.data
+                    val id = data?.get("id") as String
+                    val name = data["name"] as String
+                    val phoneNumber = data["phone_number"] as String
+                    val email = data["email"] as String
+                    val password = data["password"] as String
+                    val birthDate = data["birth_date"] as String
+                    val gender = data["gender"] as String
+                    val qrCode = data["qr_code"] as String
+                    val imageUrl = data["image_url"] as String
+                    val fcmKey = data["fcm_key"].toString()
+                    val user = UserVO(
+                        id,
+                        name,
+                        phoneNumber,
+                        email,
+                        password,
+                        birthDate,
+                        gender,
+                        qrCode,
+                        imageUrl,
+                        fcmKey
+                    )
+                    onSuccess(user)
                 }
             }
     }
@@ -229,10 +273,9 @@ object CloudFireStoreFirebaseApiImpl : CloudFireStoreFirebaseApi {
             "birth_date" to contact.birthDate,
             "gender" to contact.gender,
             "qr_code" to contact.userId,
-            "image_url" to contact.imageUrl
+            "image_url" to contact.imageUrl,
+            "fcm_key" to contact.fcmKey
         )
-
-        Log.i("QrExporterId", qrExporterId)
 
         database.collection("users")
             .document(scannerId)
@@ -271,6 +314,7 @@ object CloudFireStoreFirebaseApiImpl : CloudFireStoreFirebaseApi {
                         val gender = data["gender"] as String
                         val qrCode = data["qr_code"] as String
                         val imageUrl = data["image_url"] as String
+                        val fcmKey = data["fcm_key"].toString()
                         val user = UserVO(
                             id,
                             name,
@@ -280,7 +324,8 @@ object CloudFireStoreFirebaseApiImpl : CloudFireStoreFirebaseApi {
                             birthDate,
                             gender,
                             qrCode,
-                            imageUrl
+                            imageUrl,
+                            fcmKey
                         )
                         userList.add(user)
                     }

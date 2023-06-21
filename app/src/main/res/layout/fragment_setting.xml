@@ -1,14 +1,246 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/margin_medium_3"
+    android:paddingBottom="@dimen/margin_medium_3"
     tools:context=".fragments.SettingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingStart="@dimen/margin_medium_3"
+        android:paddingTop="@dimen/margin_14dp"
+        android:paddingEnd="@dimen/margin_medium_3"
+        android:paddingBottom="@dimen/margin_14dp">
 
-</FrameLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:gravity="center"
+            android:text="@string/lbl_account_security"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_regular_2x"
+            tools:ignore="RelativeOverlap" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/baseline_arrow_forward_ios_accent_24dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_14dp"
+        android:background="@color/white"
+        android:paddingStart="@dimen/margin_medium_3"
+        android:paddingTop="@dimen/margin_14dp"
+        android:paddingEnd="@dimen/margin_medium_3"
+        android:paddingBottom="@dimen/margin_14dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:gravity="center"
+            android:text="@string/lbl_message_notifications"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_regular_2x"
+            tools:ignore="RelativeOverlap" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/baseline_arrow_forward_ios_accent_24dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingStart="@dimen/margin_medium_3"
+        android:paddingTop="@dimen/margin_14dp"
+        android:paddingEnd="@dimen/margin_medium_3"
+        android:paddingBottom="@dimen/margin_14dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:gravity="center"
+            android:text="@string/lbl_privacy"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_regular_2x"
+            tools:ignore="RelativeOverlap" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/baseline_arrow_forward_ios_accent_24dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingStart="@dimen/margin_medium_3"
+        android:paddingTop="@dimen/margin_14dp"
+        android:paddingEnd="@dimen/margin_medium_3"
+        android:paddingBottom="@dimen/margin_14dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:gravity="center"
+            android:text="@string/lbl_general"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_regular_2x"
+            tools:ignore="RelativeOverlap" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/baseline_arrow_forward_ios_accent_24dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_14dp"
+        android:background="@color/white"
+        android:paddingStart="@dimen/margin_medium_3"
+        android:paddingTop="@dimen/margin_14dp"
+        android:paddingEnd="@dimen/margin_medium_3"
+        android:paddingBottom="@dimen/margin_14dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:gravity="center"
+            android:text="@string/lbl_help_amp_feedback"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_regular_2x"
+            tools:ignore="RelativeOverlap" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/baseline_arrow_forward_ios_accent_24dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingStart="@dimen/margin_medium_3"
+        android:paddingTop="@dimen/margin_14dp"
+        android:paddingEnd="@dimen/margin_medium_3"
+        android:paddingBottom="@dimen/margin_14dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:gravity="center"
+            android:text="@string/lbl_about"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_regular_2x"
+            tools:ignore="RelativeOverlap" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/baseline_arrow_forward_ios_accent_24dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_14dp"
+        android:background="@color/white"
+        android:paddingStart="@dimen/margin_medium_3"
+        android:paddingTop="@dimen/margin_14dp"
+        android:paddingEnd="@dimen/margin_medium_3"
+        android:paddingBottom="@dimen/margin_14dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:gravity="center"
+            android:text="@string/lbl_moments_labs"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_regular_2x"
+            tools:ignore="RelativeOverlap" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/baseline_arrow_forward_ios_accent_24dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/btnLogOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_14dp"
+        android:background="@color/white"
+        android:padding="@dimen/margin_14dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/nunito_sans_bold"
+            android:gravity="center"
+            android:text="@string/lbl_log_out"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_regular_2x" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -11,8 +11,11 @@ import com.flexath.moments.data.models.ChatModelImpl
 import com.flexath.moments.data.models.UserModel
 import com.flexath.moments.data.models.UserModelImpl
 import com.flexath.moments.data.vos.PrivateMessageVO
+import com.flexath.moments.data.vos.UserVO
+import com.flexath.moments.data.vos.fcm.FCMBody
 import com.flexath.moments.mvp.interfaces.ChatDetailPresenter
 import com.flexath.moments.mvp.views.ChatDetailView
+import com.flexath.moments.network.retrofit.responses.FCMResponse
 
 class ChatDetailPresenterImpl : ChatDetailPresenter, ViewModel() {
 
@@ -124,6 +127,32 @@ class ChatDetailPresenterImpl : ChatDetailPresenter, ViewModel() {
             },
             onFailure = {
                 mView?.showError(it)
+            }
+        )
+    }
+
+    override fun sendFCMNotification(
+        fcmBody: FCMBody
+    ) {
+        mUserModel.sendFCMNotification(
+            fcmBody,
+            onSuccess = {
+                mView?.showFCMResponse(it)
+            },
+            onFailure = {
+                mView?.showError(it)
+            }
+        )
+    }
+
+    override fun getSpecificUser(userId: String, onSuccess: (users: UserVO) -> Unit, onFailure: (String) -> Unit) {
+        mUserModel.getSpecificUser(
+            userId,
+            onSuccess = {
+                onSuccess(it)
+            },
+            onFailure = {
+                onFailure(it)
             }
         )
     }

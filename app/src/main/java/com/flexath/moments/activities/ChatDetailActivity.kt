@@ -24,10 +24,14 @@ import com.flexath.moments.adapters.ImageChatDetailAdapter
 import com.flexath.moments.data.vos.GroupVO
 import com.flexath.moments.data.vos.PrivateMessageVO
 import com.flexath.moments.data.vos.UserVO
+import com.flexath.moments.data.vos.fcm.Data
+import com.flexath.moments.data.vos.fcm.DataX
+import com.flexath.moments.data.vos.fcm.FCMBody
 import com.flexath.moments.databinding.ActivityChatDetailBinding
 import com.flexath.moments.mvp.impls.ChatDetailPresenterImpl
 import com.flexath.moments.mvp.interfaces.ChatDetailPresenter
 import com.flexath.moments.mvp.views.ChatDetailView
+import com.flexath.moments.network.retrofit.responses.FCMResponse
 import java.io.IOException
 
 @Suppress("DEPRECATION")
@@ -45,9 +49,13 @@ class ChatDetailActivity : AppCompatActivity(), ChatDetailView {
     // General
     private var mUserName: String = ""
     private var mUserProfileImage: String = ""
-    private var mReceiverId = ""
-    private var mGroupId = ""
+    private lateinit var mReceiverId:String
+    private lateinit var mGroupId:String
     private var mGroupName = ""
+    private lateinit var fcmToken:String
+    private var mReceiverFcmId:String = ""
+    private var mGroupIdFcm:String = ""
+    private lateinit var registrationGroupIdList:ArrayList<String>
 
     //    private var timeStamp = 0L
     private var REQUEST_CODE_GALLERY = 0
@@ -70,9 +78,12 @@ class ChatDetailActivity : AppCompatActivity(), ChatDetailView {
         super.onCreate(savedInstanceState)
         binding = ActivityChatDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         setUpPresenters()
         setUpRecyclerView()
         setUpImageRecyclerView()
+
+        registrationGroupIdList = arrayListOf()
 
         mReceiverId = intent?.extras?.getString(EXTRA_USER_ID, "") ?: ""
         mGroupId = intent?.extras?.getString(EXTRA_GROUP_ID, "") ?: ""
@@ -137,13 +148,32 @@ class ChatDetailActivity : AppCompatActivity(), ChatDetailView {
         }
     }
 
-    override fun navigateToSearchGifsActivity() {
-        startActivityForResult(SearchGifsActivity.newIntent(this), REQUEST_CODE_GIF)
-        overridePendingTransition(R.anim.scroll_up, 0)
-    }
-
     private fun sendPrivateChatMessage(message: String) {
+
         if (mImageAdapter.itemCount > 0 && message.isEmpty()) {
+            val body = if(mImageAdapter.itemCount == 1) {
+                "$mUserName sent a photo"
+            } else {
+                "$mUserName sent the photos"
+            }
+
+            val title = mUserName
+            val chatType = "private"
+            val chatId = mPresenter.getUserId()
+
+            val dataFCM = Data(
+                title = title,
+                body = body,
+                chat_type = chatType,
+                chat_id = chatId,
+                data = DataX()
+            )
+
+            val registrationId = listOf(fcmToken)
+            val fcm = FCMBody(registrationId,dataFCM)
+
+            mPresenter.sendFCMNotification(fcmBody = fcm)
+
             for (image in mImageList) {
                 val timeStamp = System.currentTimeMillis()
                 mPresenter.sendMessage(
@@ -176,6 +206,24 @@ class ChatDetailActivity : AppCompatActivity(), ChatDetailView {
                 )
             }
         } else if (message.isNotEmpty() && mImageList.isEmpty()) {
+
+            val title = mUserName
+            val body = binding.etSendMessageChatDetail.text.toString()
+            val chatType = "private"
+            val chatId = mPresenter.getUserId()
+
+            val dataFCM = Data(
+                title = title,
+                body = body,
+                chat_type = chatType,
+                chat_id = chatId,
+                data = DataX()
+            )
+
+            val registrationId = listOf(fcmToken)
+            val fcm = FCMBody(registrationId,dataFCM)
+            mPresenter.sendFCMNotification(fcmBody = fcm)
+
             val timeStamp = System.currentTimeMillis()
             mPresenter.sendMessage(
                 mPresenter.getUserId(),
@@ -206,6 +254,25 @@ class ChatDetailActivity : AppCompatActivity(), ChatDetailView {
                 )
             )
         } else {
+
+            val title = mUserName
+            val body = "$mUserName sent an attachment"
+            val chatType = "private"
+            val chatId = mPresenter.getUserId()
+
+            val dataFCM = Data(
+                title = title,
+                body = body,
+                chat_type = chatType,
+                chat_id = chatId,
+                data = DataX()
+            )
+
+            val registrationId = listOf(fcmToken)
+            val fcm = FCMBody(registrationId,dataFCM)
+
+            mPresenter.sendFCMNotification(fcmBody = fcm)
+
             val newTimeStamp = System.currentTimeMillis()
             mPresenter.sendMessage(
                 mPresenter.getUserId(),
@@ -271,7 +338,32 @@ class ChatDetailActivity : AppCompatActivity(), ChatDetailView {
     }
 
     private fun sendGroupChatMessage(message: String) {
+
+        Log.i("GroupKeys",registrationGroupIdList.toList().distinct().toString())
+
         if (mImageAdapter.itemCount > 0 && message.isEmpty()) {
+
+            val body: String = if(mImageAdapter.itemCount == 1) {
+                "Someone sent a photo"
+            } else {
+                "Someone sent the photos"
+            }
+
+            val title = mGroupName
+            val chatType = "group"
+            val chatId = mGroupIdFcm
+
+            val dataFCM = Data(
+                title = title,
+                body = body,
+                chat_type = chatType,
+                chat_id = chatId,
+                data = DataX()
+            )
+
+            val fcm = FCMBody(registrationGroupIdList.toList().distinct(),dataFCM)
+
+            mPresenter.sendFCMNotification(fcmBody = fcm)
             for (image in mImageList) {
                 val timeStamp = System.currentTimeMillis()
                 mPresenter.sendGroupMessage(
@@ -289,6 +381,24 @@ class ChatDetailActivity : AppCompatActivity(), ChatDetailView {
                 )
             }
         } else if (message.isNotEmpty() && mImageList.isEmpty()) {
+
+            val title = mGroupName
+            val body = binding.etSendMessageChatDetail.text.toString()
+            val chatType = "group"
+            val chatId = mGroupIdFcm
+
+            val dataFCM = Data(
+                title = title,
+                body = body,
+                chat_type = chatType,
+                chat_id = chatId,
+                data = DataX()
+            )
+
+
+            val fcm = FCMBody(registrationGroupIdList.toList().distinct(),dataFCM)
+
+            mPresenter.sendFCMNotification(fcmBody = fcm)
             val timeStamp = System.currentTimeMillis()
             mPresenter.sendGroupMessage(
                 mGroupId.toLong(),
@@ -304,6 +414,23 @@ class ChatDetailActivity : AppCompatActivity(), ChatDetailView {
                 )
             )
         } else {
+
+            val title = mGroupName
+            val body = "Someone sent an attachment"
+            val chatType = "group"
+            val chatId = mGroupIdFcm
+
+            val dataFCM = Data(
+                title = title,
+                body = body,
+                chat_type = chatType,
+                chat_id = chatId,
+                data = DataX()
+            )
+
+            val fcm = FCMBody(registrationGroupIdList.toList().distinct(),dataFCM)
+
+            mPresenter.sendFCMNotification(fcmBody = fcm)
             val newTimeStamp = System.currentTimeMillis()
             mPresenter.sendGroupMessage(
                 mGroupId.toLong(),
@@ -337,6 +464,10 @@ class ChatDetailActivity : AppCompatActivity(), ChatDetailView {
         }
     }
 
+    override fun showFCMResponse(fcmResponse: FCMResponse) {
+        Log.i("FCMResponse",fcmResponse.toString())
+    }
+
     override fun showMessages(messageList: List<PrivateMessageVO>) {
         mAdapter.setNewData(mPresenter.getUserId(), messageList)
         binding.rvConversation.scrollToPosition(messageList.size - 1)
@@ -355,6 +486,9 @@ class ChatDetailActivity : AppCompatActivity(), ChatDetailView {
                 Glide.with(this)
                     .load(user.imageUrl)
                     .into(binding.ivProfileImageChatDetail)
+
+                fcmToken = user.fcmKey
+                mReceiverFcmId = user.userId
             }
 
             if (mPresenter.getUserId() == user.userId) {
@@ -370,11 +504,26 @@ class ChatDetailActivity : AppCompatActivity(), ChatDetailView {
                 binding.tvNameChatDetail.text = group.name
                 mGroupName = group.name
 
+                mGroupIdFcm = group.id.toString()
+
                 Glide.with(applicationContext)
-                    .load(group.imageUrl ?: "")
+                    .load(group.imageUrl)
                     .placeholder(R.drawable.dummy_group_photo)
                     .into(binding.ivProfileImageChatDetail)
 
+                for(memberId in group.userIdList) {
+                    mPresenter.getSpecificUser(
+                        memberId,
+                        onSuccess = {
+                            if(mPresenter.getUserId() != memberId) {
+                                registrationGroupIdList.add(it.fcmKey)
+                            }
+                        },
+                        onFailure = {
+                            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+                        }
+                    )
+                }
             }
         }
     }
@@ -454,6 +603,10 @@ class ChatDetailActivity : AppCompatActivity(), ChatDetailView {
 
     override fun showError(error: String) {
         Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
-        Log.i("ErrorFire", error)
+    }
+
+    override fun navigateToSearchGifsActivity() {
+        startActivityForResult(SearchGifsActivity.newIntent(this), REQUEST_CODE_GIF)
+        overridePendingTransition(R.anim.scroll_up, 0)
     }
 }

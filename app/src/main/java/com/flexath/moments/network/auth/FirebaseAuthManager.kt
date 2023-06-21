@@ -32,6 +32,7 @@ object FirebaseAuthManager : AuthManager {
         birthDate: String,
         gender: String,
         imageUrl:String,
+        fcmKey:String,
         onSuccess: (user:UserVO) -> Unit,
         onFailure: (String) -> Unit
     ) {
@@ -40,7 +41,7 @@ object FirebaseAuthManager : AuthManager {
                 mFirebaseAuth.currentUser?.updateProfile(
                     UserProfileChangeRequest.Builder().setDisplayName(userName).build()
                 )
-                onSuccess(UserVO(getUserId(),userName,phoneNumber,email, password, birthDate, gender, getUserId(),imageUrl))
+                onSuccess(UserVO(getUserId(),userName,phoneNumber,email, password, birthDate, gender, getUserId(),imageUrl,fcmKey))
             } else {
                 onFailure(it.exception?.message ?: "Check Internet Connection")
             }

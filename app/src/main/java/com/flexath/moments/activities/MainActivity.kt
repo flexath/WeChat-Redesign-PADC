@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import com.flexath.moments.R
 import com.flexath.moments.databinding.ActivityMainBinding
@@ -12,6 +13,7 @@ import com.flexath.moments.fragments.ContactsFragment
 import com.flexath.moments.fragments.MomentFragment
 import com.flexath.moments.fragments.ProfileFragment
 import com.flexath.moments.fragments.SettingFragment
+import com.google.firebase.messaging.FirebaseMessaging
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,6 +30,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setUpBottomNavigationView()
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener {
+            Log.i("NewTokenMainActivity",it.result)
+        }
     }
 
     private fun setUpBottomNavigationView() {

@@ -56,4 +56,12 @@
     <string name="lbl_delete_moment">Delete moment</string>
     <string name="lbl_hide_moment">Hide moment</string>
     <string name="lbl_save_moment">Save moment</string>
+    <string name="lbl_account_security">Account Security</string>
+    <string name="lbl_log_out">Log Out</string>
+    <string name="lbl_moments_labs">Moments Labs</string>
+    <string name="lbl_about">About</string>
+    <string name="lbl_message_notifications">Message Notifications</string>
+    <string name="lbl_privacy">Privacy</string>
+    <string name="lbl_general">General</string>
+    <string name="lbl_help_amp_feedback"><![CDATA[Help & Feedback]]></string>
 </resources>

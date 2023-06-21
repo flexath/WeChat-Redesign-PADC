@@ -42,6 +42,7 @@ class RegisterPresenterImpl : RegisterPresenter , ViewModel() {
             birthDate = user.birthDate,
             gender = user.gender,
             imageUrl = user.imageUrl,
+            fcmKey= user.fcmKey,
             onSuccess = {
                 mUserModel.addUser(it)
                 mUserModel.updateAndUploadProfileImage(bitmap, it)

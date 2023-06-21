@@ -16,6 +16,7 @@ interface AuthenticationModel {
         birthDate:String,
         gender:String,
         imageUrl:String,
+        fcmKey:String,
         onSuccess: (user: UserVO) -> Unit,
         onFailure: (String) -> Unit
     )
